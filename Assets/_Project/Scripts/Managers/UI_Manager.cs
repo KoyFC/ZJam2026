@@ -4,12 +4,13 @@ using System.Collections.Generic;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
-
+    #region References
     [Header("Canvases")]
     [SerializeField] private GameObject m_upgradeCanvas;
     [SerializeField] private GameObject m_statsCanvas;
 
     private GameObject m_currentCanvas;
+    #endregion
 
     #region Unity Methods
     public void Awake()
