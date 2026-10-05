@@ -11,7 +11,7 @@ public class Upgrade_Manager : MonoBehaviour
     
     public static Upgrade_Manager Instance { get; private set; }
 
-    private List<UpgradeDataSO> m_upgradeDataList = new List<UpgradeDataSO>();
+    [SerializeField] private List<GameObject> m_upgradeButtons = new List<GameObject>();
 
     #region Events
     public static event Action<UpgradeDataSO> OnUpgradePurchased;
@@ -35,11 +35,33 @@ public class Upgrade_Manager : MonoBehaviour
         }
         Debug.Log("Purchased upgrade: " + upgradeData.name);
         OnUpgradePurchased?.Invoke(upgradeData);
+
+        TryUnlockUpgrade(upgradeData);
     }
 
-    private void TryUnlockUpgrade(GameObject upgradeButton)
+    private void TryUnlockUpgrade(UpgradeDataSO upgradeData)
     {
-        UpgradeDataSO upgradeData = upgradeButton.GetComponent<Upgrade_Info>().UpgradeData;
+        if(upgradeData == null)
+        {
+            Debug.LogWarning("UpgradeData is null.");
+            return;
+        }
+
+        if(upgradeData.Consequents.Count > 0)
+        {
+            Debug.Log("Unlocking consequent upgrades for: " + upgradeData.name);
+            foreach(UpgradeDataSO consequent in upgradeData.Consequents)
+            {
+                foreach(GameObject button in m_upgradeButtons)
+                {
+                    if(button.GetComponent<Upgrade_Info>().UpgradeData == consequent)
+                    {
+                        button.SetActive(true);
+                    }
+                }
+                Debug.Log("Unlocking consequent upgrade: " + consequent.name);
+            }
+        }
     }
     #endregion
 }

@@ -20,6 +20,6 @@ public class UpgradeDataSO : ScriptableObject
     [field: SerializeField] public Sprite Icon {get; private set;} = null;
     [field: SerializeField] public string Description {get; private set;} = "";
     [field: SerializeField] public int Cost {get; private set;} = 0;
-    [field: SerializeField] public List<UpgradeDataSO> Consequients {get; private set;} = new List<UpgradeDataSO>();
+    [field: SerializeField] public List<UpgradeDataSO> Consequents {get; private set;} = new List<UpgradeDataSO>();
     
 }
