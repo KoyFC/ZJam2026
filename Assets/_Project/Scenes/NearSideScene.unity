@@ -442,6 +442,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1554517547}
+  - {fileID: 1690835806}
+  - {fileID: 857269993}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &140750835
@@ -3791,9 +3793,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 406935162}
     m_Modifications:
+    - target: {fileID: 433418217166912785, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_upgradeData
+      value: 
+      objectReference: {fileID: 11400000, guid: 93e4dd3c70b92cb44a53434f44e91e6b, type: 2}
     - target: {fileID: 1966999779020529164, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
       propertyPath: m_Name
       value: Upgrade Placeholder (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1690835807}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TryPurchaseUpgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Upgrade_Manager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1051586104}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Upgrade_Info, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7430091986825780061, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
       propertyPath: m_Pivot.x
@@ -4378,6 +4416,51 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &857269992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 857269993}
+  - component: {fileID: 857269994}
+  m_Layer: 0
+  m_Name: Player_Stats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &857269993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857269992}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 530.2901, y: -0.00001, z: 780.747}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 111917333}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &857269994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857269992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372b56ea14c3fd44299b61695c0a9ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player_Stats
+  m_currentMoney: 0
 --- !u!1 &869329090
 GameObject:
   m_ObjectHideFlags: 0
@@ -5090,6 +5173,17 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!114 &1051586104 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 433418217166912785, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+  m_PrefabInstance: {fileID: 790071611}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 371ce8afbe8c4d341be31468cb1c7bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Upgrade_Info
 --- !u!43 &1104036854
 Mesh:
   m_ObjectHideFlags: 0
@@ -5376,6 +5470,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7430091986825780061, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
   m_PrefabInstance: {fileID: 454736442060796141}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1187717129 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 433418217166912785, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+  m_PrefabInstance: {fileID: 454736442060796141}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 371ce8afbe8c4d341be31468cb1c7bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Upgrade_Info
 --- !u!1 &1337898894
 GameObject:
   m_ObjectHideFlags: 0
@@ -5991,6 +6096,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CanvasInfo
   m_canvas: {fileID: 406935161}
+--- !u!1 &1690835805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1690835806}
+  - component: {fileID: 1690835807}
+  m_Layer: 0
+  m_Name: Upgrade_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1690835806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690835805}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 538.956, y: 0.00001, z: 1724.6544}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 111917333}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1690835807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690835805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b1edcf239f1fd45a9c7f5a73f57f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Upgrade_Manager
 --- !u!43 &1722443234
 Mesh:
   m_ObjectHideFlags: 0
@@ -6889,9 +7038,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 406935162}
     m_Modifications:
+    - target: {fileID: 433418217166912785, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_upgradeData
+      value: 
+      objectReference: {fileID: 11400000, guid: 81fee88987095f14cbbc18f4a1404923, type: 2}
     - target: {fileID: 1966999779020529164, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
       propertyPath: m_Name
       value: Upgrade Placeholder (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1690835807}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TryPurchaseUpgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Upgrade_Manager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 2125896311}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Upgrade_Info, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7430091986825780061, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
       propertyPath: m_Pivot.x
@@ -6983,6 +7168,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7430091986825780061, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
   m_PrefabInstance: {fileID: 2125896309}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2125896311 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 433418217166912785, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+  m_PrefabInstance: {fileID: 2125896309}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 371ce8afbe8c4d341be31468cb1c7bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Upgrade_Info
 --- !u!1 &2138277030
 GameObject:
   m_ObjectHideFlags: 0
@@ -7354,6 +7550,38 @@ PrefabInstance:
     - target: {fileID: 1966999779020529164, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
       propertyPath: m_Name
       value: Upgrade Placeholder
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1690835807}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TryPurchaseUpgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Upgrade_Manager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1187717129}
+    - target: {fileID: 3773600069216478947, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Upgrade_Info, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7430091986825780061, guid: 4ab1c3ee74700da4fb2b8242e3fca5b4, type: 3}
       propertyPath: m_Pivot.x
