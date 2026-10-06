@@ -4788,6 +4788,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_Stats
   m_currentMoney: 0
+  m_currentCobalt: 0
+  m_currentFuel: 0
 --- !u!1 &869329090
 GameObject:
   m_ObjectHideFlags: 0
