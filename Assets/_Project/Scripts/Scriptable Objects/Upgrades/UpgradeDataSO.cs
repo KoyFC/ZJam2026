@@ -8,6 +8,7 @@ public enum UpgradeType
     qualitiy_of_life,
     damage,
     fuel,
+    money,
     resources
 }
 
