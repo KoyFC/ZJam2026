@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -42,6 +43,15 @@ public class UIManager : MonoBehaviour
         }
         m_upgradeCanvas.SetActive(!m_upgradeCanvas.activeSelf);
         m_currentCanvas = m_upgradeCanvas.activeSelf ? m_upgradeCanvas : null;
+
+        if(!m_upgradeCanvas.activeSelf)
+        {
+            ScrollRect scrollRect = m_upgradeCanvas.GetComponentInChildren<ScrollRect>();
+            if(scrollRect != null)
+            {
+                scrollRect.normalizedPosition = new Vector2(0.5f, 0.5f);
+            }
+        }
     }
 
     public void ToggleStatsCanvas()
