@@ -33,7 +33,10 @@ public class UpgradeDataSO : ScriptableObject
     [field: SerializeField] public int Cost {get; private set;} = 0;
 
     [Header("Upgrade Modifier Data")]
-    [field: SerializeField] public float ModifierValue {get; private set;} = 0f;
+    [field: SerializeField] public float AdditiveValue {get; private set;} = 0f;
+
+    [field: SerializeField] public float MultiplicativeValue { get; private set; } = 1f;
+
 
     [Header("Upgrade Consequents")]
     [field: SerializeField] public List<UpgradeDataSO> Consequents {get; private set;} = new List<UpgradeDataSO>();

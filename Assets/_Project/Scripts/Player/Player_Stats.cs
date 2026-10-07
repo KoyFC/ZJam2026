@@ -13,7 +13,7 @@ public class Player_Stats : MonoBehaviour
     [Header("Player Stats")]
     [SerializeField] private float m_currentMoney = 0f;
     [SerializeField] private float m_currentCobalt = 0f;
-    [SerializeField] private float m_currentFuel = 0f;
+    [SerializeField] private float m_maxFuel = 0f;
     #endregion
 
     #region Player Upgrades
@@ -23,7 +23,7 @@ public class Player_Stats : MonoBehaviour
     #region Public References
     public float CurrentMoney => m_currentMoney;
     public float CurrentCobalt => m_currentCobalt;
-    public float CurrentFuel => m_currentFuel;
+    public float CurrentFuel => m_maxFuel;
     public IReadOnlyList<UpgradeDataSO> PurchasedUpgrades => m_purchasedUpgrades.AsReadOnly();
     #endregion
 
@@ -57,6 +57,21 @@ public class Player_Stats : MonoBehaviour
         {
             m_purchasedUpgrades.Add(upgradeData);
         }
+    }
+
+    public void AddMoney(float amount)
+    {
+        m_currentMoney += amount;
+    }
+
+    public void AddFuel(float amount)
+    {
+        m_maxFuel += amount;
+    }
+
+    public void AddCobalt(float amount)
+    {
+        m_currentCobalt += amount;
     }
     #endregion
 }
