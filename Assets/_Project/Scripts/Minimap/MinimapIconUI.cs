@@ -6,6 +6,14 @@ public class MinimapIconUI : MonoBehaviour
     [SerializeField] private Image m_ImageComponent;
     private Sprite m_Icon;
 
+    private void Awake()
+    {
+        if (m_ImageComponent == null)
+        {
+            m_ImageComponent = GetComponentInChildren<Image>();
+        }
+    }
+
     public void Initialize(MinimapEntity entity)
     {
         m_Icon = entity.Icon;
