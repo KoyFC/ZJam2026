@@ -4,9 +4,6 @@ using UnityEngine;
 public class Stats_Modifier : MonoBehaviour
 {
     private UpgradeDataSO m_upgradeReferemce = null;
-    private Player_Stats m_playerStats => Player_Stats.Instance;
-
-    private Enum m_upgradeType => m_upgradeReferemce.UgradeType;
     private Enum m_modifierType => m_upgradeReferemce.ModifierType;
 
     private void ApplyUpgrade(UpgradeDataSO upgradeData, Player_Stats playerStats)
@@ -24,11 +21,34 @@ public class Stats_Modifier : MonoBehaviour
         //Then check the value to modify based on the upgrade type
         UpgradeType upgradeType = GetUpgradeType(upgradeData);
 
-        //Then, based on the upgrade type, we apply the modifier to the appropriate player stat
+        //Then, get the stat to modify based on the upgrade type and the player stats
+        float statToModify = GetStatToModify(upgradeType, playerStats);
+
+        switch(m_modifierType)
+        {
+            case StatModifierType.additive:
+                ApplyAdditiveUpgrade(modifierValue, statToModify);
+                break;
+            case StatModifierType.multiplicative:
+                ApplyMultiplicativeUpgrade(modifierValue, statToModify);
+                break;
+            default:
+                Debug.LogWarning("Unhandled modifier type: " + m_modifierType);
+                break;
+        }
 
     }
 
     #region Upgrade Application Methods
+    private void ApplyAdditiveUpgrade(float modifierValue, float statToModify)
+    {
+        statToModify += modifierValue;
+    }
+
+    private void ApplyMultiplicativeUpgrade(float modifierValue, float statToModify)
+    {
+        statToModify *= modifierValue;
+    }
     #endregion
 
     #region Helper Methods
@@ -44,10 +64,10 @@ public class Stats_Modifier : MonoBehaviour
         {
             case StatModifierType.additive:
                 float AdditiveValue = upgradeData.AdditiveValue;
-                return upgradeData.AdditiveValue;
+                return AdditiveValue;
             case StatModifierType.multiplicative:
                 float MultiplicativeValue = upgradeData.MultiplicativeValue;
-                return upgradeData.MultiplicativeValue;
+                return MultiplicativeValue;
             default:
                 Debug.LogWarning("Unhandled modifier type: " + m_modifierType);
                 return 0f;
@@ -63,6 +83,22 @@ public class Stats_Modifier : MonoBehaviour
         }
 
         return upgradeData.UgradeType;
+    }
+
+    private float GetStatToModify(UpgradeType upgradeType, Player_Stats playerStats)
+    {
+        switch(upgradeType)
+        {
+            case UpgradeType.money:
+                return playerStats.CurrentMoney;
+            case UpgradeType.fuel:
+                return playerStats.CurrentFuel;
+            case UpgradeType.resources:
+                return playerStats.CurrentCobalt;
+            default:
+                Debug.LogWarning("Unhandled upgrade type: " + upgradeType);
+                return 0f;
+        }
     }
     #endregion
 }
