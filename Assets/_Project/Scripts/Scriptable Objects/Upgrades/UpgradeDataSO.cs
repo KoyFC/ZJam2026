@@ -2,16 +2,6 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-public enum UpgradeType
-{
-    none,
-    qualitiy_of_life,
-    damage,
-    fuel,
-    money,
-    resources
-}
-
 public enum StatModifierType
 {
     none,
