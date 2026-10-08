@@ -4753,8 +4753,9 @@ GameObject:
   m_Component:
   - component: {fileID: 857269993}
   - component: {fileID: 857269994}
+  - component: {fileID: 857269995}
   m_Layer: 0
-  m_Name: Player_Stats
+  m_Name: Player Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4789,7 +4790,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player_Stats
   m_currentMoney: 0
   m_currentCobalt: 0
-  m_currentFuel: 0
+  m_maxFuel: 0
+--- !u!114 &857269995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857269992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad406743139c5604db7cce2f951cf567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stats_Modifier
 --- !u!1 &869329090
 GameObject:
   m_ObjectHideFlags: 0

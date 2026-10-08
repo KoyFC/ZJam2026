@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: First Upgrade
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeDataSO
   <UgradeType>k__BackingField: 3
+  <ModifierType>k__BackingField: 1
   <Icon>k__BackingField: {fileID: 0}
   <Description>k__BackingField: 
   <Cost>k__BackingField: 0
+  <AdditiveValue>k__BackingField: 0
+  <MultiplicativeValue>k__BackingField: 1
   <Consequents>k__BackingField:
   - {fileID: 11400000, guid: 93e4dd3c70b92cb44a53434f44e91e6b, type: 2}
   - {fileID: 11400000, guid: 81fee88987095f14cbbc18f4a1404923, type: 2}
