@@ -3,25 +3,57 @@ using UnityEngine;
 
 public class Stats_Modifier : MonoBehaviour
 {
+    public static Stats_Modifier Instance { get; private set; }
     private UpgradeDataSO m_upgradeReference = null;
     private Enum m_modifierType => m_upgradeReference.ModifierType;
     private Player_Stats m_playerStats => Player_Stats.Instance;
 
-    private void ApplyUpgrade(UpgradeDataSO upgradeData, Player_Stats playerStats)
+
+    #region Unity Methods
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        Upgrade_Manager.OnUpgradePurchased += ApplyUpgrade;
+    }
+
+    private void OnDisable()
+    {
+        Upgrade_Manager.OnUpgradePurchased -= ApplyUpgrade;
+    }
+    #endregion
+    public void ApplyUpgrade(UpgradeDataSO upgradeData)
     {
         //First check if the upgradeData is null
-        if(upgradeData == null || playerStats == null)
+        if(upgradeData == null || m_playerStats == null)
         {
             Debug.LogWarning("UpgradeData or Player_Stats is null.");
             return;
         }
 
-        float currentStatValue = GetStatToModify(upgradeData.UpgradeType, playerStats);
+        m_upgradeReference = upgradeData;
+        if(m_upgradeReference == null)
+        {
+            Debug.LogWarning("Upgrade reference is null.");
+            return;
+        }
+
+        float currentStatValue = GetStatToModify(upgradeData.UpgradeType, m_playerStats);
         float modifierValue = GetModifierValue(upgradeData);
+        
 
         float newStatValue = ApplyModifier(currentStatValue, modifierValue, upgradeData.ModifierType);
 
-        playerStats.SetStat(upgradeData.UpgradeType, newStatValue);
+        m_playerStats.SetStat(upgradeData.UpgradeType, newStatValue);
 
     }
 

@@ -111,12 +111,15 @@ public class Player_Stats : MonoBehaviour
         {
             case UpgradeType.money:
                 m_currentMoney = newValue;
+                Debug.Log("Set money to: " + newValue);
                 break;
             case UpgradeType.fuel:
                 m_maxFuel = newValue;
+                Debug.Log("Set fuel to: " + newValue);
                 break;
             case UpgradeType.resources:
                 m_currentCobalt = newValue;
+                Debug.Log("Set cobalt to: " + newValue);
                 break;
             default:
                 Debug.LogWarning("Unhandled upgrade type: " + upgradeType);
