@@ -59,21 +59,6 @@ public class Player_Stats : MonoBehaviour
         }
     }
 
-    /*public void AddMoney(float amount)
-    {
-        m_currentMoney += amount;
-    }
-
-    public void AddFuel(float amount)
-    {
-        m_maxFuel += amount;
-    }
-
-    public void AddCobalt(float amount)
-    {
-        m_currentCobalt += amount;
-    }*/
-
     public void SetMoney(float newAmount)
     {
         m_currentMoney = newAmount;

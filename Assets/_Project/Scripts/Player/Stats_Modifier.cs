@@ -58,18 +58,6 @@ public class Stats_Modifier : MonoBehaviour
     }
 
     #region Upgrade Application Methods
-    /*private float ApplyAdditiveUpgrade(float modifierValue, float statToModify)
-    {
-        statToModify += modifierValue;
-        return statToModify;
-    }
-
-    private float ApplyMultiplicativeUpgrade(float modifierValue, float statToModify)
-    {
-        statToModify *= modifierValue;
-        return statToModify;
-    }*/
-
     private float ApplyModifier(float currentValue, float modifierValue, StatModifierType modifierType)
     {
         switch(modifierType)
