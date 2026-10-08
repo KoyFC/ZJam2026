@@ -59,21 +59,6 @@ public class Player_Stats : MonoBehaviour
         }
     }
 
-    public void SetMoney(float newAmount)
-    {
-        m_currentMoney = newAmount;
-    }
-
-    public void SetFuel(float newAmount)
-    {
-        m_maxFuel = newAmount;
-    }
-
-    public void SetCobalt(float newAmount)
-    {
-        m_currentCobalt = newAmount;
-    }
-
     public float GetStat(UpgradeType upgradeType)
     {
         switch(upgradeType)
