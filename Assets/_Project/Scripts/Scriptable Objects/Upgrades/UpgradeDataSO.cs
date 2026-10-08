@@ -24,7 +24,7 @@ public enum StatModifierType
 public class UpgradeDataSO : ScriptableObject
 {
     [Header("Upgrade Type Data")]
-    [field: SerializeField] public  UpgradeType UgradeType {get; private set;} = UpgradeType.none;
+    [field: SerializeField] public  UpgradeType UpgradeType {get; private set;} = UpgradeType.none;
     [field: SerializeField] public StatModifierType ModifierType {get; private set;} = StatModifierType.none;
 
     [Header("Upgrade Information")]

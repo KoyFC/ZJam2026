@@ -59,7 +59,7 @@ public class Player_Stats : MonoBehaviour
         }
     }
 
-    public void AddMoney(float amount)
+    /*public void AddMoney(float amount)
     {
         m_currentMoney += amount;
     }
@@ -72,6 +72,56 @@ public class Player_Stats : MonoBehaviour
     public void AddCobalt(float amount)
     {
         m_currentCobalt += amount;
+    }*/
+
+    public void SetMoney(float newAmount)
+    {
+        m_currentMoney = newAmount;
+    }
+
+    public void SetFuel(float newAmount)
+    {
+        m_maxFuel = newAmount;
+    }
+
+    public void SetCobalt(float newAmount)
+    {
+        m_currentCobalt = newAmount;
+    }
+
+    public float GetStat(UpgradeType upgradeType)
+    {
+        switch(upgradeType)
+        {
+            case UpgradeType.money:
+                return m_currentMoney;
+            case UpgradeType.fuel:
+                return m_maxFuel;
+            case UpgradeType.resources:
+                return m_currentCobalt;
+            default:
+                Debug.LogWarning("Unhandled upgrade type: " + upgradeType);
+                return 0f;
+        }
+    }
+
+    public void SetStat(UpgradeType upgradeType, float newValue)
+    {
+        switch(upgradeType)
+        {
+            case UpgradeType.money:
+                m_currentMoney = newValue;
+                break;
+            case UpgradeType.fuel:
+                m_maxFuel = newValue;
+                break;
+            case UpgradeType.resources:
+                m_currentCobalt = newValue;
+                break;
+            default:
+                Debug.LogWarning("Unhandled upgrade type: " + upgradeType);
+                break;
+        }
     }
     #endregion
 }

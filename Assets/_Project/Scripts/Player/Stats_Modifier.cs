@@ -3,51 +3,55 @@ using UnityEngine;
 
 public class Stats_Modifier : MonoBehaviour
 {
-    private UpgradeDataSO m_upgradeReferemce = null;
-    private Enum m_modifierType => m_upgradeReferemce.ModifierType;
+    private UpgradeDataSO m_upgradeReference = null;
+    private Enum m_modifierType => m_upgradeReference.ModifierType;
+    private Player_Stats m_playerStats => Player_Stats.Instance;
 
     private void ApplyUpgrade(UpgradeDataSO upgradeData, Player_Stats playerStats)
     {
         //First check if the upgradeData is null
-        if(upgradeData == null)
+        if(upgradeData == null || playerStats == null)
         {
-            Debug.LogWarning("UpgradeData is null.");
+            Debug.LogWarning("UpgradeData or Player_Stats is null.");
             return;
         }
 
-        //Second we get the modifier value based on the upgradeData and the modifier type
+        float currentStatValue = GetStatToModify(upgradeData.UpgradeType, playerStats);
         float modifierValue = GetModifierValue(upgradeData);
 
-        //Then check the value to modify based on the upgrade type
-        UpgradeType upgradeType = GetUpgradeType(upgradeData);
+        float newStatValue = ApplyModifier(currentStatValue, modifierValue, upgradeData.ModifierType);
 
-        //Then, get the stat to modify based on the upgrade type and the player stats
-        float statToModify = GetStatToModify(upgradeType, playerStats);
-
-        switch(m_modifierType)
-        {
-            case StatModifierType.additive:
-                ApplyAdditiveUpgrade(modifierValue, statToModify);
-                break;
-            case StatModifierType.multiplicative:
-                ApplyMultiplicativeUpgrade(modifierValue, statToModify);
-                break;
-            default:
-                Debug.LogWarning("Unhandled modifier type: " + m_modifierType);
-                break;
-        }
+        playerStats.SetStat(upgradeData.UpgradeType, newStatValue);
 
     }
 
     #region Upgrade Application Methods
-    private void ApplyAdditiveUpgrade(float modifierValue, float statToModify)
+    /*private float ApplyAdditiveUpgrade(float modifierValue, float statToModify)
     {
         statToModify += modifierValue;
+        return statToModify;
     }
 
-    private void ApplyMultiplicativeUpgrade(float modifierValue, float statToModify)
+    private float ApplyMultiplicativeUpgrade(float modifierValue, float statToModify)
     {
         statToModify *= modifierValue;
+        return statToModify;
+    }*/
+
+    private float ApplyModifier(float currentValue, float modifierValue, StatModifierType modifierType)
+    {
+        switch(modifierType)
+        {
+            case StatModifierType.additive:
+                return currentValue + modifierValue;
+            case StatModifierType.multiplicative:
+                return currentValue * modifierValue;
+            default:
+                Debug.LogWarning("Unhandled modifier type: " + modifierType);
+                return currentValue;
+        }
+        
+
     }
     #endregion
 
@@ -82,7 +86,7 @@ public class Stats_Modifier : MonoBehaviour
             return UpgradeType.none;
         }
 
-        return upgradeData.UgradeType;
+        return upgradeData.UpgradeType;
     }
 
     private float GetStatToModify(UpgradeType upgradeType, Player_Stats playerStats)
