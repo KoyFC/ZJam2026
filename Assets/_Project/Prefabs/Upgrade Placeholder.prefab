@@ -29,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 1966999779020529164}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.57, y: 0.57, z: 0.57}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7982844378175924311}
@@ -121,19 +121,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 463976140352212151}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Upgrade_Manager, Assembly-CSharp
-        m_MethodName: TryPurchaseUpgrade
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 433418217166912785}
-          m_ObjectArgumentAssemblyTypeName: Upgrade_Info, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &433418217166912785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,8 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371ce8afbe8c4d341be31468cb1c7bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade_Info
-  m_upgradeData: {fileID: 11400000, guid: 81fee88987095f14cbbc18f4a1404923, type: 2}
+  m_upgradeData: {fileID: 0}
   m_upgradeNameText: {fileID: 2997782488556741374}
+  m_upgradeDescriptionText: {fileID: 0}
 --- !u!1 &4133860068232785058
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +Resources
+  m_text: Upgrade Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -240,15 +229,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
