@@ -19,4 +19,5 @@ MonoBehaviour:
   <Cost>k__BackingField: 3
   <AdditiveValue>k__BackingField: 0
   <MultiplicativeValue>k__BackingField: 1
-  <Consequents>k__BackingField: []
+  <Consequents>k__BackingField:
+  - {fileID: 0}
