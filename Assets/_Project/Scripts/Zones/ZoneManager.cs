@@ -8,7 +8,6 @@ public class ZoneManager : Singleton<ZoneManager>
 
     [SerializeField] private float m_GizmoHeight = 20f;
 
-    public static event Action<ZoneDataSO> OnZoneChanged;
     public static event Action<int> OnZoneUnlocked;
 
     public float GetInnerRadius()
@@ -32,7 +31,7 @@ public class ZoneManager : Singleton<ZoneManager>
         base.Awake();
         if (Zones.Length == 0)
         {
-            Debug.LogError("No zones assigned to ZoneManager.");
+            Debug.LogError("No zones set in ZoneManager.", this);
             CurrentZoneIndex = -1;
             return;
         }
@@ -48,7 +47,6 @@ public class ZoneManager : Singleton<ZoneManager>
         }
 
         CurrentZoneIndex = Zones.Length - 1; // TODO: Change this depending on the save data
-        OnZoneChanged?.Invoke(Zones[CurrentZoneIndex]);
     }
 
     public bool UnlockNextZone()
@@ -58,7 +56,6 @@ public class ZoneManager : Singleton<ZoneManager>
 
         CurrentZoneIndex--;
         OnZoneUnlocked?.Invoke(CurrentZoneIndex);
-        // OnZoneChanged?.Invoke(Zones[CurrentZoneIndex]);
         return true;
     }
 
