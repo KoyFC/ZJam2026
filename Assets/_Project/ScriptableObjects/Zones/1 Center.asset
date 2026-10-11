@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: 1 Center
   m_EditorClassIdentifier: Assembly-CSharp::ZoneDataSO
   <ZoneName>k__BackingField: Center
-  <Radius>k__BackingField: 25
+  <Radius>k__BackingField: 100

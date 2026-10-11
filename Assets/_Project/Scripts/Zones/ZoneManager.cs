@@ -73,17 +73,19 @@ public class ZoneManager : Singleton<ZoneManager>
         if (Zones.Length == 0)
             return;
 
-        int index = Application.isPlaying ? CurrentZoneIndex : Zones.Length - 1;
-        if (index < 0 || index >= Zones.Length)
-            return;
+        int currentZoneIndex = Application.isPlaying ? CurrentZoneIndex : Zones.Length - 1;
 
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, Zones[index].Radius);
-
-        if (index > 0)
+        for (int i = 0; i < Zones.Length; i++)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, Zones[index - 1].Radius);
+            if (Zones[i] == null)
+                continue;
+
+            if (i == currentZoneIndex || i == currentZoneIndex - 1)
+                Gizmos.color = Color.cyan;
+            else
+                Gizmos.color = Color.red;
+
+            Gizmos.DrawWireSphere(transform.position, Zones[i].Radius);
         }
     }
 }
