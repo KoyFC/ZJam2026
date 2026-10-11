@@ -4,18 +4,25 @@ using UnityEngine;
 public class ZoneManager : Singleton<ZoneManager>
 {
     [field: SerializeField] public ZoneDataSO[] Zones { get; private set; }
-    public ZoneDataSO CurrentZone { get; private set; } = null;
-    public int HighestUnlockedZone { get; private set; } = 0; // By index in the array
+    public int CurrentZoneIndex { get; private set; } = -1;
 
     public static event Action<ZoneDataSO> OnZoneChanged;
     public static event Action<int> OnZoneUnlocked;
 
-    public float GetUnlockedRadius()
+    public float GetInnerRadius()
     {
-        if (HighestUnlockedZone < 0 || HighestUnlockedZone >= Zones.Length)
+        if (CurrentZoneIndex <= 0 || CurrentZoneIndex >= Zones.Length)
             return 0f;
 
-        return Zones[HighestUnlockedZone].Radius;
+        return Zones[CurrentZoneIndex - 1].Radius;
+    }
+
+    public float GetOuterRadius()
+    {
+        if (CurrentZoneIndex < 0 || CurrentZoneIndex >= Zones.Length)
+            return 0f;
+
+        return Zones[CurrentZoneIndex].Radius;
     }
 
     protected override void Awake()
@@ -24,8 +31,7 @@ public class ZoneManager : Singleton<ZoneManager>
         if (Zones.Length == 0)
         {
             Debug.LogError("No zones assigned to ZoneManager.");
-            HighestUnlockedZone = -1;
-            CurrentZone = null;
+            CurrentZoneIndex = -1;
             return;
         }
 
@@ -39,18 +45,18 @@ public class ZoneManager : Singleton<ZoneManager>
             }
         }
 
-        HighestUnlockedZone = 0; // TODO: Change this depending on the save data
-        CurrentZone = Zones[0];
-        OnZoneChanged?.Invoke(CurrentZone);
+        CurrentZoneIndex = Zones.Length - 1; // TODO: Change this depending on the save data
+        OnZoneChanged?.Invoke(Zones[CurrentZoneIndex]);
     }
 
     public bool UnlockNextZone()
     {
-        if (HighestUnlockedZone >= Zones.Length - 1)
+        if (CurrentZoneIndex <= 0)
             return false;
 
-        HighestUnlockedZone++;
-        OnZoneUnlocked?.Invoke(HighestUnlockedZone);
+        CurrentZoneIndex--;
+        OnZoneUnlocked?.Invoke(CurrentZoneIndex);
+        // OnZoneChanged?.Invoke(Zones[CurrentZoneIndex]);
         return true;
     }
 
@@ -67,8 +73,17 @@ public class ZoneManager : Singleton<ZoneManager>
         if (Zones.Length == 0)
             return;
 
+        int index = Application.isPlaying ? CurrentZoneIndex : Zones.Length - 1;
+        if (index < 0 || index >= Zones.Length)
+            return;
+
         Gizmos.color = Color.cyan;
-        int index = Mathf.Clamp(HighestUnlockedZone, 0, Zones.Length - 1);
         Gizmos.DrawWireSphere(transform.position, Zones[index].Radius);
+
+        if (index > 0)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, Zones[index - 1].Radius);
+        }
     }
 }
