@@ -2,9 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
-    public static UIManager Instance { get; private set; }
     #region References
     [Header("Canvases")]
     [SerializeField] private GameObject m_upgradeCanvas;
@@ -14,18 +13,15 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Unity Methods
-    public void Awake()
-    {
-        if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-        Instance = this;
+    // I don't think this needs to be persistent
 
-        m_currentCanvas = null;
-        DontDestroyOnLoad(gameObject);
-    }
+    // protected override void Awake()
+    // {
+    //     base.Awake();
+
+    //     m_currentCanvas = null;
+    //     DontDestroyOnLoad(gameObject);
+    // }
 
     private void Start()
     {
@@ -37,17 +33,17 @@ public class UIManager : MonoBehaviour
     #region Canvas Methods
     public void ToggleUpgradeCanvas()
     {
-        if(m_currentCanvas != m_upgradeCanvas)
+        if (m_currentCanvas != m_upgradeCanvas)
         {
             CloseCurrentCanvas();
         }
         m_upgradeCanvas.SetActive(!m_upgradeCanvas.activeSelf);
         m_currentCanvas = m_upgradeCanvas.activeSelf ? m_upgradeCanvas : null;
 
-        if(!m_upgradeCanvas.activeSelf)
+        if (!m_upgradeCanvas.activeSelf)
         {
             ScrollRect scrollRect = m_upgradeCanvas.GetComponentInChildren<ScrollRect>();
-            if(scrollRect != null)
+            if (scrollRect != null)
             {
                 scrollRect.normalizedPosition = new Vector2(0.5f, 0.5f);
             }
@@ -56,7 +52,7 @@ public class UIManager : MonoBehaviour
 
     public void ToggleStatsCanvas()
     {
-        if(m_currentCanvas != m_statsCanvas)
+        if (m_currentCanvas != m_statsCanvas)
         {
             CloseCurrentCanvas();
         }
@@ -66,7 +62,7 @@ public class UIManager : MonoBehaviour
 
     public void CloseCurrentCanvas()
     {
-        if(m_currentCanvas != null)
+        if (m_currentCanvas != null)
         {
             m_currentCanvas.SetActive(false);
             m_currentCanvas = null;

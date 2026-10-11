@@ -2,15 +2,12 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public class Upgrade_Manager : MonoBehaviour
+/// <summary>
+/// Singleton instance of the Upgrade_Manager class.
+/// The Upgrade_Manager class is responsible for managing upgrades in the game.
+/// </summary>
+public class Upgrade_Manager : Singleton<Upgrade_Manager>
 {
-    /// <summary>
-    /// Singleton instance of the Upgrade_Manager class.
-    /// The Upgrade_Manager class is responsible for managing upgrades in the game.
-    /// </summary>
-    
-    public static Upgrade_Manager Instance { get; private set; }
-
     [SerializeField] private List<GameObject> m_upgradeButtons = new List<GameObject>();
 
     #region Events
@@ -20,15 +17,15 @@ public class Upgrade_Manager : MonoBehaviour
     #region Custom Methods
     public void TryPurchaseUpgrade(Upgrade_Info upgradeInfo)
     {
-        if(upgradeInfo == null || upgradeInfo.UpgradeData == null)
+        if (upgradeInfo == null || upgradeInfo.UpgradeData == null)
         {
             Debug.LogWarning("Upgrade_Info or UpgradeData is null.");
             return;
         }
 
         UpgradeDataSO upgradeData = upgradeInfo.UpgradeData;
-        
-        if(Player_Stats.Instance.CurrentMoney < upgradeData.Cost)
+
+        if (Player_Stats.Instance.CurrentMoney < upgradeData.Cost)
         {
             Debug.Log("Not enough money to purchase upgrade: " + upgradeData.name);
             return;
@@ -41,20 +38,20 @@ public class Upgrade_Manager : MonoBehaviour
 
     private void TryUnlockUpgrade(UpgradeDataSO upgradeData)
     {
-        if(upgradeData == null)
+        if (upgradeData == null)
         {
             Debug.LogWarning("UpgradeData is null.");
             return;
         }
 
-        if(upgradeData.Consequents.Count > 0)
+        if (upgradeData.Consequents.Count > 0)
         {
             Debug.Log("Unlocking consequent upgrades for: " + upgradeData.name);
-            foreach(UpgradeDataSO consequent in upgradeData.Consequents)
+            foreach (UpgradeDataSO consequent in upgradeData.Consequents)
             {
-                foreach(GameObject button in m_upgradeButtons)
+                foreach (GameObject button in m_upgradeButtons)
                 {
-                    if(button.GetComponent<Upgrade_Info>().UpgradeData == consequent)
+                    if (button.GetComponent<Upgrade_Info>().UpgradeData == consequent)
                     {
                         button.SetActive(true);
                     }

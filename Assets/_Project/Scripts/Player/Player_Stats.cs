@@ -11,14 +11,12 @@ public enum UpgradeType
     resources
 }
 
-public class Player_Stats : MonoBehaviour
+/// <summary>
+/// Singleton instance of the Player_Stats class.
+/// The Player_Stats class is responsible for managing the player's statistics in the game.
+/// </summary>
+public class Player_Stats : Singleton<Player_Stats>
 {
-    /// <summary>
-    /// Singleton instance of the Player_Stats class.
-    /// The Player_Stats class is responsible for managing the player's statistics in the game.
-    /// </summary>
-    public static Player_Stats Instance { get; private set; }
-
     #region Player Stats
     [Header("Player Stats")]
     [SerializeField] private float m_currentMoney = 0f;
@@ -38,14 +36,9 @@ public class Player_Stats : MonoBehaviour
     #endregion
 
     #region Unity Methods
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
+        base.Awake();
         DontDestroyOnLoad(gameObject);
     }
 
@@ -63,7 +56,7 @@ public class Player_Stats : MonoBehaviour
     #region Custom Methods
     private void AddUpgrade(UpgradeDataSO upgradeData)
     {
-        if(!m_purchasedUpgrades.Contains(upgradeData))
+        if (!m_purchasedUpgrades.Contains(upgradeData))
         {
             m_purchasedUpgrades.Add(upgradeData);
         }
@@ -71,7 +64,7 @@ public class Player_Stats : MonoBehaviour
 
     public float GetStat(UpgradeType upgradeType)
     {
-        switch(upgradeType)
+        switch (upgradeType)
         {
             case UpgradeType.money:
                 return m_currentMoney;
@@ -87,7 +80,7 @@ public class Player_Stats : MonoBehaviour
 
     public void SetStat(UpgradeType upgradeType, float newValue)
     {
-        switch(upgradeType)
+        switch (upgradeType)
         {
             case UpgradeType.money:
                 m_currentMoney = newValue;

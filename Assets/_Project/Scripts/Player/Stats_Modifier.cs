@@ -1,23 +1,16 @@
 using System;
 using UnityEngine;
 
-public class Stats_Modifier : MonoBehaviour
+public class Stats_Modifier : Singleton<Stats_Modifier>
 {
-    public static Stats_Modifier Instance { get; private set; }
     private UpgradeDataSO m_upgradeReference = null;
     private Enum m_modifierType => m_upgradeReference.ModifierType;
-    private Player_Stats m_playerStats => Player_Stats.Instance;
 
 
     #region Unity Methods
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
+        base.Awake();
         DontDestroyOnLoad(gameObject);
     }
 
@@ -34,33 +27,32 @@ public class Stats_Modifier : MonoBehaviour
     public void ApplyUpgrade(UpgradeDataSO upgradeData)
     {
         //First check if the upgradeData is null
-        if(upgradeData == null || m_playerStats == null)
+        if (upgradeData == null || !Player_Stats.InstanceExists)
         {
             Debug.LogWarning("UpgradeData or Player_Stats is null.");
             return;
         }
 
         m_upgradeReference = upgradeData;
-        if(m_upgradeReference == null)
+        if (m_upgradeReference == null)
         {
             Debug.LogWarning("Upgrade reference is null.");
             return;
         }
 
-        float currentStatValue = GetStatToModify(upgradeData.UpgradeType, m_playerStats);
+        float currentStatValue = GetStatToModify(upgradeData.UpgradeType);
         float modifierValue = GetModifierValue(upgradeData);
-        
+
 
         float newStatValue = ApplyModifier(currentStatValue, modifierValue, upgradeData.ModifierType);
 
-        m_playerStats.SetStat(upgradeData.UpgradeType, newStatValue);
-
+        Player_Stats.Instance.SetStat(upgradeData.UpgradeType, newStatValue);
     }
 
     #region Upgrade Application Methods
     private float ApplyModifier(float currentValue, float modifierValue, StatModifierType modifierType)
     {
-        switch(modifierType)
+        switch (modifierType)
         {
             case StatModifierType.additive:
                 return currentValue + modifierValue;
@@ -70,7 +62,7 @@ public class Stats_Modifier : MonoBehaviour
                 Debug.LogWarning("Unhandled modifier type: " + modifierType);
                 return currentValue;
         }
-        
+
 
     }
     #endregion
@@ -78,13 +70,13 @@ public class Stats_Modifier : MonoBehaviour
     #region Helper Methods
     private float GetModifierValue(UpgradeDataSO upgradeData)
     {
-        if(upgradeData == null)
+        if (upgradeData == null)
         {
             Debug.LogWarning("UpgradeData is null.");
             return 0f;
         }
 
-        switch(m_modifierType)
+        switch (m_modifierType)
         {
             case StatModifierType.additive:
                 float AdditiveValue = upgradeData.AdditiveValue;
@@ -100,7 +92,7 @@ public class Stats_Modifier : MonoBehaviour
 
     private UpgradeType GetUpgradeType(UpgradeDataSO upgradeData)
     {
-        if(upgradeData == null)
+        if (upgradeData == null)
         {
             Debug.LogWarning("UpgradeData is null.");
             return UpgradeType.none;
@@ -109,16 +101,16 @@ public class Stats_Modifier : MonoBehaviour
         return upgradeData.UpgradeType;
     }
 
-    private float GetStatToModify(UpgradeType upgradeType, Player_Stats playerStats)
+    private float GetStatToModify(UpgradeType upgradeType)
     {
-        switch(upgradeType)
+        switch (upgradeType)
         {
             case UpgradeType.money:
-                return playerStats.CurrentMoney;
+                return Player_Stats.Instance.CurrentMoney;
             case UpgradeType.fuel:
-                return playerStats.CurrentFuel;
+                return Player_Stats.Instance.CurrentFuel;
             case UpgradeType.resources:
-                return playerStats.CurrentCobalt;
+                return Player_Stats.Instance.CurrentCobalt;
             default:
                 Debug.LogWarning("Unhandled upgrade type: " + upgradeType);
                 return 0f;
