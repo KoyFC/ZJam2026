@@ -10,6 +10,14 @@ public class ZoneManager : Singleton<ZoneManager>
     public static event Action<ZoneDataSO> OnZoneChanged;
     public static event Action<int> OnZoneUnlocked;
 
+    public float GetUnlockedRadius()
+    {
+        if (HighestUnlockedZone < 0 || HighestUnlockedZone >= Zones.Length)
+            return 0f;
+
+        return Zones[HighestUnlockedZone].Radius;
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -21,9 +29,6 @@ public class ZoneManager : Singleton<ZoneManager>
             return;
         }
 
-        CurrentZone = Zones[0];
-        OnZoneChanged?.Invoke(CurrentZone);
-        HighestUnlockedZone = 0; // TODO: Change this depending on the save data
         Array.Sort(Zones, (a, b) => a.Radius.CompareTo(b.Radius));
 
         foreach (var zone in Zones)
@@ -33,11 +38,15 @@ public class ZoneManager : Singleton<ZoneManager>
                 Debug.LogError($"Please set a radius above 0 for Zone {zone.ZoneName}.", zone);
             }
         }
+
+        HighestUnlockedZone = 0; // TODO: Change this depending on the save data
+        CurrentZone = Zones[0];
+        OnZoneChanged?.Invoke(CurrentZone);
     }
 
     public bool UnlockNextZone()
     {
-        if (HighestUnlockedZone >= Zones.Length)
+        if (HighestUnlockedZone >= Zones.Length - 1)
             return false;
 
         HighestUnlockedZone++;
@@ -51,5 +60,15 @@ public class ZoneManager : Singleton<ZoneManager>
             return;
 
         Array.Sort(Zones, (a, b) => a.Radius.CompareTo(b.Radius));
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (Zones.Length == 0)
+            return;
+
+        Gizmos.color = Color.cyan;
+        int index = Mathf.Clamp(HighestUnlockedZone, 0, Zones.Length - 1);
+        Gizmos.DrawWireSphere(transform.position, Zones[index].Radius);
     }
 }

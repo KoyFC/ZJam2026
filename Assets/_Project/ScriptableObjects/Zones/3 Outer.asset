@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: 3 Outer
   m_EditorClassIdentifier: Assembly-CSharp::ZoneDataSO
   <ZoneName>k__BackingField: Outer
-  <Radius>k__BackingField: 30
+  <Radius>k__BackingField: 75
