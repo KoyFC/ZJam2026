@@ -6,6 +6,8 @@ public class ZoneManager : Singleton<ZoneManager>
     [field: SerializeField] public ZoneDataSO[] Zones { get; private set; }
     public int CurrentZoneIndex { get; private set; } = -1;
 
+    [SerializeField] private float m_GizmoHeight = 20f;
+
     public static event Action<ZoneDataSO> OnZoneChanged;
     public static event Action<int> OnZoneUnlocked;
 
@@ -85,7 +87,28 @@ public class ZoneManager : Singleton<ZoneManager>
             else
                 Gizmos.color = Color.red;
 
-            Gizmos.DrawWireSphere(transform.position, Zones[i].Radius);
+            DrawWireCylinder(transform.position, Zones[i].Radius, m_GizmoHeight);
+        }
+    }
+
+    private void DrawWireCylinder(Vector3 center, float radius, float height)
+    {
+        const int segments = 64;
+        Vector3 up = Vector3.up * (height * 0.5f);
+        Vector3 previous = center + Vector3.right * radius;
+
+        for (int i = 1; i <= segments; i++)
+        {
+            float angle = i * Mathf.PI * 2f / segments;
+            Vector3 next = center + new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * radius;
+
+            Gizmos.DrawLine(previous - up, next - up);
+            Gizmos.DrawLine(previous + up, next + up);
+
+            if (i % (segments / 8) == 0)
+                Gizmos.DrawLine(next - up, next + up);
+
+            previous = next;
         }
     }
 }
