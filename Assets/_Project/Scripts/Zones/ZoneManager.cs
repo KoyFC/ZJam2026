@@ -25,6 +25,14 @@ public class ZoneManager : Singleton<ZoneManager>
         OnZoneChanged?.Invoke(CurrentZone);
         HighestUnlockedZone = 0; // TODO: Change this depending on the save data
         Array.Sort(Zones, (a, b) => a.Radius.CompareTo(b.Radius));
+
+        foreach (var zone in Zones)
+        {
+            if (zone.Radius <= 0)
+            {
+                Debug.LogError($"Please set a radius above 0 for Zone {zone.ZoneName}.", zone);
+            }
+        }
     }
 
     public bool UnlockNextZone()
