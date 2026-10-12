@@ -7,50 +7,38 @@ public class ShipMovementController : MonoBehaviour
 {
     [Header("References")]
     public PlayerInput m_playerInput;
-    public Rigidbody m_rigidbody;
+    public Rigidbody m_rigidBody;
 
-    [Header("Movement")]
-    [SerializeField] private float maxForwardSpeed = 18f;
-    [SerializeField] private float maxBackwardSpeed = 8f;
-    [SerializeField] private float maxStrafeSpeed = 10f;
+    [Header("Movement Settings")]
+    public float m_maxForwardSpeed = 10f;
+    public float m_maxBackwardSpeed = 5f;
+    public float m_maxStrafeSpeed = 7f;
 
-    [SerializeField] private float idleForwardSpeed = 3f;
+    public float m_acceleration = 5f;
+    public float m_deceleration = 5f;
 
-    [SerializeField] private float acceleration = 18f;
-    [SerializeField] private float deceleration = 8f;
-    [SerializeField] private float strafeAcceleration = 22f;
+    [Header("Rotation Settings")]
+    public float m_maxRotationSpeed = 180f;
+    public float m_rotationAcceleration = 720f;
+    public float m_rotationDeceleration = 1080f;
 
-    [Header("Rotation")]
-    [SerializeField] private float mouseSensitivity = 0.12f;
-    [SerializeField] private float rotationSmoothness = 15f;
-
-    private Vector2 _movementInput;
-    private Vector2 _lookInput;
-
-    private bool _isFiring;
-
-    private float _targetYaw;
-
+    private Vector2 m_movementInput;
+    private Vector2 m_rotationInput;
 
     private void Awake()
     {
         m_playerInput = GetComponent<PlayerInput>();
-        m_rigidbody = GetComponent<Rigidbody>();
-
-        m_rigidbody.constraints =
-            RigidbodyConstraints.FreezeRotationX |
-            RigidbodyConstraints.FreezeRotationZ;
-
-        _targetYaw = transform.eulerAngles.y;
+        m_rigidBody = GetComponent<Rigidbody>();
+        m_rigidBody.constraints |= RigidbodyConstraints.FreezePositionY |
+                                  RigidbodyConstraints.FreezeRotationX |
+                                  RigidbodyConstraints.FreezeRotationZ;
     }
-
 
     private void Update()
     {
-        InputUpdate();
-        HandleRotationInput();
+        m_movementInput = m_playerInput.actions["Move"].ReadValue<Vector2>();
+        m_rotationInput = m_playerInput.actions["Look"].ReadValue<Vector2>();
     }
-
 
     private void FixedUpdate()
     {
@@ -58,108 +46,46 @@ public class ShipMovementController : MonoBehaviour
         HandleRotation();
     }
 
-
-    private void InputUpdate()
-    {
-        if (m_playerInput == null)
-            return;
-
-        InputAction moveAction = m_playerInput.actions["Move"];
-        InputAction lookAction = m_playerInput.actions["Look"];
-        InputAction attackAction = m_playerInput.actions["Attack"];
-
-        if (moveAction != null)
-            _movementInput = Vector2.ClampMagnitude(
-                moveAction.ReadValue<Vector2>(),
-                1f
-            );
-
-        if (lookAction != null)
-            _lookInput = lookAction.ReadValue<Vector2>();
-
-        if (attackAction != null)
-            _isFiring = attackAction.IsPressed();
-    }
-
-
     private void HandleMovement()
     {
-        Vector3 localVelocity = transform.InverseTransformDirection(
-            m_rigidbody.linearVelocity
-        );
+        Vector2 input = Vector2.ClampMagnitude(m_movementInput, 1f);
+        Vector3 forward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+        Vector3 right = Vector3.ProjectOnPlane(transform.right, Vector3.up).normalized;
+        float forwardSpeed = input.y >= 0f ? m_maxForwardSpeed : m_maxBackwardSpeed;
+        Vector3 targetVelocity = (right * input.x * m_maxStrafeSpeed) +
+                                 (forward * input.y * forwardSpeed);
+        Vector3 planarVelocity = Vector3.ProjectOnPlane(m_rigidBody.linearVelocity, Vector3.up);
+        float acceleration = input.sqrMagnitude > 0.001f ? m_acceleration : m_deceleration;
 
-        float targetForwardSpeed;
-        float targetStrafeSpeed = _movementInput.x * maxStrafeSpeed;
-
-        if (_movementInput.y > 0f)
-        {
-            targetForwardSpeed = Mathf.Lerp(
-                idleForwardSpeed,
-                maxForwardSpeed,
-                _movementInput.y
-            );
-        }
-        else if (_movementInput.y < 0f)
-        {
-            targetForwardSpeed = Mathf.Lerp(
-                idleForwardSpeed,
-                -maxBackwardSpeed,
-                -_movementInput.y
-            );
-        }
-        else
-        {
-            targetForwardSpeed = idleForwardSpeed;
-        }
-
-        float forwardAcceleration =
-            Mathf.Abs(targetForwardSpeed) > Mathf.Abs(localVelocity.z)
-                ? acceleration
-                : deceleration;
-
-        float newForwardSpeed = Mathf.MoveTowards(
-            localVelocity.z,
-            targetForwardSpeed,
-            forwardAcceleration * Time.fixedDeltaTime
-        );
-
-        float newStrafeSpeed = Mathf.MoveTowards(
-            localVelocity.x,
-            targetStrafeSpeed,
-            strafeAcceleration * Time.fixedDeltaTime
-        );
-
-        Vector3 newLocalVelocity = new Vector3(
-            newStrafeSpeed,
-            localVelocity.y,
-            newForwardSpeed
-        );
-
-        m_rigidbody.linearVelocity =
-            transform.TransformDirection(newLocalVelocity);
+        m_rigidBody.linearVelocity = Vector3.MoveTowards(
+            planarVelocity,
+            targetVelocity,
+            acceleration * Time.fixedDeltaTime);
     }
-
-
-    private void HandleRotationInput()
-    {
-        _targetYaw += _lookInput.x * mouseSensitivity;
-    }
-
 
     private void HandleRotation()
     {
-        Quaternion targetRotation = Quaternion.Euler(
-            0f,
-            _targetYaw,
-            0f
-        );
+        float rotationInput = Mathf.Clamp(m_rotationInput.x, -1f, 1f);
+        float targetAngularSpeed = rotationInput * m_maxRotationSpeed * Mathf.Deg2Rad;
+        float angularAcceleration = Mathf.Abs(rotationInput) > 0.01f
+            ? m_rotationAcceleration
+            : m_rotationDeceleration;
+        float yawSpeed = Mathf.MoveTowards(
+            m_rigidBody.angularVelocity.y,
+            targetAngularSpeed,
+            angularAcceleration * Mathf.Deg2Rad * Time.fixedDeltaTime);
 
-        Quaternion newRotation = Quaternion.Slerp(
-            m_rigidbody.rotation,
-            targetRotation,
-            rotationSmoothness * Time.fixedDeltaTime
-        );
-
-        m_rigidbody.MoveRotation(newRotation);
+        m_rigidBody.angularVelocity = new Vector3(0f, yawSpeed, 0f);
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * m_movementInput.y * 5f);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, transform.position + transform.right * m_movementInput.x * 5f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + (m_rigidBody != null ? m_rigidBody.linearVelocity.normalized : Vector3.zero));
+    }
+
 }
