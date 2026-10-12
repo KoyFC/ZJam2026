@@ -4,6 +4,12 @@ public class PlayerZoneLimiter : MonoBehaviour
 {
     [SerializeField] private float m_PlayerRadius = 0.5f;
     private Vector3 m_CenterPosition = Vector3.zero;
+    private Rigidbody m_Rigidbody;
+
+    private void Awake()
+    {
+        m_Rigidbody = GetComponent<Rigidbody>();
+    }
 
     private void Start()
     {
@@ -13,30 +19,58 @@ public class PlayerZoneLimiter : MonoBehaviour
         m_CenterPosition = ZoneManager.Instance.transform.position;
     }
 
+    private void FixedUpdate()
+    {
+        if (m_Rigidbody == null || !ZoneManager.InstanceExists)
+            return;
+
+        if (!TryClampToZone(m_Rigidbody.position, out Vector3 clampedPosition, out Vector3 barrierNormal))
+            return;
+
+        m_Rigidbody.position = clampedPosition;
+
+        Vector3 velocity = m_Rigidbody.linearVelocity;
+        float velocityIntoBarrier = Vector3.Dot(velocity, -barrierNormal);
+        if (velocityIntoBarrier > 0f)
+            m_Rigidbody.linearVelocity = velocity + barrierNormal * velocityIntoBarrier;
+    }
+
     private void LateUpdate()
     {
-        if (!ZoneManager.InstanceExists)
+        if (m_Rigidbody != null || !ZoneManager.InstanceExists)
             return;
 
-        float maxDistance = Mathf.Max(0f, ZoneManager.Instance.GetOuterRadius() - m_PlayerRadius);
-        float innerRadius = ZoneManager.Instance.GetInnerRadius();
-        float minDistance = innerRadius > 0f ? Mathf.Min(innerRadius + m_PlayerRadius, maxDistance) : 0f;
-
-        Vector3 offset = transform.position - m_CenterPosition;
-        offset.y = 0f;
-
-        float distance = offset.magnitude;
-        if (distance >= minDistance && distance <= maxDistance)
+        if (!TryClampToZone(transform.position, out Vector3 clampedPosition, out _))
             return;
 
-        Vector3 direction = distance > Mathf.Epsilon ? offset / distance : Vector3.forward;
-        float clampedDistance = Mathf.Clamp(distance, minDistance, maxDistance);
-
-        Vector3 clamped = m_CenterPosition + direction * clampedDistance;
-        clamped.y = transform.position.y;
-
-        transform.position = clamped;
+        transform.position = clampedPosition;
         Physics.SyncTransforms();
+    }
+
+    private bool TryClampToZone(Vector3 position, out Vector3 clampedPosition, out Vector3 barrierNormal)
+    {
+        clampedPosition = position;
+        barrierNormal = Vector3.zero;
+
+        float maxAllowedDistance = Mathf.Max(0f, ZoneManager.Instance.GetOuterRadius() - m_PlayerRadius);
+        float innerRadius = ZoneManager.Instance.GetInnerRadius();
+        float minAllowedDistance = innerRadius > 0f ? Mathf.Min(innerRadius + m_PlayerRadius, maxAllowedDistance) : 0f;
+
+        Vector3 horizontalOffset = position - m_CenterPosition;
+        horizontalOffset.y = 0f;
+
+        float distanceFromCenter = horizontalOffset.magnitude;
+        if (distanceFromCenter >= minAllowedDistance && distanceFromCenter <= maxAllowedDistance)
+            return false;
+
+        Vector3 directionFromCenter = distanceFromCenter > Mathf.Epsilon ? horizontalOffset / distanceFromCenter : Vector3.forward;
+        float clampedDistanceFromCenter = Mathf.Clamp(distanceFromCenter, minAllowedDistance, maxAllowedDistance);
+
+        clampedPosition = m_CenterPosition + directionFromCenter * clampedDistanceFromCenter;
+        clampedPosition.y = position.y;
+
+        barrierNormal = distanceFromCenter > maxAllowedDistance ? -directionFromCenter : directionFromCenter;
+        return true;
     }
 
     private void OnDrawGizmosSelected()
