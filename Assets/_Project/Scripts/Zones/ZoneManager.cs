@@ -8,8 +8,6 @@ public class ZoneManager : Singleton<ZoneManager>
 
     [SerializeField] private float m_GizmoHeight = 20f;
 
-    public static event Action<int> OnZoneUnlocked;
-
     public float GetInnerRadius()
     {
         if (CurrentZoneIndex <= 0 || CurrentZoneIndex >= Zones.Length)
@@ -55,7 +53,6 @@ public class ZoneManager : Singleton<ZoneManager>
             return false;
 
         CurrentZoneIndex--;
-        OnZoneUnlocked?.Invoke(CurrentZoneIndex);
         return true;
     }
 
