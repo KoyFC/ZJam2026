@@ -49,6 +49,7 @@ public class ZoneManager : Singleton<ZoneManager>
         int outermostZoneIndex = Zones.Length - 1;
         int savedZoneIndex = SaveSystem.Get(SaveSystem.PLAYER_DATA_FILE, CURRENT_ZONE_INDEX_KEY, outermostZoneIndex);
         CurrentZoneIndex = Mathf.Clamp(savedZoneIndex, 0, outermostZoneIndex);
+        SaveCurrentZone();
     }
 
     public bool SetCurrentZone(int zoneIndex)
@@ -57,9 +58,14 @@ public class ZoneManager : Singleton<ZoneManager>
             return false;
 
         CurrentZoneIndex = zoneIndex;
+        SaveCurrentZone();
+        return true;
+    }
+
+    private void SaveCurrentZone()
+    {
         SaveSystem.Set(SaveSystem.PLAYER_DATA_FILE, CURRENT_ZONE_INDEX_KEY, CurrentZoneIndex);
         SaveSystem.MarkAsDirty();
-        return true;
     }
 
     private void OnValidate()

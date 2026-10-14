@@ -9,6 +9,13 @@ public static class SaveSystem
     public static readonly string SESSION_DATA_FILE = "SessionData.json";
     private static Dictionary<string, ISaveFile> s_FileRegistry = new Dictionary<string, ISaveFile>();
 
+    // Needed when Domain Reload is disabled, otherwise the cache survives between play sessions and never rereads the disk
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ClearFileRegistry()
+    {
+        s_FileRegistry.Clear();
+    }
+
     public static T Get<T>(string fileName, string key, T defaultValue = default)
     {
         FileContainer<T> container = GetOrCreateContainer<T>(fileName);
