@@ -62,6 +62,14 @@ public class ZoneManager : Singleton<ZoneManager>
             return;
 
         Array.Sort(Zones, (a, b) => a.Radius.CompareTo(b.Radius));
+
+        for (int i = 1; i < Zones.Length; i++)
+        {
+            if (Zones[i] != null && Zones[i - 1] != null && Zones[i].MinimapRadius <= Zones[i - 1].MinimapRadius)
+            {
+                Debug.LogWarning($"Zone {Zones[i].ZoneName} should have a higher Minimap Radius than {Zones[i - 1].ZoneName}.", Zones[i]);
+            }
+        }
     }
 
     private void OnDrawGizmos()

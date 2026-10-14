@@ -955,6 +955,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5fe4be29f644b0db39bf8d2787d02af4, type: 2}
   - {fileID: 11400000, guid: 19cebf4bd12afb366a06c4f97f5b4a96, type: 2}
   - {fileID: 11400000, guid: 79cbd591352dd2e5db31c19f54c5da01, type: 2}
+  - {fileID: 11400000, guid: a5d389a44e3f7242c9c40acfe79a275a, type: 2}
   m_GizmoHeight: 100
 --- !u!4 &1749922175
 Transform:
@@ -984,11 +985,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZoneBarrierSpawner
   m_BarrierMaterial: {fileID: 2100000, guid: 8a7ccb87946094ab5a9a713ae7d674bf, type: 2}
-  m_CenterPosition: {x: 0, y: 0, z: 0}
   m_Height: 30
   m_YOffset: -2
   m_Segments: 64
-  m_DissolveDuration: 1.5
 --- !u!1 &1887226833
 GameObject:
   m_ObjectHideFlags: 0

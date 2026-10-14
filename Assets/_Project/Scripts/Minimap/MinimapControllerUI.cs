@@ -7,6 +7,9 @@ public class MinimapControllerUI : Singleton<MinimapControllerUI>
     [SerializeField] private Collider m_BoundsCollider;
     [SerializeField] private Vector2 m_WorldSize = new Vector2(100, 100);
     [SerializeField] private Vector2 m_WorldCenter = Vector2.zero;
+    [Tooltip("Places each zone on the minimap using its Minimap Radius instead of its real radius.")]
+    [SerializeField] private bool m_UseZoneMinimapRadius = true;
+    public bool UseZoneMinimapRadius => m_UseZoneMinimapRadius;
 
     private Dictionary<MinimapEntity, MinimapIconUI> m_Elements = new();
     [SerializeField] private Image m_Parent;
@@ -19,6 +22,17 @@ public class MinimapControllerUI : Singleton<MinimapControllerUI>
             Bounds bounds = m_BoundsCollider.bounds;
             m_WorldSize = new Vector2(bounds.size.x, bounds.size.z);
             m_WorldCenter = new Vector2(bounds.center.x, bounds.center.z);
+        }
+    }
+
+    private void Update()
+    {
+        foreach (var element in m_Elements)
+        {
+            var entity = element.Key;
+            var icon = element.Value;
+
+            icon.transform.localPosition = WorldToMinimapPosition(entity.transform.position);
         }
     }
 
@@ -41,24 +55,64 @@ public class MinimapControllerUI : Singleton<MinimapControllerUI>
         }
     }
 
-    private void Update()
+    public Vector2 WorldToMinimapPosition(Vector3 worldPosition)
     {
-        foreach (var element in m_Elements)
+        if (m_UseZoneMinimapRadius && ZoneManager.InstanceExists)
+            worldPosition = RemapZonePosition(worldPosition);
+
+        var parentRect = m_Parent.rectTransform.rect;
+
+        // Calculate normalized position of the entity in the world
+        var normalizedX = (worldPosition.x - m_WorldCenter.x) / m_WorldSize.x + 0.5f;
+        var normalizedY = (worldPosition.z - m_WorldCenter.y) / m_WorldSize.y + 0.5f;
+
+        return new Vector2(parentRect.xMin + normalizedX * parentRect.width, parentRect.yMin + normalizedY * parentRect.height);
+    }
+
+    public Vector2 GetWorldToMinimapScale()
+    {
+        var parentRect = m_Parent.rectTransform.rect;
+        return new Vector2(parentRect.width / m_WorldSize.x, parentRect.height / m_WorldSize.y);
+    }
+
+    public float RemapZoneRadius(float worldRadius)
+    {
+        if (!m_UseZoneMinimapRadius || !ZoneManager.InstanceExists)
+            return worldRadius;
+
+        var zones = ZoneManager.Instance.Zones;
+        if (zones.Length == 0)
+            return worldRadius;
+
+        var outermostZone = zones[zones.Length - 1];
+        float outermostRadius = outermostZone.Radius;
+
+        for (int i = 0; i < zones.Length; i++)
         {
-            var entity = element.Key;
-            var icon = element.Value;
+            if (worldRadius > zones[i].Radius)
+                continue;
 
-            var parentRect = m_Parent.rectTransform.rect;
-
-            // Calculate normalized position of the entity in the world
-            var normalizedX = (entity.transform.position.x - m_WorldCenter.x) / m_WorldSize.x + 0.5f;
-            var normalizedY = (entity.transform.position.z - m_WorldCenter.y) / m_WorldSize.y + 0.5f;
-
-            // Calculate the position of the icon in the minimap
-            var iconX = parentRect.xMin + normalizedX * parentRect.width;
-            var iconY = parentRect.yMin + normalizedY * parentRect.height;
-
-            icon.transform.localPosition = new Vector3(iconX, iconY, 0);
+            float previousRadius = i == 0 ? 0f : zones[i - 1].Radius;
+            float previousMinimapRadius = i == 0 ? 0f : zones[i - 1].MinimapRadius;
+            float zoneProgress = Mathf.InverseLerp(previousRadius, zones[i].Radius, worldRadius);
+            return Mathf.Lerp(previousMinimapRadius, zones[i].MinimapRadius, zoneProgress) * outermostRadius;
         }
+
+        float distanceOutsideZones = worldRadius - outermostRadius;
+        return outermostZone.MinimapRadius * outermostRadius + distanceOutsideZones;
+    }
+
+    private Vector3 RemapZonePosition(Vector3 worldPosition)
+    {
+        var zoneCenter = ZoneManager.Instance.transform.position;
+        var offset = worldPosition - zoneCenter;
+        offset.y = 0f;
+
+        float distance = offset.magnitude;
+        if (distance <= Mathf.Epsilon)
+            return worldPosition;
+
+        var direction = offset / distance;
+        return zoneCenter + direction * RemapZoneRadius(distance);
     }
 }
