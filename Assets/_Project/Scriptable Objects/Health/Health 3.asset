@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97bde0fadd2a3fa46946dbcbf8c4550b, type: 3}
-  m_Name: Dmg Upgrade 2
+  m_Name: Health 3
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeDataSO
-  <UpgradeType>k__BackingField: 2
+  <UpgradeType>k__BackingField: 0
   <ModifierType>k__BackingField: 1
   <Icon>k__BackingField: {fileID: 0}
   <Description>k__BackingField: 
   <Cost>k__BackingField: 0
-  <AdditiveValue>k__BackingField: 2
+  <AdditiveValue>k__BackingField: 0
   <MultiplicativeValue>k__BackingField: 1
-  <Consequents>k__BackingField:
-  - {fileID: 11400000, guid: 9584c9e03d580b643b1b285d166aac5e, type: 2}
+  <Consequents>k__BackingField: []
