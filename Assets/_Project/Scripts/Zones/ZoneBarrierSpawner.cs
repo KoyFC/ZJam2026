@@ -1,0 +1,121 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering;
+
+public class ZoneBarrierSpawner : MonoBehaviour
+{
+    [SerializeField] private Material m_BarrierMaterial;
+    [SerializeField] private float m_Height = 30f;
+    [SerializeField] private float m_YOffset = -2f;
+    [SerializeField] private int m_Segments = 64;
+
+    private readonly List<GameObject> m_Barriers = new();
+    private Mesh m_CylinderMesh;
+
+    private readonly List<Vector3> m_Vertices = new();
+    private readonly List<Vector3> m_Normals = new();
+    private readonly List<Vector2> m_UVs = new();
+    private readonly List<int> m_Triangles = new();
+
+    private void Start()
+    {
+        if (!ZoneManager.InstanceExists)
+            return;
+
+        m_CylinderMesh = CreateCylinder(m_Segments);
+
+        var zones = ZoneManager.Instance.Zones;
+        for (int i = 0; i < zones.Length; i++)
+        {
+            m_Barriers.Add(CreateZoneBarrier(i, zones[i].Radius));
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (m_CylinderMesh != null)
+            Destroy(m_CylinderMesh);
+    }
+
+    private GameObject CreateZoneBarrier(int index, float radius)
+    {
+        var barrier = new GameObject($"Zone Barrier {index}");
+        barrier.transform.SetParent(transform, false);
+        barrier.transform.position = ZoneManager.Instance.transform.position + Vector3.up * m_YOffset;
+        barrier.transform.localScale = new Vector3(radius, m_Height, radius); // Mesh has radius 1 and height 1
+
+        barrier.AddComponent<MeshFilter>().sharedMesh = m_CylinderMesh;
+
+        var meshRenderer = barrier.AddComponent<MeshRenderer>();
+        meshRenderer.sharedMaterial = m_BarrierMaterial;
+        meshRenderer.shadowCastingMode = ShadowCastingMode.Off;
+        meshRenderer.receiveShadows = false;
+
+        return barrier;
+    }
+
+    private Mesh CreateCylinder(int segments)
+    {
+        m_Vertices.Clear();
+        m_Normals.Clear();
+        m_UVs.Clear();
+        m_Triangles.Clear();
+
+        for (int column = 0; column <= segments; column++)
+        {
+            float normalizedAngle = (float)column / segments;
+            AddColumn(normalizedAngle);
+        }
+
+        for (int column = 0; column < segments; column++)
+        {
+            ConnectColumns(column, column + 1);
+        }
+
+        var mesh = new Mesh();
+        mesh.SetVertices(m_Vertices);
+        mesh.SetNormals(m_Normals);
+        mesh.SetUVs(0, m_UVs);
+        mesh.SetTriangles(m_Triangles, 0);
+        mesh.RecalculateBounds();
+        return mesh;
+    }
+
+    private void AddColumn(float normalizedAngle)
+    {
+        float angle = normalizedAngle * Mathf.PI * 2f;
+        var circlePosition = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+
+        // Bottom vertex
+        m_Vertices.Add(circlePosition);
+        m_Normals.Add(circlePosition);
+        m_UVs.Add(new Vector2(normalizedAngle, 0f));
+
+        // Top vertex
+        m_Vertices.Add(circlePosition + Vector3.up);
+        m_Normals.Add(circlePosition);
+        m_UVs.Add(new Vector2(normalizedAngle, 1f));
+    }
+
+    // Fills the wall between two columns with two triangles
+    private void ConnectColumns(int leftColumn, int rightColumn)
+    {
+        int bottomLeft = BottomVertex(leftColumn);
+        int topLeft = TopVertex(leftColumn);
+        int bottomRight = BottomVertex(rightColumn);
+        int topRight = TopVertex(rightColumn);
+
+        AddTriangle(bottomLeft, topLeft, bottomRight);
+        AddTriangle(topLeft, topRight, bottomRight);
+    }
+
+    private void AddTriangle(int a, int b, int c)
+    {
+        m_Triangles.Add(a);
+        m_Triangles.Add(b);
+        m_Triangles.Add(c);
+    }
+
+    private int BottomVertex(int column) => column * 2;
+    private int TopVertex(int column) => column * 2 + 1;
+}
