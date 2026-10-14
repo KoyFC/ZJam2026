@@ -9,14 +9,14 @@ public class MinimapControllerUI : Singleton<MinimapControllerUI>
     [SerializeField] private Vector2 m_WorldCenter = Vector2.zero;
     [Tooltip("Places each zone on the minimap using its Minimap Radius instead of its real radius.")]
     [SerializeField] private bool m_UseZoneMinimapRadius = true;
-    public bool UseZoneMinimapRadius => m_UseZoneMinimapRadius;
 
     private Dictionary<MinimapEntity, MinimapIconUI> m_Elements = new();
     [SerializeField] private Image m_Parent;
     [SerializeField] private MinimapIconUI m_IconPrefab;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         if (m_BoundsCollider != null)
         {
             Bounds bounds = m_BoundsCollider.bounds;

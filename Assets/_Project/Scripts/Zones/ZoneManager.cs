@@ -6,6 +6,8 @@ public class ZoneManager : Singleton<ZoneManager>
     [field: SerializeField] public ZoneDataSO[] Zones { get; private set; }
     public int CurrentZoneIndex { get; private set; } = -1;
 
+    private const string CURRENT_ZONE_INDEX_KEY = "CurrentZoneIndex";
+
     [SerializeField] private float m_GizmoHeight = 20f;
 
     public float GetInnerRadius()
@@ -44,15 +46,19 @@ public class ZoneManager : Singleton<ZoneManager>
             }
         }
 
-        CurrentZoneIndex = Zones.Length - 1; // TODO: Change this depending on the save data
+        int outermostZoneIndex = Zones.Length - 1;
+        int savedZoneIndex = SaveSystem.Get(SaveSystem.PLAYER_DATA_FILE, CURRENT_ZONE_INDEX_KEY, outermostZoneIndex);
+        CurrentZoneIndex = Mathf.Clamp(savedZoneIndex, 0, outermostZoneIndex);
     }
 
-    public bool UnlockNextZone()
+    public bool SetCurrentZone(int zoneIndex)
     {
-        if (CurrentZoneIndex <= 0)
+        if (zoneIndex < 0 || zoneIndex >= Zones.Length)
             return false;
 
-        CurrentZoneIndex--;
+        CurrentZoneIndex = zoneIndex;
+        SaveSystem.Set(SaveSystem.PLAYER_DATA_FILE, CURRENT_ZONE_INDEX_KEY, CurrentZoneIndex);
+        SaveSystem.MarkAsDirty();
         return true;
     }
 

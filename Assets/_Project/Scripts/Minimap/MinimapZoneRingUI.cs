@@ -9,40 +9,20 @@ public class MinimapZoneRingUI : MaskableGraphic
     [Tooltip("Thickness of the inactive zone outlines, in minimap units.")]
     [SerializeField, Min(0.0f)] private float m_InactiveEdgeThickness = 2.0f;
 
-    private int m_LastZoneIndex = -1;
-    private Vector2 m_LastScale;
-    private bool m_LastUseZoneMinimapRadius;
-
     protected override void Awake()
     {
         base.Awake();
         raycastTarget = false;
     }
 
-    private void Update()
+    protected override void Start()
     {
+        base.Start();
         if (!MinimapControllerUI.InstanceExists || !ZoneManager.InstanceExists)
             return;
 
         rectTransform.localPosition = MinimapControllerUI.Instance.WorldToMinimapPosition(ZoneManager.Instance.transform.position);
-
-        if (HasLayoutChanged())
-            SetVerticesDirty();
-    }
-
-    private bool HasLayoutChanged()
-    {
-        var minimap = MinimapControllerUI.Instance;
-        int zoneIndex = ZoneManager.Instance.CurrentZoneIndex;
-        var scale = minimap.GetWorldToMinimapScale();
-
-        if (zoneIndex == m_LastZoneIndex && scale == m_LastScale && minimap.UseZoneMinimapRadius == m_LastUseZoneMinimapRadius)
-            return false;
-
-        m_LastZoneIndex = zoneIndex;
-        m_LastScale = scale;
-        m_LastUseZoneMinimapRadius = minimap.UseZoneMinimapRadius;
-        return true;
+        SetVerticesDirty();
     }
 
     protected override void OnPopulateMesh(VertexHelper helper)
