@@ -32,6 +32,9 @@ public class ShipMovementController : MonoBehaviour
         m_rigidBody.constraints |= RigidbodyConstraints.FreezePositionY |
                                   RigidbodyConstraints.FreezeRotationX |
                                   RigidbodyConstraints.FreezeRotationZ;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
