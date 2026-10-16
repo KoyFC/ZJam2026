@@ -4,11 +4,10 @@ using System.Collections.Generic;
 public enum UpgradeType
 {
     none,
-    qualitiy_of_life,
+    resources,
     damage,
-    fuel,
-    money,
-    resources
+    health, 
+    mobility
 }
 
 /// <summary>
@@ -19,9 +18,10 @@ public class Player_Stats : Singleton<Player_Stats>
 {
     #region Player Stats
     [Header("Player Stats")]
-    [SerializeField] private float m_currentMoney = 0f;
-    [SerializeField] private float m_currentCobalt = 0f;
-    [SerializeField] private float m_maxFuel = 0f;
+    [SerializeField] private float m_currentResources = 0f;
+    [SerializeField] private float m_currentDamage = 0f;
+    [SerializeField] private float m_currentHealth = 0f;
+    [SerializeField] private float m_currentDashes = 0f;
     #endregion
 
     #region Player Upgrades
@@ -29,9 +29,10 @@ public class Player_Stats : Singleton<Player_Stats>
     #endregion
 
     #region Public References
-    public float CurrentMoney => m_currentMoney;
-    public float CurrentCobalt => m_currentCobalt;
-    public float CurrentFuel => m_maxFuel;
+    public float CurrentResources => m_currentResources;
+    public float CurrentDamage => m_currentDamage;
+    public float CurrentHealth => m_currentHealth;
+    public float CurrentDashes => m_currentDashes;
     public IReadOnlyList<UpgradeDataSO> PurchasedUpgrades => m_purchasedUpgrades.AsReadOnly();
     #endregion
 
@@ -66,12 +67,14 @@ public class Player_Stats : Singleton<Player_Stats>
     {
         switch (upgradeType)
         {
-            case UpgradeType.money:
-                return m_currentMoney;
-            case UpgradeType.fuel:
-                return m_maxFuel;
             case UpgradeType.resources:
-                return m_currentCobalt;
+                return m_currentResources;
+            case UpgradeType.damage:
+                return m_currentHealth;
+            case UpgradeType.health:
+                return m_currentDamage;
+            case UpgradeType.mobility:
+                return m_currentDashes;
             default:
                 Debug.LogWarning("Unhandled upgrade type: " + upgradeType);
                 return 0f;
@@ -82,17 +85,21 @@ public class Player_Stats : Singleton<Player_Stats>
     {
         switch (upgradeType)
         {
-            case UpgradeType.money:
-                m_currentMoney = newValue;
-                Debug.Log("Set money to: " + newValue);
-                break;
-            case UpgradeType.fuel:
-                m_maxFuel = newValue;
-                Debug.Log("Set fuel to: " + newValue);
-                break;
             case UpgradeType.resources:
-                m_currentCobalt = newValue;
-                Debug.Log("Set cobalt to: " + newValue);
+                m_currentResources = newValue;
+                Debug.Log("Set resources to: " + newValue);
+                break;
+            case UpgradeType.damage:
+                m_currentHealth = newValue;
+                Debug.Log("Set damage to: " + newValue);
+                break;
+            case UpgradeType.health:
+                m_currentDamage = newValue;
+                Debug.Log("Set health to: " + newValue);
+                break;
+            case UpgradeType.mobility:
+                m_currentDashes = newValue;
+                Debug.Log("Set dashes to: " + newValue);
                 break;
             default:
                 Debug.LogWarning("Unhandled upgrade type: " + upgradeType);
