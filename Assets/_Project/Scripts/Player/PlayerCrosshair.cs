@@ -10,6 +10,10 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
     [SerializeField] private RectTransform m_FireMarkerBoundingBox;
     [SerializeField] private float m_FollowSpeed = 8f;
 
+    [Header("Aim")]
+    [SerializeField] private float m_AimDistance = 400f;
+    [SerializeField] private LayerMask m_AimMask = ~0;
+
     [Header("Fire Punch")]
     [SerializeField] private float m_FirePunch = -0.3f;
     [SerializeField] private float m_CursorPunch = -0.2f;
@@ -19,6 +23,7 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
     private readonly Vector3[] m_Corners = new Vector3[4];
 
     public Ray FireRay { get; private set; }
+    public Vector3 AimPoint { get; private set; }
 
     protected override void Awake()
     {
@@ -77,6 +82,20 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
         m_FireMarker.position = m_FireScreenPosition;
 
         FireRay = m_Camera.ScreenPointToRay(m_FireScreenPosition);
+        AimPoint = GetAimPoint(FireRay);
+    }
+
+    public Quaternion GetAimRotation(Vector3 origin)
+    {
+        return Quaternion.LookRotation(AimPoint - origin, m_Camera.transform.up);
+    }
+
+    private Vector3 GetAimPoint(Ray ray)
+    {
+        if (Physics.Raycast(ray, out RaycastHit hit, m_AimDistance, m_AimMask))
+            return hit.point;
+
+        return ray.GetPoint(m_AimDistance);
     }
 
     private Vector2 ClampInside(Vector2 position, Rect area)

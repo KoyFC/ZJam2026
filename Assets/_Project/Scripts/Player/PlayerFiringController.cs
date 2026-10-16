@@ -28,6 +28,11 @@ public class PlayerFiringController : MonoBehaviour
         if (m_MissilePrefab == null)
             return;
 
-        var missile = Instantiate(m_MissilePrefab, m_SpawnTransform.position, m_SpawnTransform.rotation);
+        Vector3 position = m_SpawnTransform.position;
+        Quaternion rotation = PlayerCrosshair.InstanceExists
+            ? PlayerCrosshair.Instance.GetAimRotation(position)
+            : m_SpawnTransform.rotation;
+
+        Instantiate(m_MissilePrefab, position, rotation);
     }
 }
