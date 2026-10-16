@@ -34,8 +34,11 @@ public class HealthController : MonoBehaviour, IDamageable
         }
     }
 
-
+    [Header("Health Settings")]
+    [SerializeField]
     private float _currentHealth;
+
+    [SerializeField]
     private float _maxHealth = 100f;
 
     void Awake()
