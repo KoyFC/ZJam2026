@@ -64,7 +64,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 0, g: 1.3, b: 1.45, a: 1}
+    - _Color: {r: 0, g: 1.3, b: 1.45, a: 0.05882353}
     - _HexagonColor: {r: 1, g: 1, b: 1, a: 1}
     - _HexagonSpeed: {r: 0, g: -0.2, b: 0, a: 0}
     - _HexagonTiling: {r: 5, g: 1, b: 0, a: 0}
