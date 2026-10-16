@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 59692531}
   - component: {fileID: 59692532}
   - component: {fileID: 59692533}
+  - component: {fileID: 59692534}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -214,6 +215,20 @@ MonoBehaviour:
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   FollowOffset: {x: 0, y: 10, z: -20}
+--- !u!114 &59692534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59692530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b2b03d72e2f06f388546f4a257e341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraHeightLimiter
+  m_MinHeight: 12
+  m_MaxHeight: 35
 --- !u!1 &296887944
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +527,7 @@ GameObject:
   - component: {fileID: 377593694}
   - component: {fileID: 377593693}
   - component: {fileID: 377593698}
+  - component: {fileID: 377593699}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -533,7 +549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerZoneLimiter
   m_PlayerRadius: 5
   m_MinYPosition: 10
-  m_MaxYPosition: 35
+  m_MaxYPosition: 45
 --- !u!114 &377593694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,7 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   m_CharacterController: {fileID: 377593696}
   m_InputController: {fileID: 377593694}
-  m_MoveSpeed: {x: 40, y: 10}
+  m_MoveSpeed: {x: 40, y: 20}
 --- !u!143 &377593696
 CharacterController:
   m_ObjectHideFlags: 0
@@ -620,6 +636,20 @@ MonoBehaviour:
   m_CharacterController: {fileID: 377593696}
   m_ForwardSpeed: 15
   <Clockwise>k__BackingField: 0
+--- !u!114 &377593699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377593692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e9eaf89c549919183399142f715280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinimapEntity
+  <Icon>k__BackingField: {fileID: 21300000, guid: a712792b5cbf6d8a2982471b1e1614d2, type: 3}
+  <IconScale>k__BackingField: 0.2
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,7 +1219,7 @@ MonoBehaviour:
   m_Camera: {fileID: 0}
   m_AimDistance: 400
   m_TurnSpeed: 10
-  m_AimStrength: {x: 0.6, y: 0.4}
+  m_AimStrength: {x: 0.3, y: 0.4}
 --- !u!1 &1887226833
 GameObject:
   m_ObjectHideFlags: 0
