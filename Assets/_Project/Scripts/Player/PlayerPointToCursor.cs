@@ -7,6 +7,7 @@ public class PlayerPointToCursor : MonoBehaviour
     [SerializeField] private Camera m_Camera;
     [SerializeField] private float m_AimDistance = 200f;
     [SerializeField] private float m_TurnSpeed = 10f;
+    [SerializeField] private Vector2 m_AimStrength = new Vector2(0.6f, 0.4f);
 
     private Vector3 m_AimPoint;
     private bool m_HasAimPoint;
@@ -26,13 +27,22 @@ public class PlayerPointToCursor : MonoBehaviour
         if (!m_HasAimPoint)
             return;
 
-        Vector3 direction = m_AimPoint - m_Transform.position;
+        Vector3 direction = SoftenDirection(m_AimPoint - m_Transform.position);
         if (direction.sqrMagnitude < Mathf.Epsilon)
             return;
 
         Quaternion targetRotation = Quaternion.LookRotation(direction, m_Camera.transform.up);
         float lerp = 1f - Mathf.Exp(-m_TurnSpeed * Time.deltaTime);
         m_Transform.rotation = Quaternion.Slerp(m_Transform.rotation, targetRotation, lerp);
+    }
+
+    private Vector3 SoftenDirection(Vector3 direction)
+    {
+        Transform cameraTransform = m_Camera.transform;
+        Vector3 local = cameraTransform.InverseTransformDirection(direction);
+        local.x *= m_AimStrength.x;
+        local.y *= m_AimStrength.y;
+        return cameraTransform.TransformDirection(local);
     }
 
     private bool TryGetAimPoint(out Vector3 aimPoint)
