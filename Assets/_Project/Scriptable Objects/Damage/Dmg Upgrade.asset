@@ -17,7 +17,7 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 0}
   <Description>k__BackingField: 
   <Cost>k__BackingField: 0
-  <AdditiveValue>k__BackingField: 2
+  <AdditiveValue>k__BackingField: 1
   <MultiplicativeValue>k__BackingField: 1
   <Consequents>k__BackingField:
   - {fileID: 11400000, guid: d1decab6dfdc71f4ea81944790d07ac6, type: 2}
