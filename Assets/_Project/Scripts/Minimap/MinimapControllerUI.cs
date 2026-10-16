@@ -33,6 +33,8 @@ public class MinimapControllerUI : Singleton<MinimapControllerUI>
             var icon = element.Value;
 
             icon.transform.localPosition = WorldToMinimapPosition(entity.transform.position);
+            if (entity.RotateWithEntity)
+                icon.transform.localRotation = WorldToMinimapRotation(entity.transform);
         }
     }
 
@@ -67,6 +69,11 @@ public class MinimapControllerUI : Singleton<MinimapControllerUI>
         var normalizedY = (worldPosition.z - m_WorldCenter.y) / m_WorldSize.y + 0.5f;
 
         return new Vector2(parentRect.xMin + normalizedX * parentRect.width, parentRect.yMin + normalizedY * parentRect.height);
+    }
+
+    public Quaternion WorldToMinimapRotation(Transform worldTransform)
+    {
+        return Quaternion.Euler(0f, 0f, -worldTransform.eulerAngles.y);
     }
 
     public Vector2 GetWorldToMinimapScale()
