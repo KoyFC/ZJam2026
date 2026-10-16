@@ -330,7 +330,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPointToCursor
   m_Transform: {fileID: 0}
-  m_Camera: {fileID: 0}
   m_AimDistance: 400
   m_TurnSpeed: 10
   m_AimStrength: {x: 0.6, y: 0.4}
