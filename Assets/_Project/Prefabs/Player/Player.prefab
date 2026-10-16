@@ -124,7 +124,6 @@ GameObject:
   - component: {fileID: 2398918606698933172}
   - component: {fileID: 7119337361222892872}
   - component: {fileID: 5132938382411108315}
-  - component: {fileID: 7809353225520903323}
   - component: {fileID: 8689061158385763510}
   m_Layer: 6
   m_Name: Player
@@ -237,20 +236,6 @@ MonoBehaviour:
   m_CharacterController: {fileID: 2777162586897575801}
   m_ForwardSpeed: 15
   <Clockwise>k__BackingField: 0
---- !u!114 &7809353225520903323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2158141657593661978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77e9eaf89c549919183399142f715280, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MinimapEntity
-  <Icon>k__BackingField: {fileID: 21300000, guid: a712792b5cbf6d8a2982471b1e1614d2, type: 3}
-  <IconScale>k__BackingField: 0.2
 --- !u!114 &8689061158385763510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +341,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 81d59b6c5a34fed4da2dd153ca80d089, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3082397021116706468}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 81d59b6c5a34fed4da2dd153ca80d089, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6200474344533482123}
   m_SourcePrefab: {fileID: 100100000, guid: 81d59b6c5a34fed4da2dd153ca80d089, type: 3}
 --- !u!4 &4803072743531584039 stripped
 Transform:
@@ -383,6 +371,21 @@ MonoBehaviour:
   m_AimDistance: 400
   m_TurnSpeed: 10
   m_AimStrength: {x: 0.6, y: 0.4}
+--- !u!114 &6200474344533482123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5326669408846725277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e9eaf89c549919183399142f715280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinimapEntity
+  <Icon>k__BackingField: {fileID: 21300000, guid: ff5cba14493104a22aed55f029960fca, type: 3}
+  <IconScale>k__BackingField: 0.5
+  <RotateWithEntity>k__BackingField: 1
 --- !u!1001 &5784934800008623084
 PrefabInstance:
   m_ObjectHideFlags: 0

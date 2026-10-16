@@ -5,6 +5,7 @@ public class MinimapEntity : MonoBehaviour
 {
     [field: SerializeField] public Sprite Icon { get; private set; }
     [field: SerializeField, Min(0.0f)] public float IconScale { get; private set; } = 1.0f;
+    [field: SerializeField] public bool RotateWithEntity { get; private set; } = true;
 
     private bool m_AddPending = false;
 
