@@ -1327,11 +1327,32 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5299515924955458139, guid: 2c813e11bc38220018afa5335b154036, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299515924955458139, guid: 2c813e11bc38220018afa5335b154036, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299515924955458139, guid: 2c813e11bc38220018afa5335b154036, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299515924955458139, guid: 2c813e11bc38220018afa5335b154036, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7387342468747153186, guid: 2c813e11bc38220018afa5335b154036, type: 3}
       propertyPath: m_Name
       value: Aim Canvas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7949314787508393562, guid: 2c813e11bc38220018afa5335b154036, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6185818
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5319941527064001280, guid: 2c813e11bc38220018afa5335b154036, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
