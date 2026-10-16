@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 7119337361222892872}
   - component: {fileID: 5132938382411108315}
   - component: {fileID: 7809353225520903323}
+  - component: {fileID: 8689061158385763510}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -250,6 +251,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MinimapEntity
   <Icon>k__BackingField: {fileID: 21300000, guid: a712792b5cbf6d8a2982471b1e1614d2, type: 3}
   <IconScale>k__BackingField: 0.2
+--- !u!114 &8689061158385763510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2158141657593661978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0.6958886, b: 0.7735849, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &4984719849968303564
 PrefabInstance:
   m_ObjectHideFlags: 0
