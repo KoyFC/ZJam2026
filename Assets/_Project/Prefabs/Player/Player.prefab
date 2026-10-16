@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
   TrackerSettings:
     BindingMode: 1
-    PositionDamping: {x: 1.8, y: 1.8, z: 0}
+    PositionDamping: {x: 1.8, y: 1.8, z: 0.25}
     AngularDampingMode: 0
     RotationDamping: {x: 0, y: 0, z: 0}
     QuaternionDamping: 1
@@ -205,7 +205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputController
   m_MoveActionReference: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_FireActionReference: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_PrimaryFireActionReference: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_SecondaryFireActionReference: {fileID: 7292355644475702373, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &7119337361222892872
 MonoBehaviour:
   m_ObjectHideFlags: 0

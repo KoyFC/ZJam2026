@@ -10,8 +10,11 @@ public class PlayerInputController : Singleton<PlayerInputController>
     public Vector2 MoveInput { get; private set; }
     public static event Action<Vector2> OnMoveInputChanged;
 
-    [SerializeField] private InputActionReference m_FireActionReference;
-    public static event Action OnFire;
+    [SerializeField] private InputActionReference m_PrimaryFireActionReference;
+    public static event Action OnPrimaryFire;
+
+    [SerializeField] private InputActionReference m_SecondaryFireActionReference;
+    public static event Action OnSecondaryFire;
 
     private void OnEnable()
     {
@@ -28,7 +31,8 @@ public class PlayerInputController : Singleton<PlayerInputController>
         if (m_InputActive) return;
 
         SetActionEnabled(m_MoveActionReference, true, OnMovePerformed, OnMoveCanceled);
-        SetActionEnabled(m_FireActionReference, true, OnInteractPerformed);
+        SetActionEnabled(m_PrimaryFireActionReference, true, OnPrimaryFirePerformed);
+        SetActionEnabled(m_SecondaryFireActionReference, true, OnSecondaryFirePerformed);
 
         m_InputActive = true;
     }
@@ -38,7 +42,8 @@ public class PlayerInputController : Singleton<PlayerInputController>
         if (!m_InputActive) return;
 
         SetActionEnabled(m_MoveActionReference, false, OnMovePerformed, OnMoveCanceled);
-        SetActionEnabled(m_FireActionReference, false, OnInteractPerformed);
+        SetActionEnabled(m_PrimaryFireActionReference, false, OnPrimaryFirePerformed);
+        SetActionEnabled(m_SecondaryFireActionReference, false, OnSecondaryFirePerformed);
 
         m_InputActive = false;
 
@@ -87,9 +92,14 @@ public class PlayerInputController : Singleton<PlayerInputController>
         OnMoveInputChanged?.Invoke(MoveInput);
     }
 
-    private void OnInteractPerformed(InputAction.CallbackContext context)
+    private void OnPrimaryFirePerformed(InputAction.CallbackContext context)
     {
-        OnFire?.Invoke();
+        OnPrimaryFire?.Invoke();
+    }
+
+    private void OnSecondaryFirePerformed(InputAction.CallbackContext context)
+    {
+        OnSecondaryFire?.Invoke();
     }
     #endregion
 }
