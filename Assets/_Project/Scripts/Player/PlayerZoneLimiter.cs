@@ -3,6 +3,8 @@ using UnityEngine;
 public class PlayerZoneLimiter : MonoBehaviour
 {
     [SerializeField] private float m_PlayerRadius = 0.5f;
+    [SerializeField] private float m_MinYPosition = 10f;
+    [SerializeField] private float m_MaxYPosition = 50f;
     private Vector3 m_CenterPosition = Vector3.zero;
     private Rigidbody m_Rigidbody;
 
@@ -67,7 +69,7 @@ public class PlayerZoneLimiter : MonoBehaviour
         float clampedDistanceFromCenter = Mathf.Clamp(distanceFromCenter, minAllowedDistance, maxAllowedDistance);
 
         clampedPosition = m_CenterPosition + directionFromCenter * clampedDistanceFromCenter;
-        clampedPosition.y = position.y;
+        clampedPosition.y = Mathf.Clamp(clampedPosition.y, m_MinYPosition, m_MaxYPosition);
 
         barrierNormal = distanceFromCenter > maxAllowedDistance ? -directionFromCenter : directionFromCenter;
         return true;
