@@ -39,16 +39,14 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.None;
 
-        PlayerInputController.OnPrimaryFire += PunchMarkers;
-        PlayerInputController.OnSecondaryFire += PunchMarkers;
+        PlayerFiringController.OnFired += PunchMarkers;
     }
 
     private void OnDisable()
     {
         Cursor.visible = true;
 
-        PlayerInputController.OnPrimaryFire -= PunchMarkers;
-        PlayerInputController.OnSecondaryFire -= PunchMarkers;
+        PlayerFiringController.OnFired -= PunchMarkers;
 
         m_FireMarker.DOKill(true);
         m_CursorMarker.DOKill(true);

@@ -31,7 +31,7 @@ public class Pool<T> where T : Component
         return instance;
     }
 
-    public void ReturnToPool(T instance)
+    public void Release(T instance)
     {
         instance.gameObject.SetActive(false);
         m_PoolQueue.Enqueue(instance);
