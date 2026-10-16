@@ -10,22 +10,6 @@ public class ZoneManager : Singleton<ZoneManager>
 
     [SerializeField] private float m_GizmoHeight = 20f;
 
-    public float GetInnerRadius()
-    {
-        if (CurrentZoneIndex <= 0 || CurrentZoneIndex >= Zones.Length)
-            return 0f;
-
-        return Zones[CurrentZoneIndex - 1].Radius;
-    }
-
-    public float GetOuterRadius()
-    {
-        if (CurrentZoneIndex < 0 || CurrentZoneIndex >= Zones.Length)
-            return 0f;
-
-        return Zones[CurrentZoneIndex].Radius;
-    }
-
     protected override void Awake()
     {
         base.Awake();
@@ -124,5 +108,39 @@ public class ZoneManager : Singleton<ZoneManager>
 
             previous = next;
         }
+    }
+
+    public float GetInnerRadius()
+    {
+        if (CurrentZoneIndex <= 0 || CurrentZoneIndex >= Zones.Length)
+            return 0f;
+
+        return Zones[CurrentZoneIndex - 1].Radius;
+    }
+
+    public float GetOuterRadius()
+    {
+        if (CurrentZoneIndex < 0 || CurrentZoneIndex >= Zones.Length)
+            return 0f;
+
+        return Zones[CurrentZoneIndex].Radius;
+    }
+
+    public float GetMiddleRadius()
+    {
+        return (GetInnerRadius() + GetOuterRadius()) * 0.5f;
+    }
+
+    public Vector3 GetOffsetFromCenter(Vector3 position)
+    {
+        Vector3 offset = position - transform.position;
+        offset.y = 0f;
+        return offset;
+    }
+
+    public Vector3 GetTangent(Vector3 position, bool clockwise)
+    {
+        Vector3 tangent = Vector3.Cross(Vector3.up, GetOffsetFromCenter(position).normalized);
+        return clockwise ? tangent : -tangent;
     }
 }
