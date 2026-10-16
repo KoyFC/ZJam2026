@@ -105,12 +105,14 @@ public class Stats_Modifier : Singleton<Stats_Modifier>
     {
         switch (upgradeType)
         {
-            case UpgradeType.money:
-                return Player_Stats.Instance.CurrentMoney;
-            case UpgradeType.fuel:
-                return Player_Stats.Instance.CurrentFuel;
             case UpgradeType.resources:
-                return Player_Stats.Instance.CurrentCobalt;
+                return Player_Stats.Instance.CurrentResources;
+            case UpgradeType.damage:
+                return Player_Stats.Instance.CurrentDamage;
+            case UpgradeType.health:
+                return Player_Stats.Instance.CurrentHealth;
+            case UpgradeType.mobility:
+                return Player_Stats.Instance.CurrentDashes;
             default:
                 Debug.LogWarning("Unhandled upgrade type: " + upgradeType);
                 return 0f;
