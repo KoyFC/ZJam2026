@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97bde0fadd2a3fa46946dbcbf8c4550b, type: 3}
-  m_Name: Boss Upgrade
+  m_Name: Damage
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeDataSO
-  <UpgradeType>k__BackingField: 0
-  <ModifierType>k__BackingField: 0
+  <UpgradeType>k__BackingField: 2
+  <ModifierType>k__BackingField: 1
   <Icon>k__BackingField: {fileID: 0}
   <Description>k__BackingField: 
   <Cost>k__BackingField: 0
-  <AdditiveValue>k__BackingField: 0
+  <AdditiveValue>k__BackingField: 2
   <MultiplicativeValue>k__BackingField: 1
   <Consequents>k__BackingField:
-  - {fileID: 11400000, guid: 027eb1fcb2c1dc24099d02157b0a52a8, type: 2}
+  - {fileID: 11400000, guid: d1decab6dfdc71f4ea81944790d07ac6, type: 2}
