@@ -3,8 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerPointToCursor : MonoBehaviour
 {
+    private Camera m_Camera;
     [SerializeField] private Transform m_Transform;
-    [SerializeField] private Camera m_Camera;
     [SerializeField] private float m_AimDistance = 200f;
     [SerializeField] private float m_TurnSpeed = 10f;
     [SerializeField] private Vector2 m_AimStrength = new Vector2(0.6f, 0.4f);
@@ -17,13 +17,12 @@ public class PlayerPointToCursor : MonoBehaviour
         if (m_Transform == null)
             m_Transform = transform;
 
-        if (m_Camera == null)
-            m_Camera = Camera.main;
+        m_Camera = Camera.main;
     }
 
     private void Update()
     {
-        m_HasAimPoint = Mouse.current != null && TryGetAimPoint(out m_AimPoint);
+        m_HasAimPoint = TryGetAimPoint(GetAimRay(), out m_AimPoint);
         if (!m_HasAimPoint)
             return;
 
@@ -45,12 +44,22 @@ public class PlayerPointToCursor : MonoBehaviour
         return cameraTransform.TransformDirection(local);
     }
 
-    private bool TryGetAimPoint(out Vector3 aimPoint)
+    private Ray GetAimRay()
+    {
+        if (PlayerCrosshair.InstanceExists)
+            return PlayerCrosshair.Instance.FireRay;
+
+        if (Mouse.current == null)
+            return new Ray(m_Camera.transform.position, m_Camera.transform.forward);
+
+        return m_Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+    }
+
+    private bool TryGetAimPoint(Ray ray, out Vector3 aimPoint)
     {
         Transform cameraTransform = m_Camera.transform;
         Vector3 forward = cameraTransform.forward;
         Plane aimPlane = new Plane(-forward, cameraTransform.position + forward * m_AimDistance);
-        Ray ray = m_Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         bool hit = aimPlane.Raycast(ray, out float distance);
         aimPoint = ray.GetPoint(distance);
