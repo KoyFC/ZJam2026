@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5249011593392458536}
   - component: {fileID: 5105662450203235663}
   - component: {fileID: 493946241466587973}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CinemachineCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 7119337361222892872}
   - component: {fileID: 5132938382411108315}
   - component: {fileID: 7809353225520903323}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,9 +295,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 81d59b6c5a34fed4da2dd153ca80d089, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 81d59b6c5a34fed4da2dd153ca80d089, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 81d59b6c5a34fed4da2dd153ca80d089, type: 3}
       propertyPath: m_Name
       value: SpaceShip_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 81d59b6c5a34fed4da2dd153ca80d089, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845375464428368027, guid: 81d59b6c5a34fed4da2dd153ca80d089, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
