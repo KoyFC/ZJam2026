@@ -62,14 +62,24 @@ public class PlayerZoneLimiter : MonoBehaviour
         horizontalOffset.y = 0f;
 
         float distanceFromCenter = horizontalOffset.magnitude;
-        if (distanceFromCenter >= minAllowedDistance && distanceFromCenter <= maxAllowedDistance)
-            return false;
+        float clampedY = Mathf.Clamp(position.y, m_MinYPosition, m_MaxYPosition);
+        bool insideRing = distanceFromCenter >= minAllowedDistance && distanceFromCenter <= maxAllowedDistance;
+
+        if (insideRing)
+        {
+            if (Mathf.Approximately(clampedY, position.y))
+                return false;
+
+            clampedPosition.y = clampedY;
+            barrierNormal = position.y > m_MaxYPosition ? Vector3.down : Vector3.up;
+            return true;
+        }
 
         Vector3 directionFromCenter = distanceFromCenter > Mathf.Epsilon ? horizontalOffset / distanceFromCenter : Vector3.forward;
         float clampedDistanceFromCenter = Mathf.Clamp(distanceFromCenter, minAllowedDistance, maxAllowedDistance);
 
         clampedPosition = m_CenterPosition + directionFromCenter * clampedDistanceFromCenter;
-        clampedPosition.y = Mathf.Clamp(clampedPosition.y, m_MinYPosition, m_MaxYPosition);
+        clampedPosition.y = clampedY;
 
         barrierNormal = distanceFromCenter > maxAllowedDistance ? -directionFromCenter : directionFromCenter;
         return true;

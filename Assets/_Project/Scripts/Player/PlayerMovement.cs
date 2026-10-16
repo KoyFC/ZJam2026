@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterController m_CharacterController;
     [SerializeField] private PlayerInputController m_InputController;
 
-    [SerializeField] private float m_MoveSpeed = 5f;
+    [SerializeField] private Vector2 m_MoveSpeed = new Vector2(10f, 5f);
 
     private void Awake()
     {
@@ -20,10 +20,10 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Vector2 moveInput = m_InputController.MoveInput;
-        Vector3 moveDirection = new Vector3(moveInput.x, moveInput.y, 0f);
+        Vector3 localVelocity = new Vector3(moveInput.x * m_MoveSpeed.x, moveInput.y * m_MoveSpeed.y, 0f);
 
-        // Move relative to transform forward and right
-        Vector3 worldMoveDirection = transform.TransformDirection(moveDirection);
-        m_CharacterController.Move(worldMoveDirection * m_MoveSpeed * Time.deltaTime);
+        // Move relative to transform right and up
+        Vector3 worldVelocity = transform.TransformDirection(localVelocity);
+        m_CharacterController.Move(worldVelocity * Time.deltaTime);
     }
 }
