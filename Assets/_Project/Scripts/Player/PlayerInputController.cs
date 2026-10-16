@@ -2,16 +2,16 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputController : MonoBehaviour
+public class PlayerInputController : Singleton<PlayerInputController>
 {
     private bool m_InputActive = false;
 
     [SerializeField] private InputActionReference m_MoveActionReference;
     public Vector2 MoveInput { get; private set; }
-    public event Action<Vector2> OnMoveInputChanged;
+    public static event Action<Vector2> OnMoveInputChanged;
 
     [SerializeField] private InputActionReference m_FireActionReference;
-    public event Action OnFire;
+    public static event Action OnFire;
 
     private void OnEnable()
     {

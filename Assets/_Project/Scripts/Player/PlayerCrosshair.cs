@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,11 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
     [SerializeField] private RectTransform m_FireMarker;
     [SerializeField] private RectTransform m_FireMarkerBoundingBox;
     [SerializeField] private float m_FollowSpeed = 8f;
+
+    [Header("Fire Punch")]
+    [SerializeField] private float m_FirePunch = -0.3f;
+    [SerializeField] private float m_CursorPunch = -0.2f;
+    [SerializeField] private float m_FirePunchDuration = 0.2f;
 
     private Vector2 m_FireScreenPosition;
     private readonly Vector3[] m_Corners = new Vector3[4];
@@ -27,11 +33,30 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.None;
+
+        PlayerInputController.OnFire += PunchMarkers;
     }
 
     private void OnDisable()
     {
         Cursor.visible = true;
+
+        PlayerInputController.OnFire -= PunchMarkers;
+
+        m_FireMarker.DOKill(true);
+        m_CursorMarker.DOKill(true);
+    }
+
+    private void PunchMarkers()
+    {
+        Punch(m_FireMarker, m_FirePunch);
+        Punch(m_CursorMarker, m_CursorPunch);
+    }
+
+    private void Punch(RectTransform marker, float punch)
+    {
+        marker.DOKill(true);
+        marker.DOPunchScale(Vector3.one * punch, m_FirePunchDuration);
     }
 
     private void Update()

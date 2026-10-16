@@ -346,3 +346,6 @@ MonoBehaviour:
   m_FireMarker: {fileID: 897014457705890423}
   m_FireMarkerBoundingBox: {fileID: 971572273633482789}
   m_FollowSpeed: 8
+  m_FirePunch: -0.3
+  m_CursorPunch: -0.1
+  m_FirePunchDuration: 0.2
