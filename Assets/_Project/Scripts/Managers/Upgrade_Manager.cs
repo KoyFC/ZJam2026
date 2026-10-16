@@ -25,9 +25,9 @@ public class Upgrade_Manager : Singleton<Upgrade_Manager>
 
         UpgradeDataSO upgradeData = upgradeInfo.UpgradeData;
 
-        if (Player_Stats.Instance.CurrentMoney < upgradeData.Cost)
+        if (Player_Stats.Instance.CurrentResources < upgradeData.Cost)
         {
-            Debug.Log("Not enough money to purchase upgrade: " + upgradeData.name);
+            Debug.Log("Not enough resources to purchase upgrade: " + upgradeData.name);
             return;
         }
         Debug.Log("Purchased upgrade: " + upgradeData.name);
