@@ -90,11 +90,11 @@ public class Player_Stats : Singleton<Player_Stats>
                 Debug.Log("Set resources to: " + newValue);
                 break;
             case UpgradeType.damage:
-                m_currentHealth = newValue;
+                m_currentDamage = newValue;
                 Debug.Log("Set damage to: " + newValue);
                 break;
             case UpgradeType.health:
-                m_currentDamage = newValue;
+                m_currentHealth = newValue;
                 Debug.Log("Set health to: " + newValue);
                 break;
             case UpgradeType.mobility:
