@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Missile Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4933352665830001300, guid: da28f53cf8ad7d7eabdaa8564aeb5bab, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2cabffec13e01de1f94901c118381e64, type: 2}
     - target: {fileID: 5110832050719996064, guid: da28f53cf8ad7d7eabdaa8564aeb5bab, type: 3}
       propertyPath: m_Speed
       value: 100
