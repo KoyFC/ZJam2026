@@ -8,9 +8,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 19885315144212308, guid: 1d587d0d6f6dd6c519ae30bd9bef74a1, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 65
+      objectReference: {fileID: 0}
     - target: {fileID: 3749663886193432389, guid: 1d587d0d6f6dd6c519ae30bd9bef74a1, type: 3}
       propertyPath: m_Name
-      value: Player Primary Fire Particles
+      value: Enemy Primary Fire Particles Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7418793208480965573, guid: 1d587d0d6f6dd6c519ae30bd9bef74a1, type: 3}
       propertyPath: m_LocalPosition.x
