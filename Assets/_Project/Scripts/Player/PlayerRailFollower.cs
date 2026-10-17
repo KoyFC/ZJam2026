@@ -1,13 +1,15 @@
 using UnityEngine;
 
-public class PlayerRailFollower : MonoBehaviour
+public class PlayerRailFollower : Singleton<PlayerRailFollower>
 {
     [SerializeField] private CharacterController m_CharacterController;
     [SerializeField] private float m_ForwardSpeed = 15f;
     [field: SerializeField] public bool Clockwise { get; private set; } = true;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         if (m_CharacterController == null)
             m_CharacterController = GetComponent<CharacterController>();
     }

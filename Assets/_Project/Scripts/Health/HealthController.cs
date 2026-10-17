@@ -15,6 +15,8 @@ public class HealthController : MonoBehaviour, IDamageable
 
     public void Heal(float amount)
     {
+        if (!IsAlive) return;
+
         OnHealed?.Invoke(amount);
         _currentHealth += amount;
         if (_currentHealth > _maxHealth)
@@ -25,6 +27,8 @@ public class HealthController : MonoBehaviour, IDamageable
 
     public void ReceiveDamage(float damage)
     {
+        if (!IsAlive) return;
+
         _currentHealth -= damage;
         OnDamaged?.Invoke(damage);
         if (_currentHealth <= 0)
