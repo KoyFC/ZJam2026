@@ -151,7 +151,7 @@ RectTransform:
   m_Children:
   - {fileID: 1581317001}
   - {fileID: 1217003777}
-  m_Father: {fileID: 456161086}
+  m_Father: {fileID: 388874994}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -390,9 +390,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Stats
-
-'
+  m_text: Combat
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
@@ -735,7 +733,7 @@ RectTransform:
   m_Children:
   - {fileID: 915804084}
   - {fileID: 566935097}
-  m_Father: {fileID: 456161086}
+  m_Father: {fileID: 388874994}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -958,8 +956,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1031491836}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.09542111}
+  m_AnchorMax: {x: 1, y: 0.90457726}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1230,8 +1228,9 @@ GameObject:
   - component: {fileID: 168938676}
   - component: {fileID: 168938675}
   - component: {fileID: 168938674}
+  - component: {fileID: 168938678}
   m_Layer: 0
-  m_Name: Stats BT
+  m_Name: Combat BT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1325,6 +1324,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 168938678}
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: EnterCombat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &168938676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1363,6 +1374,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168938672}
   m_CullTransparentMesh: 1
+--- !u!114 &168938678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168938672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc169b07566eac4e85186f0756b3da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneController
 --- !u!1 &205941916
 GameObject:
   m_ObjectHideFlags: 0
@@ -1929,7 +1952,7 @@ RectTransform:
   m_Children:
   - {fileID: 1414642867}
   - {fileID: 1284713126}
-  m_Father: {fileID: 456161086}
+  m_Father: {fileID: 506352102}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2215,7 +2238,7 @@ RectTransform:
   m_Children:
   - {fileID: 458886060}
   - {fileID: 1542746402}
-  m_Father: {fileID: 456161086}
+  m_Father: {fileID: 1146434702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2292,7 +2315,7 @@ RectTransform:
   m_Children:
   - {fileID: 623866816}
   - {fileID: 513871783}
-  m_Father: {fileID: 456161086}
+  m_Father: {fileID: 388874994}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2762,7 +2785,7 @@ RectTransform:
   m_Father: {fileID: 603306748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2839,9 +2862,9 @@ RectTransform:
   m_Father: {fileID: 1725898334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: -17}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &354166025
 MonoBehaviour:
@@ -2926,6 +2949,10 @@ RectTransform:
   - {fileID: 1285611636}
   - {fileID: 447858957}
   - {fileID: 946965000}
+  - {fileID: 2939253}
+  - {fileID: 276434503}
+  - {fileID: 1107510637}
+  - {fileID: 77274279}
   m_Father: {fileID: 456161086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3318,7 +3345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &406935162
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3814,24 +3841,13 @@ RectTransform:
   m_Children:
   - {fileID: 2049931828}
   - {fileID: 388874994}
-  - {fileID: 2939253}
-  - {fileID: 276434503}
-  - {fileID: 1107510637}
-  - {fileID: 77274279}
   - {fileID: 1146434702}
-  - {fileID: 735667008}
-  - {fileID: 1092999026}
-  - {fileID: 498134198}
-  - {fileID: 274961513}
   - {fileID: 506352102}
-  - {fileID: 1722483185}
-  - {fileID: 261508763}
-  - {fileID: 1603753518}
   m_Father: {fileID: 354166024}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00030517578, y: 0.0008544922}
+  m_AnchoredPosition: {x: 0.0008544922, y: 0.0008544922}
   m_SizeDelta: {x: -599.58, y: -124.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &458886059
@@ -4426,7 +4442,7 @@ RectTransform:
   m_Children:
   - {fileID: 1459401363}
   - {fileID: 788116246}
-  m_Father: {fileID: 456161086}
+  m_Father: {fileID: 1146434702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4502,6 +4518,9 @@ RectTransform:
   - {fileID: 2004085785}
   - {fileID: 281737698}
   - {fileID: 1396139378}
+  - {fileID: 1722483185}
+  - {fileID: 261508763}
+  - {fileID: 1603753518}
   m_Father: {fileID: 456161086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6412,7 +6431,7 @@ RectTransform:
   m_Children:
   - {fileID: 759035766}
   - {fileID: 1533693605}
-  m_Father: {fileID: 456161086}
+  m_Father: {fileID: 1146434702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10284,7 +10303,7 @@ RectTransform:
   m_Children:
   - {fileID: 1929282463}
   - {fileID: 293403584}
-  m_Father: {fileID: 456161086}
+  m_Father: {fileID: 1146434702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10742,7 +10761,7 @@ RectTransform:
   m_Children:
   - {fileID: 1156456918}
   - {fileID: 815886984}
-  m_Father: {fileID: 456161086}
+  m_Father: {fileID: 388874994}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10951,6 +10970,10 @@ RectTransform:
   - {fileID: 1131196403}
   - {fileID: 2047446385}
   - {fileID: 2118084568}
+  - {fileID: 735667008}
+  - {fileID: 1092999026}
+  - {fileID: 498134198}
+  - {fileID: 274961513}
   m_Father: {fileID: 456161086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -10993,9 +11016,9 @@ RectTransform:
   m_Father: {fileID: 1725898334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 20}
+  m_SizeDelta: {x: -17, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1148115704
 MonoBehaviour:
@@ -11359,9 +11382,9 @@ RectTransform:
   m_Father: {fileID: 1725898334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 0}
+  m_SizeDelta: {x: 20, y: -17}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1177323499
 MonoBehaviour:
@@ -14203,7 +14226,7 @@ RectTransform:
   m_Children:
   - {fileID: 154817735}
   - {fileID: 451958097}
-  m_Father: {fileID: 456161086}
+  m_Father: {fileID: 506352102}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14560,9 +14583,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1554517548}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ToggleUpgradeCanvas
+      - m_Target: {fileID: 168938678}
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: EnterCombat
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14881,7 +14904,7 @@ RectTransform:
   m_Children:
   - {fileID: 1069977239}
   - {fileID: 1783977852}
-  m_Father: {fileID: 456161086}
+  m_Father: {fileID: 506352102}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
