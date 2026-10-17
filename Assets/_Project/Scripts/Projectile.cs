@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour
 
     private ParticleSystem m_ParticleSystem;
     private Pool<Projectile> m_Pool;
+    private Pool<Explosion> m_ExplosionPool;
     private float m_Age;
 
     private void Awake()
@@ -38,9 +39,10 @@ public class Projectile : MonoBehaviour
             m_ParticleSystem.Stop();
     }
 
-    public void Launch(Pool<Projectile> pool)
+    public void Launch(Pool<Projectile> pool, Pool<Explosion> explosionPool = null)
     {
         m_Pool = pool;
+        m_ExplosionPool = explosionPool;
     }
 
     public void Release()
@@ -74,6 +76,9 @@ public class Projectile : MonoBehaviour
         IDamageable damageable = target.GetComponentInParent<IDamageable>();
         if (damageable != null)
             damageable.ReceiveDamage(m_Damage);
+
+        if (m_ExplosionPool != null)
+            m_ExplosionPool.Get(transform.position, Quaternion.identity).Launch(m_ExplosionPool);
 
         Release();
     }
