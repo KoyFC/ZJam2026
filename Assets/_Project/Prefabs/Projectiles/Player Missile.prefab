@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2963303633266989597}
   - component: {fileID: 5110832050719996064}
   m_Layer: 0
-  m_Name: Missile
+  m_Name: Player Missile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11602a14ec88616fc87bfc592947bbd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileMovementScript
-  m_Speed: 100
+  m_Speed: 200
+  m_Lifetime: 5
+  m_Damage: 10
+  m_HitRadius: 0.5
+  m_HitMask:
+    serializedVersion: 2
+    m_Bits: 129
 --- !u!1 &5000931708846812150
 GameObject:
   m_ObjectHideFlags: 0
@@ -4830,7 +4836,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9e73dfb565ecdedf8a32de2f9c9af352, type: 2}
-  - {fileID: 2100000, guid: 8dd8027af26d5b69f9e9b8ac72729a38, type: 2}
+  - {fileID: 2100000, guid: f676e923c464acabe99dbfffd3a69d48, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
