@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 7598984091829963676}
   - component: {fileID: 3027745301198667448}
   - component: {fileID: 1001971611829981076}
+  - component: {fileID: 2679560146582436015}
+  - component: {fileID: 2463875248079234363}
   m_Layer: 7
   m_Name: BunkerEnemy
   m_TagString: Untagged
@@ -114,10 +116,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799fae55dc7bb1746bb6d9ebcf97fb84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBrain
-  _shootPoint: {fileID: 8843218950542090263}
-  _projectilePrefab: {fileID: 5110832050719996064, guid: da28f53cf8ad7d7eabdaa8564aeb5bab, type: 3}
-  _projectilePoolSize: 10
   _shootInterval: 1
+  _telegraph: {fileID: 0}
+  _telegraphTime: 0.4
+--- !u!114 &2679560146582436015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352569408866216113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 380064d43a625154ebeefc213cc0c1e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDetector
+  _maxAheadAngle: 60
+--- !u!114 &2463875248079234363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352569408866216113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b7c989113b9da35a12f0f8220b4d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeapon
+  _shootPoint: {fileID: 8843218950542090263}
+  _projectilePrefab: {fileID: 4993849313636776019, guid: c1fdaad09d817df768df8fbf992cae63, type: 3}
+  _projectilePoolSize: 10
 --- !u!1001 &4439543278526749567
 PrefabInstance:
   m_ObjectHideFlags: 0
