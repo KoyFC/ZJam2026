@@ -2,9 +2,10 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(HealthController))]
-[RequireComponent(typeof(SphereCollider))]
 public class EnemyBrain : MonoBehaviour
 {
+    [Header("Detection")]
+    [SerializeField, Range(0f, 180f)] protected float _maxAheadAngle = 60f;
 
     [Header("Attack")]
     [SerializeField] protected Transform _shootPoint;
@@ -15,7 +16,6 @@ public class EnemyBrain : MonoBehaviour
     protected GameObject Target => _target;
 
     private HealthController _healthController;
-    private SphereCollider _sphereCollider;
     private Pool<Projectile> _projectilePool;
     private float _lastShootTime;
     private GameObject _target;
@@ -23,7 +23,6 @@ public class EnemyBrain : MonoBehaviour
     protected virtual void Awake()
     {
         _healthController = GetComponent<HealthController>();
-        _sphereCollider = GetComponent<SphereCollider>();
 
         if (_projectilePrefab != null)
         {
@@ -45,35 +44,43 @@ public class EnemyBrain : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} has died.");
         Destroy(gameObject);
-    } 
+    }
 
     protected virtual void HandleDamage(float damage)
     {
         Debug.Log($"{gameObject.name} took {damage} damage. Current health: {_healthController.CurrentHealth}");
     }
 
-    protected virtual void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _target = other.gameObject;
-        }
-    }
-
-    protected virtual void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _target = null;
-        }
-    }
-
     protected virtual void Update()
     {
+        _target = IsAheadOfPlayer() ? PlayerRailFollower.Instance.gameObject : null;
+
         if (Target != null)
         {
             TryAttackTarget();
         }
+    }
+
+    protected virtual bool IsAheadOfPlayer()
+    {
+        if (!PlayerRailFollower.InstanceExists || !ZoneManager.InstanceExists)
+        {
+            return false;
+        }
+
+        PlayerRailFollower playerRailFollower = PlayerRailFollower.Instance;
+        ZoneManager zone = ZoneManager.Instance;
+
+        Vector3 playerOffset = zone.GetOffsetFromCenter(playerRailFollower.transform.position);
+        Vector3 enemyOffset = zone.GetOffsetFromCenter(transform.position);
+
+        float angle = Vector3.SignedAngle(playerOffset, enemyOffset, Vector3.up);
+        if (!playerRailFollower.Clockwise)
+        {
+            angle = -angle;
+        }
+
+        return angle > 0f && angle < _maxAheadAngle;
     }
 
     protected virtual void OnDrawGizmosSelected()
