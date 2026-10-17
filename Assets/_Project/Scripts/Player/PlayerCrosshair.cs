@@ -66,6 +66,8 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
 
     private void Update()
     {
+        RotateMarkers();
+
         if (Mouse.current == null)
             return;
 
@@ -81,6 +83,15 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
 
         FireRay = m_Camera.ScreenPointToRay(m_FireScreenPosition);
         AimPoint = GetAimPoint(FireRay);
+    }
+
+    private void RotateMarkers()
+    {
+        Vector3 fireRotation = m_FireMarker.eulerAngles;
+        Vector3 cursorRotation = m_CursorMarker.eulerAngles;
+
+        m_FireMarker.rotation = Quaternion.Euler(fireRotation.x, fireRotation.y, fireRotation.z + Time.deltaTime * 90f);
+        m_CursorMarker.rotation = Quaternion.Euler(cursorRotation.x, cursorRotation.y, cursorRotation.z - Time.deltaTime * 45f);
     }
 
     public Quaternion GetAimRotation(Vector3 origin)
