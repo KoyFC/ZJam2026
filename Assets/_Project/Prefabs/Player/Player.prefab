@@ -5274,7 +5274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPointToCursor
   m_Transform: {fileID: 3566537823923247136}
   m_TurnSpeed: 10
-  m_AimStrength: {x: 0.6, y: 0.4}
+  m_AimStrength: {x: 0.5, y: 0.4}
 --- !u!114 &6200474344533482123
 MonoBehaviour:
   m_ObjectHideFlags: 0
