@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 3399206513696972447}
   - component: {fileID: 2643206817471470530}
   - component: {fileID: 6425110099116090724}
+  - component: {fileID: 156169817830017968}
   m_Layer: 7
   m_Name: Flying Enemy
   m_TagString: Untagged
@@ -140,8 +141,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyShooter
   _shootInterval: 2
+  _intervalVariance: 0.2
   _telegraph: {fileID: 667427342623510442}
   _telegraphLifetime: 1
+--- !u!114 &156169817830017968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5946601281159372525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc8fe3c68ee95431a1efa2c63c07efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyOnDeath
 --- !u!1001 &4733589464732040523
 PrefabInstance:
   m_ObjectHideFlags: 0

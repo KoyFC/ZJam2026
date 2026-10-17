@@ -7,6 +7,11 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float m_Speed = 10f;
     [SerializeField] private float m_Lifetime = 5f;
 
+    [Header("Damage")]
+    [SerializeField] private float m_Damage = 10f;
+    [SerializeField] private float m_HitRadius = 0.5f;
+    [SerializeField] private LayerMask m_HitMask;
+
     private ParticleSystem m_ParticleSystem;
     private Pool<Projectile> m_Pool;
     private float m_Age;
@@ -48,10 +53,28 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        transform.position += transform.forward * m_Speed * Time.deltaTime;
+        float distance = m_Speed * Time.deltaTime;
+
+        if (Physics.SphereCast(transform.position, m_HitRadius, transform.forward, out RaycastHit hit, distance, m_HitMask))
+        {
+            transform.position += transform.forward * hit.distance;
+            Hit(hit.collider);
+            return;
+        }
+
+        transform.position += transform.forward * distance;
 
         m_Age += Time.deltaTime;
         if (m_Age >= m_Lifetime)
             Release();
+    }
+
+    private void Hit(Collider target)
+    {
+        IDamageable damageable = target.GetComponentInParent<IDamageable>();
+        if (damageable != null)
+            damageable.ReceiveDamage(m_Damage);
+
+        Release();
     }
 }

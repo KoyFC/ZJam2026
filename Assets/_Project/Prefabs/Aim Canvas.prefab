@@ -345,7 +345,7 @@ MonoBehaviour:
   m_CursorMarker: {fileID: 8734214166075429022}
   m_FireMarker: {fileID: 897014457705890423}
   m_FireMarkerBoundingBox: {fileID: 971572273633482789}
-  m_FollowSpeed: 8
+  m_FollowSpeed: 12
   m_AimDistance: 400
   m_AimMask:
     serializedVersion: 2

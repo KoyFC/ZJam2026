@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Missile Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5110832050719996064, guid: da28f53cf8ad7d7eabdaa8564aeb5bab, type: 3}
+      propertyPath: m_HitMask.m_Bits
+      value: 65
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

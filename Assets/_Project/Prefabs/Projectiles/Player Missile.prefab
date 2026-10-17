@@ -47,6 +47,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileMovementScript
   m_Speed: 100
+  m_Lifetime: 5
+  m_Damage: 10
+  m_HitRadius: 0.5
+  m_HitMask:
+    serializedVersion: 2
+    m_Bits: 129
 --- !u!1 &5000931708846812150
 GameObject:
   m_ObjectHideFlags: 0

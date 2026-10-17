@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 1001971611829981076}
   - component: {fileID: 2679560146582436015}
   - component: {fileID: 2463875248079234363}
+  - component: {fileID: 2753231124849217892}
   m_Layer: 7
   m_Name: BunkerEnemy
   m_TagString: Untagged
@@ -118,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBrain
   _shootInterval: 2
+  _intervalVariance: 0.2
   _telegraph: {fileID: 8788453743218614314}
   _telegraphLifetime: 1
 --- !u!114 &2679560146582436015
@@ -148,6 +150,18 @@ MonoBehaviour:
   _shootPoint: {fileID: 8843218950542090263}
   _projectilePrefab: {fileID: 4993849313636776019, guid: c1fdaad09d817df768df8fbf992cae63, type: 3}
   _projectilePoolSize: 10
+--- !u!114 &2753231124849217892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352569408866216113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc8fe3c68ee95431a1efa2c63c07efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyOnDeath
 --- !u!1001 &4043162679243020622
 PrefabInstance:
   m_ObjectHideFlags: 0
