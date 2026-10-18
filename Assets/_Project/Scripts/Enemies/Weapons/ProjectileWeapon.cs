@@ -20,8 +20,7 @@ public class ProjectileWeapon : EnemyWeapon
 
         if (_projectilePrefab != null)
         {
-            Transform poolContainer = new GameObject($"{name} Projectile Pool").transform;
-            _projectilePool = new Pool<Projectile>(_projectilePrefab, poolContainer, _projectilePoolSize);
+            _projectilePool = PoolManager.Instance.GetPool(_projectilePrefab, _projectilePoolSize);
         }
     }
 
