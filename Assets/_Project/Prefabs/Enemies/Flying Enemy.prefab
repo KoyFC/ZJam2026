@@ -96,9 +96,9 @@ GameObject:
   - component: {fileID: 8370264927078808869}
   - component: {fileID: 6918430601948679521}
   - component: {fileID: 2161493653353854409}
+  - component: {fileID: 6425110099116090724}
   - component: {fileID: 3399206513696972447}
   - component: {fileID: 2643206817471470530}
-  - component: {fileID: 6425110099116090724}
   - component: {fileID: 156169817830017968}
   - component: {fileID: 6460251391170976519}
   m_Layer: 7
@@ -154,6 +154,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlyingEnemy
   _followSmoothTime: 0.3
+--- !u!114 &6425110099116090724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5946601281159372525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 799fae55dc7bb1746bb6d9ebcf97fb84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyShooter
+  _shootInterval: 3
+  _intervalVariance: 0.2
+  _telegraph: {fileID: 667427342623510442}
+  _telegraphLifetime: 1
 --- !u!114 &3399206513696972447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,9 +183,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParticleWeapon
   _bullets: {fileID: 3596871404593514915}
-  _particleSpeed: 30
-  _shotsPerBurst: 3
-  _burstInterval: 0.1
+  _particleSpeed: 100
+  _shotsPerBurst: 4
+  _burstInterval: 0.05
 --- !u!114 &2643206817471470530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,22 +199,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDetector
   _maxAheadAngle: 60
---- !u!114 &6425110099116090724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5946601281159372525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 799fae55dc7bb1746bb6d9ebcf97fb84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyShooter
-  _shootInterval: 2
-  _intervalVariance: 0.2
-  _telegraph: {fileID: 667427342623510442}
-  _telegraphLifetime: 1
 --- !u!114 &156169817830017968
 MonoBehaviour:
   m_ObjectHideFlags: 0
