@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 7119337361222892872}
   - component: {fileID: 5132938382411108315}
   - component: {fileID: 8196916646995883304}
+  - component: {fileID: 4122179853410633850}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -259,6 +260,18 @@ MonoBehaviour:
   m_MissilePrefab: {fileID: 5110832050719996064, guid: da28f53cf8ad7d7eabdaa8564aeb5bab, type: 3}
   m_MissilePoolSize: 10
   m_ExplosionPrefab: {fileID: 185769348726656504, guid: 8a5a994083aa641e2817476f032880b3, type: 3}
+--- !u!114 &4122179853410633850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2158141657593661978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e06795266e0948f43be2b392540c11f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RailFuel
 --- !u!1 &3536434983974657851
 GameObject:
   m_ObjectHideFlags: 0
