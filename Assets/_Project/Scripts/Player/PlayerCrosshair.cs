@@ -19,6 +19,13 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
     [SerializeField] private float m_CursorPunch = -0.2f;
     [SerializeField] private float m_FirePunchDuration = 0.2f;
 
+    [Header("Hit Marker")]
+    [SerializeField] private RectTransform m_HitMarker;
+    [SerializeField] private float m_HitMarkerDuration = 0.15f;
+    [SerializeField] private float m_HitMarkerFade = 0.3f;
+    [SerializeField] private float m_HitMarkerScale = 1.5f;
+
+    private CanvasGroup m_HitMarkerGroup;
     private Vector2 m_FireScreenPosition;
     private readonly Vector3[] m_Corners = new Vector3[4];
 
@@ -30,6 +37,15 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
         base.Awake();
 
         m_FireScreenPosition = new Vector2(Screen.width, Screen.height) * 0.5f;
+
+        if (m_HitMarker != null)
+        {
+            m_HitMarkerGroup = m_HitMarker.GetComponent<CanvasGroup>();
+            if (m_HitMarkerGroup == null)
+                m_HitMarkerGroup = m_HitMarker.gameObject.AddComponent<CanvasGroup>();
+
+            m_HitMarkerGroup.alpha = 0f;
+        }
     }
 
     private void OnEnable()
@@ -38,6 +54,7 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
         Cursor.lockState = CursorLockMode.None;
 
         PlayerFiringController.OnFired += PunchMarkers;
+        EnemyHitFeedback.OnEnemyHit += ShowHitMarker;
     }
 
     private void OnDisable()
@@ -45,9 +62,31 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
         Cursor.visible = true;
 
         PlayerFiringController.OnFired -= PunchMarkers;
+        EnemyHitFeedback.OnEnemyHit -= ShowHitMarker;
 
         m_FireMarker.DOKill(true);
         m_CursorMarker.DOKill(true);
+
+        if (m_HitMarker != null)
+        {
+            m_HitMarker.DOKill(true);
+            m_HitMarkerGroup.DOKill(true);
+        }
+    }
+
+    private void ShowHitMarker()
+    {
+        if (m_HitMarker == null)
+            return;
+
+        m_HitMarker.DOKill();
+        m_HitMarkerGroup.DOKill();
+
+        m_HitMarker.localScale = Vector3.one * m_HitMarkerScale;
+        m_HitMarker.DOScale(1f, m_HitMarkerDuration);
+
+        m_HitMarkerGroup.alpha = 1f;
+        m_HitMarkerGroup.DOFade(0f, m_HitMarkerFade).SetDelay(m_HitMarkerDuration);
     }
 
     private void PunchMarkers()
@@ -79,6 +118,9 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
         m_CursorMarker.position = cursor;
         m_FireMarker.position = m_FireScreenPosition;
 
+        if (m_HitMarker != null)
+            m_HitMarker.position = cursor;
+
         if (!HasCamera())
             return;
 
@@ -88,11 +130,12 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
 
     private void RotateMarkers()
     {
-        Vector3 fireRotation = m_FireMarker.eulerAngles;
-        Vector3 cursorRotation = m_CursorMarker.eulerAngles;
-
-        m_FireMarker.rotation = Quaternion.Euler(fireRotation.x, fireRotation.y, fireRotation.z + Time.deltaTime * 90f);
-        m_CursorMarker.rotation = Quaternion.Euler(cursorRotation.x, cursorRotation.y, cursorRotation.z - Time.deltaTime * 45f);
+        if (m_FireMarker != null)
+            m_FireMarker.Rotate(0f, 0f, Time.deltaTime * 90f);
+        if (m_CursorMarker != null)
+            m_CursorMarker.Rotate(0f, 0f, -Time.deltaTime * 45f);
+        if (m_HitMarker != null)
+            m_HitMarker.Rotate(0f, 0f, Time.deltaTime * 90f);
     }
 
     public Quaternion GetAimRotation(Vector3 origin)

@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 2679560146582436015}
   - component: {fileID: 2463875248079234363}
   - component: {fileID: 2753231124849217892}
+  - component: {fileID: 3017807002046496019}
   m_Layer: 7
   m_Name: BunkerEnemy
   m_TagString: Untagged
@@ -142,6 +143,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyOnDeath
   m_DeathExplosion: {fileID: 8604806364752113623, guid: 568a534f3f137fda59a0b3346a51a422, type: 3}
+--- !u!114 &3017807002046496019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352569408866216113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236ac3b2101bafcd2abdfe97ff885709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitFeedback
+  m_HitEffect: {fileID: 0}
+  m_FrontOffset: 2
 --- !u!1 &4127433919199328459
 GameObject:
   m_ObjectHideFlags: 0

@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 2643206817471470530}
   - component: {fileID: 156169817830017968}
   - component: {fileID: 6460251391170976519}
+  - component: {fileID: 2223091634149795263}
   m_Layer: 7
   m_Name: Flying Enemy
   m_TagString: Untagged
@@ -225,6 +226,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FacePlayer
   _turnSpeed: 10
+--- !u!114 &2223091634149795263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5946601281159372525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236ac3b2101bafcd2abdfe97ff885709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitFeedback
+  m_HitEffect: {fileID: 0}
+  m_FrontOffset: 2
 --- !u!1001 &4733589464732040523
 PrefabInstance:
   m_ObjectHideFlags: 0
