@@ -4,13 +4,13 @@ using UnityEngine;
 [RequireComponent(typeof(HealthController))]
 public class EnemyHitFeedback : MonoBehaviour
 {
-    [SerializeField] private HitEffect m_HitEffect;
+    [SerializeField] private HitEffect m_HitEffectPrefab;
     [SerializeField] private float m_FrontOffset = 2f;
 
     public static event Action OnEnemyHit;
 
     private HealthController m_HealthController;
-    private Pool<HitEffect> m_HitPool;
+    private HitEffect m_HitEffect;
     private Camera m_Camera;
 
     private void Awake()
@@ -18,21 +18,24 @@ public class EnemyHitFeedback : MonoBehaviour
         m_HealthController = GetComponent<HealthController>();
         m_HealthController.OnDamaged += HandleDamaged;
 
-        if (m_HitEffect != null)
-            m_HitPool = PoolManager.Instance.GetPool(m_HitEffect);
+        if (m_HitEffectPrefab != null)
+            m_HitEffect = Instantiate(m_HitEffectPrefab);
     }
 
     private void OnDestroy()
     {
         m_HealthController.OnDamaged -= HandleDamaged;
+
+        if (m_HitEffect != null)
+            Destroy(m_HitEffect.gameObject);
     }
 
     private void HandleDamaged(float damage)
     {
         OnEnemyHit?.Invoke();
 
-        if (m_HitPool != null)
-            m_HitPool.Get(GetFrontPoint(), Quaternion.identity).Play(m_HitPool);
+        if (m_HitEffect != null)
+            m_HitEffect.Play(GetFrontPoint());
     }
 
     private Vector3 GetFrontPoint()

@@ -2,41 +2,25 @@ using UnityEngine;
 
 public class HitEffect : MonoBehaviour
 {
-    [SerializeField] private float m_Lifetime = 0.3f;
-
     private ParticleSystem[] m_ParticleSystems;
-    private Pool<HitEffect> m_Pool;
-    private float m_Age;
 
     private void Awake()
     {
         m_ParticleSystems = GetComponentsInChildren<ParticleSystem>();
+
+        foreach (ParticleSystem particles in m_ParticleSystems)
+            particles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
-    public void Play(Pool<HitEffect> pool)
+    public void Play(Vector3 position)
     {
-        m_Pool = pool;
-        m_Age = 0f;
+        transform.position = position;
 
         foreach (ParticleSystem particles in m_ParticleSystems)
         {
-            particles.Clear();
-            particles.Play();
+            var emission = particles.emission;
+            int burstCount = emission.burstCount == 0 ? 1 : Mathf.RoundToInt(emission.GetBurst(0).count.constant);
+            particles.Emit(burstCount);
         }
-    }
-
-    private void Update()
-    {
-        m_Age += Time.deltaTime;
-        if (m_Age >= m_Lifetime)
-            Release();
-    }
-
-    private void Release()
-    {
-        if (m_Pool != null)
-            m_Pool.Release(this);
-        else
-            Destroy(gameObject);
     }
 }
