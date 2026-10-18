@@ -118,7 +118,6 @@ MonoBehaviour:
   m_BoundsCollider: {fileID: 0}
   m_WorldSize: {x: 1000, y: 1000}
   m_WorldCenter: {x: 0, y: 0}
-  m_UseZoneMinimapRadius: 1
   m_Parent: {fileID: 7334315748408228306}
   m_IconPrefab: {fileID: 4274069022646602398, guid: fdfd4fd208d3af7b0ab7a402bf77c726, type: 3}
 --- !u!1 &5549059988321358542

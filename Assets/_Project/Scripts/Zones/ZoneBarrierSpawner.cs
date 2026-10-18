@@ -26,11 +26,10 @@ public class ZoneBarrierSpawner : MonoBehaviour
         m_CylinderMesh = CreateCylinder(m_Segments, false);
         m_ColliderMesh = CreateCylinder(m_Segments, true);
 
-        var zones = ZoneManager.Instance.Zones;
-        for (int i = 0; i < zones.Length; i++)
-        {
-            m_Barriers.Add(CreateZoneBarrier(i, zones[i].Radius));
-        }
+        float innerRadius = ZoneManager.Instance.InnerRadius;
+        if (innerRadius > 0f)
+            m_Barriers.Add(CreateZoneBarrier("Inner", innerRadius));
+        m_Barriers.Add(CreateZoneBarrier("Outer", ZoneManager.Instance.OuterRadius));
     }
 
     private void OnDestroy()
@@ -41,9 +40,9 @@ public class ZoneBarrierSpawner : MonoBehaviour
             Destroy(m_ColliderMesh);
     }
 
-    private GameObject CreateZoneBarrier(int index, float radius)
+    private GameObject CreateZoneBarrier(string barrierType, float radius)
     {
-        var barrier = new GameObject($"Zone Barrier {index}");
+        var barrier = new GameObject($"{barrierType} Zone Barrier");
         barrier.transform.SetParent(transform, false);
         barrier.transform.position = ZoneManager.Instance.transform.position + Vector3.up * m_YOffset;
         barrier.transform.localScale = new Vector3(radius, m_Height, radius); // Mesh has radius 1 and height 1

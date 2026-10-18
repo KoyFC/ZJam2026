@@ -8,6 +8,8 @@ public class ZoneManager : Singleton<ZoneManager>
 
     private const string CURRENT_ZONE_INDEX_KEY = "CurrentZoneIndex";
 
+    [field: SerializeField, Min(0f)] public float InnerRadius { get; private set; } = 350f;
+    [field: SerializeField, Min(0f)] public float OuterRadius { get; private set; } = 500f;
     [SerializeField] private float m_GizmoHeight = 20f;
 
     protected override void Awake()
@@ -20,15 +22,7 @@ public class ZoneManager : Singleton<ZoneManager>
             return;
         }
 
-        Array.Sort(Zones, (a, b) => a.Radius.CompareTo(b.Radius));
-
-        foreach (var zone in Zones)
-        {
-            if (zone.Radius <= 0)
-            {
-                Debug.LogError($"Please set a radius above 0 for Zone {zone.ZoneName}.", zone);
-            }
-        }
+        SortZones();
 
         int outermostZoneIndex = Zones.Length - 1;
         int savedZoneIndex = SaveSystem.Get(SaveSystem.PLAYER_DATA_FILE, CURRENT_ZONE_INDEX_KEY, outermostZoneIndex);
@@ -52,12 +46,20 @@ public class ZoneManager : Singleton<ZoneManager>
         SaveSystem.MarkAsDirty();
     }
 
+    private void SortZones()
+    {
+        Array.Sort(Zones, (a, b) => a.MinimapRadius.CompareTo(b.MinimapRadius));
+    }
+
     private void OnValidate()
     {
-        if (Zones.Length == 0)
+        if (InnerRadius >= OuterRadius)
+            Debug.LogWarning("Inner Radius should be lower than Outer Radius.", this);
+
+        if (Zones == null || Zones.Length == 0 || Array.IndexOf(Zones, null) >= 0)
             return;
 
-        Array.Sort(Zones, (a, b) => a.Radius.CompareTo(b.Radius));
+        SortZones();
 
         for (int i = 1; i < Zones.Length; i++)
         {
@@ -70,23 +72,10 @@ public class ZoneManager : Singleton<ZoneManager>
 
     private void OnDrawGizmos()
     {
-        if (Zones.Length == 0)
-            return;
-
-        int currentZoneIndex = Application.isPlaying ? CurrentZoneIndex : Zones.Length - 1;
-
-        for (int i = 0; i < Zones.Length; i++)
-        {
-            if (Zones[i] == null)
-                continue;
-
-            if (i == currentZoneIndex || i == currentZoneIndex - 1)
-                Gizmos.color = Color.cyan;
-            else
-                Gizmos.color = Color.red;
-
-            DrawWireCylinder(transform.position, Zones[i].Radius, m_GizmoHeight);
-        }
+        Gizmos.color = Color.cyan;
+        if (InnerRadius > 0f)
+            DrawWireCylinder(transform.position, InnerRadius, m_GizmoHeight);
+        DrawWireCylinder(transform.position, OuterRadius, m_GizmoHeight);
     }
 
     private void DrawWireCylinder(Vector3 center, float radius, float height)
@@ -110,25 +99,9 @@ public class ZoneManager : Singleton<ZoneManager>
         }
     }
 
-    public float GetInnerRadius()
-    {
-        if (CurrentZoneIndex <= 0 || CurrentZoneIndex >= Zones.Length)
-            return 0f;
-
-        return Zones[CurrentZoneIndex - 1].Radius;
-    }
-
-    public float GetOuterRadius()
-    {
-        if (CurrentZoneIndex < 0 || CurrentZoneIndex >= Zones.Length)
-            return 0f;
-
-        return Zones[CurrentZoneIndex].Radius;
-    }
-
     public float GetMiddleRadius()
     {
-        return (GetInnerRadius() + GetOuterRadius()) * 0.5f;
+        return (InnerRadius + OuterRadius) * 0.5f;
     }
 
     public Vector3 GetOffsetFromCenter(Vector3 position)

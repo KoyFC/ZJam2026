@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4666444961451343720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 996117444278223664}
+  - component: {fileID: 6955724331456908714}
+  - component: {fileID: 3896709891611996017}
+  m_Layer: 0
+  m_Name: Zone Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &996117444278223664
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4666444961451343720}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6955724331456908714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4666444961451343720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7356a3abd642928d68120df573089f8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZoneManager
+  <Zones>k__BackingField:
+  - {fileID: 11400000, guid: 5fe4be29f644b0db39bf8d2787d02af4, type: 2}
+  - {fileID: 11400000, guid: 19cebf4bd12afb366a06c4f97f5b4a96, type: 2}
+  - {fileID: 11400000, guid: 79cbd591352dd2e5db31c19f54c5da01, type: 2}
+  - {fileID: 11400000, guid: a5d389a44e3f7242c9c40acfe79a275a, type: 2}
+  m_InnerRadius: 350
+  m_OuterRadius: 500
+  m_GizmoHeight: 100
+--- !u!114 &3896709891611996017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4666444961451343720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6d585e9c70642f687ff22f8616309e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZoneBarrierSpawner
+  m_BarrierMaterial: {fileID: 2100000, guid: 8a7ccb87946094ab5a9a713ae7d674bf, type: 2}
+  m_Height: 50
+  m_YOffset: -2
+  m_Segments: 64
