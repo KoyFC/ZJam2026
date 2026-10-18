@@ -349,7 +349,7 @@ MonoBehaviour:
   m_AimDistance: 400
   m_AimMask:
     serializedVersion: 2
-    m_Bits: 17
+    m_Bits: 145
   m_FirePunch: -0.3
   m_CursorPunch: -0.1
   m_FirePunchDuration: 0.2
