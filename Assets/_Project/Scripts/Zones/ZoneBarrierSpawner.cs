@@ -11,6 +11,7 @@ public class ZoneBarrierSpawner : MonoBehaviour
 
     private readonly List<GameObject> m_Barriers = new();
     private Mesh m_CylinderMesh;
+    private Mesh m_ColliderMesh;
 
     private readonly List<Vector3> m_Vertices = new();
     private readonly List<Vector3> m_Normals = new();
@@ -22,7 +23,8 @@ public class ZoneBarrierSpawner : MonoBehaviour
         if (!ZoneManager.InstanceExists)
             return;
 
-        m_CylinderMesh = CreateCylinder(m_Segments);
+        m_CylinderMesh = CreateCylinder(m_Segments, false);
+        m_ColliderMesh = CreateCylinder(m_Segments, true);
 
         var zones = ZoneManager.Instance.Zones;
         for (int i = 0; i < zones.Length; i++)
@@ -35,6 +37,8 @@ public class ZoneBarrierSpawner : MonoBehaviour
     {
         if (m_CylinderMesh != null)
             Destroy(m_CylinderMesh);
+        if (m_ColliderMesh != null)
+            Destroy(m_ColliderMesh);
     }
 
     private GameObject CreateZoneBarrier(int index, float radius)
@@ -51,10 +55,13 @@ public class ZoneBarrierSpawner : MonoBehaviour
         meshRenderer.shadowCastingMode = ShadowCastingMode.Off;
         meshRenderer.receiveShadows = false;
 
+        barrier.AddComponent<MeshCollider>().sharedMesh = m_ColliderMesh;
+
         return barrier;
     }
 
-    private Mesh CreateCylinder(int segments)
+    // Double sided so projectiles hit the wall from inside and outside the ring
+    private Mesh CreateCylinder(int segments, bool isDoubleSided)
     {
         m_Vertices.Clear();
         m_Normals.Clear();
@@ -69,7 +76,7 @@ public class ZoneBarrierSpawner : MonoBehaviour
 
         for (int column = 0; column < segments; column++)
         {
-            ConnectColumns(column, column + 1);
+            ConnectColumns(column, column + 1, isDoubleSided);
         }
 
         var mesh = new Mesh();
@@ -98,7 +105,7 @@ public class ZoneBarrierSpawner : MonoBehaviour
     }
 
     // Fills the wall between two columns with two triangles
-    private void ConnectColumns(int leftColumn, int rightColumn)
+    private void ConnectColumns(int leftColumn, int rightColumn, bool isDoubleSided)
     {
         int bottomLeft = BottomVertex(leftColumn);
         int topLeft = TopVertex(leftColumn);
@@ -107,6 +114,12 @@ public class ZoneBarrierSpawner : MonoBehaviour
 
         AddTriangle(bottomLeft, topLeft, bottomRight);
         AddTriangle(topLeft, topRight, bottomRight);
+
+        if (!isDoubleSided)
+            return;
+
+        AddTriangle(bottomRight, topLeft, bottomLeft);
+        AddTriangle(bottomRight, topRight, topLeft);
     }
 
     private void AddTriangle(int a, int b, int c)
