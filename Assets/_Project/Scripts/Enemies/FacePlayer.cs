@@ -11,13 +11,14 @@ public class FacePlayer : MonoBehaviour
             return;
         }
 
-        Vector3 toPlayer = PlayerRailFollower.Instance.transform.position - transform.position;
-        if (toPlayer.sqrMagnitude <= Mathf.Epsilon)
+        Vector3 directionToPlayer = PlayerRailFollower.Instance.transform.position - transform.position;
+        directionToPlayer.y = 0f;
+        if (directionToPlayer.sqrMagnitude <= Mathf.Epsilon)
         {
             return;
         }
 
-        Quaternion lookRotation = Quaternion.LookRotation(toPlayer, Vector3.up);
+        Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer, Vector3.up);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, _turnSpeed * Time.deltaTime);
     }
 }
