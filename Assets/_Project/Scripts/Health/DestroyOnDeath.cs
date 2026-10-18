@@ -3,21 +3,29 @@ using UnityEngine;
 [RequireComponent(typeof(HealthController))]
 public class DestroyOnDeath : MonoBehaviour
 {
-    private HealthController _healthController;
+    [SerializeField] private Explosion m_DeathExplosion;
+
+    private HealthController m_HealthController;
 
     private void Awake()
     {
-        _healthController = GetComponent<HealthController>();
-        _healthController.OnDestroyed += HandleDeath;
+        m_HealthController = GetComponent<HealthController>();
+        m_HealthController.OnDestroyed += HandleDeath;
     }
 
     private void OnDestroy()
     {
-        _healthController.OnDestroyed -= HandleDeath;
+        m_HealthController.OnDestroyed -= HandleDeath;
     }
 
     private void HandleDeath()
     {
+        if (m_DeathExplosion != null)
+        {
+            Pool<Explosion> pool = PoolManager.Instance.GetPool(m_DeathExplosion);
+            pool.Get(transform.position, Quaternion.identity).Launch(pool, false);
+        }
+
         Destroy(gameObject);
     }
 }

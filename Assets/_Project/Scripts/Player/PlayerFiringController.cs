@@ -32,10 +32,7 @@ public class PlayerFiringController : MonoBehaviour
         }
 
         if (m_ExplosionPrefab != null)
-        {
-            Transform container = new GameObject("Explosion Pool").transform;
-            m_ExplosionPool = new Pool<Explosion>(m_ExplosionPrefab, container, m_MissilePoolSize);
-        }
+            m_ExplosionPool = PoolManager.Instance.GetPool(m_ExplosionPrefab, m_MissilePoolSize);
 
         if (m_Bullets != null)
         {

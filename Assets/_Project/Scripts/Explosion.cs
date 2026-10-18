@@ -20,7 +20,7 @@ public class Explosion : MonoBehaviour
         m_ParticleSystems = GetComponentsInChildren<ParticleSystem>();
     }
 
-    public void Launch(Pool<Explosion> pool)
+    public void Launch(Pool<Explosion> pool, bool dealDamage = true)
     {
         m_Pool = pool;
         m_Age = 0f;
@@ -31,7 +31,8 @@ public class Explosion : MonoBehaviour
             particles.Play();
         }
 
-        DealDamage();
+        if (dealDamage)
+            DealDamage();
     }
 
     private void DealDamage()
