@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Speed: 210
   m_Lifetime: 5
   m_Damage: 10
-  m_HitRadius: 0.5
+  m_HitRadius: 1.5
   m_HitMask:
     serializedVersion: 2
     m_Bits: 129
@@ -80,7 +80,7 @@ Transform:
   m_GameObject: {fileID: 5000931708846812150}
   serializedVersion: 2
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 1, z: -3.06}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4904,7 +4904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dbe8f868993361a45a4e6b63cb474d15, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dbe8f868993361a45a4e6b63cb474d15, type: 3}
       propertyPath: m_LocalPosition.z

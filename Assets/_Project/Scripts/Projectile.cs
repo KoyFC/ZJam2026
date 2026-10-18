@@ -82,4 +82,10 @@ public class Projectile : MonoBehaviour
 
         Release();
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, m_HitRadius);
+    }
 }
