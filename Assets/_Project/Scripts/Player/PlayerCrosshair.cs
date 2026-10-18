@@ -29,8 +29,6 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
     {
         base.Awake();
 
-        m_Camera = Camera.main;
-
         m_FireScreenPosition = new Vector2(Screen.width, Screen.height) * 0.5f;
     }
 
@@ -81,6 +79,9 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
         m_CursorMarker.position = cursor;
         m_FireMarker.position = m_FireScreenPosition;
 
+        if (!HasCamera())
+            return;
+
         FireRay = m_Camera.ScreenPointToRay(m_FireScreenPosition);
         AimPoint = GetAimPoint(FireRay);
     }
@@ -96,7 +97,16 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
 
     public Quaternion GetAimRotation(Vector3 origin)
     {
-        return Quaternion.LookRotation(AimPoint - origin, m_Camera.transform.up);
+        Vector3 up = HasCamera() ? m_Camera.transform.up : Vector3.up;
+        return Quaternion.LookRotation(AimPoint - origin, up);
+    }
+
+    private bool HasCamera()
+    {
+        if (m_Camera == null)
+            m_Camera = Camera.main;
+
+        return m_Camera != null;
     }
 
     private Vector3 GetAimPoint(Ray ray)
