@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PlayerDetector))]
 public class EnemyShooter : MonoBehaviour
@@ -29,6 +28,11 @@ public class EnemyShooter : MonoBehaviour
             var main = _telegraph.main;
             main.startLifetime = _telegraphLifetime;
         }
+    }
+
+    private void OnDisable()
+    {
+        _isWindingUp = false;
     }
 
     private void Update()

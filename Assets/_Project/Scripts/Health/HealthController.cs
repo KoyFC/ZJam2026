@@ -45,7 +45,7 @@ public class HealthController : MonoBehaviour, IDamageable
     [SerializeField]
     private float _maxHealth = 100f;
 
-    void Awake()
+    private void OnEnable()
     {
         _currentHealth = _maxHealth;
     }
