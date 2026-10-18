@@ -294,7 +294,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 75
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -656,7 +656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8930079223938696709, guid: 1db43671e73f720409b1b7a132d00ae0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 311
+      value: -311
       objectReference: {fileID: 0}
     - target: {fileID: 8930079223938696709, guid: 1db43671e73f720409b1b7a132d00ae0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -664,7 +664,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8930079223938696709, guid: 1db43671e73f720409b1b7a132d00ae0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -259
+      value: 259
       objectReference: {fileID: 0}
     - target: {fileID: 8930079223938696709, guid: 1db43671e73f720409b1b7a132d00ae0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1148,7 +1148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8370264927078808869, guid: e02f594a5b80404d9a37472ababd0f50, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 149.8
+      value: -149.8
       objectReference: {fileID: 0}
     - target: {fileID: 8370264927078808869, guid: e02f594a5b80404d9a37472ababd0f50, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1156,7 +1156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8370264927078808869, guid: e02f594a5b80404d9a37472ababd0f50, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -385.8
+      value: 385.8
       objectReference: {fileID: 0}
     - target: {fileID: 8370264927078808869, guid: e02f594a5b80404d9a37472ababd0f50, type: 3}
       propertyPath: m_LocalRotation.w

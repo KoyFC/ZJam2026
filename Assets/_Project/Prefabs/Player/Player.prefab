@@ -238,6 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRailFollower
   m_CharacterController: {fileID: 2777162586897575801}
   m_ForwardSpeed: 30
+  m_SpawnAngle: 0
   <Clockwise>k__BackingField: 0
 --- !u!114 &8196916646995883304
 MonoBehaviour:
@@ -388,7 +389,7 @@ GameObject:
   - component: {fileID: 364219444467731263}
   - component: {fileID: 4308155600926996637}
   - component: {fileID: 7784075300973509234}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: SpeedLines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +405,7 @@ Transform:
   m_GameObject: {fileID: 6915697080597304246}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -10, z: 20}
+  m_LocalPosition: {x: 0, y: 0, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1128,7 +1129,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 35
+      value: 37.5
       mode: 0
       spread: 0
       speed:
@@ -1247,7 +1248,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 40
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5255,7 +5256,7 @@ ParticleSystem:
   m_GameObject: {fileID: 7378111794824392862}
   serializedVersion: 8
   lengthInSec: 0.25
-  simulationSpeed: 1
+  simulationSpeed: 2
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
