@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236ac3b2101bafcd2abdfe97ff885709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitFeedback
-  m_HitEffect: {fileID: 0}
+  m_HitEffectPrefab: {fileID: 8222228120614264651, guid: 6e83301b3025f14afa5fd01343ce2bb7, type: 3}
   m_FrontOffset: 2
 --- !u!1001 &4733589464732040523
 PrefabInstance:
