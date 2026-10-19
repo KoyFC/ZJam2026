@@ -7,8 +7,8 @@ public class Upgrade_Info : MonoBehaviour
 
     public UpgradeDataSO UpgradeData => m_upgradeData;
 
-    [Header("UI References")]
-    [SerializeField] private TMPro.TMP_Text m_upgradeNameText = null;
+    // [Header("UI References")]
+    // [SerializeField] private TMPro.TMP_Text m_upgradeNameText = null;
     //[SerializeField] private TMPro.TMP_Text m_upgradeDescriptionText = null;
 
     private void OnEnable()
