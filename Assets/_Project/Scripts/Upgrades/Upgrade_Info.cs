@@ -13,11 +13,13 @@ public class Upgrade_Info : MonoBehaviour
 
     private void OnEnable()
     {
+        /*
         if(m_upgradeData != null)
         {
             m_upgradeNameText.text = m_upgradeData.name;
             //m_upgradeDescriptionText.text = m_upgradeData.Description;
         }
+        */
     }
 
 }
