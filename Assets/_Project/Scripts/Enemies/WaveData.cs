@@ -12,5 +12,4 @@ public class WaveEntry
 public class WaveData
 {
     public WaveEntry[] Enemies;
-    [Min(1f)] public float TimeLimit = 30f;
 }

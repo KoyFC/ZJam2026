@@ -18,13 +18,10 @@ MonoBehaviour:
   - Enemies:
     - Prefab: {fileID: 5277291643285319180, guid: e02f594a5b80404d9a37472ababd0f50, type: 3}
       Count: 5
-    TimeLimit: 30
   - Enemies:
     - Prefab: {fileID: 5277291643285319180, guid: e02f594a5b80404d9a37472ababd0f50, type: 3}
-      Count: 9
-    TimeLimit: 30
+      Count: 6
   - Enemies:
     - Prefab: {fileID: 5277291643285319180, guid: e02f594a5b80404d9a37472ababd0f50, type: 3}
-      Count: 9
-    TimeLimit: 30
-  <DelayBetweenWaves>k__BackingField: 2
+      Count: 7
+  <DelayBetweenWaves>k__BackingField: 3

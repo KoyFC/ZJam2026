@@ -13,18 +13,21 @@ public class WaveSpawner : MonoBehaviour
     }
 
     [SerializeField] private FlyingEnemyGrid m_Grid;
-
-    public int CompletedWaves { get; private set; }
-
-    public event Action OnWavesCompleted;
-
     private readonly Dictionary<EnemySpawnAnimation, ActiveEnemy> m_ActiveEnemies = new();
     private ZoneDataSO m_CurrentZone;
     private int m_NextWaveIndex;
     private float m_DelayTimer;
-    private float m_WaveTimer;
-    private bool m_IsDespawning;
     private bool m_IsStopped;
+
+    public int CompletedWaves { get; private set; }
+    public int CurrentWave => m_NextWaveIndex;
+    public int TotalWaves => m_CurrentZone != null ? m_CurrentZone.Waves.Length : 0;
+    public int EnemiesLeft => m_ActiveEnemies.Count;
+    public bool IsWaveActive => m_ActiveEnemies.Count > 0;
+    public bool IsStopped => m_IsStopped;
+    public float NextWaveTimeLeft => Mathf.Max(0f, m_DelayTimer);
+
+    public event Action OnWavesCompleted;
 
     private void Start()
     {
@@ -39,8 +42,6 @@ public class WaveSpawner : MonoBehaviour
 
         if (RailFuel.InstanceExists)
             RailFuel.Instance.OnFuelEmpty += Stop;
-
-        NotifyWavesEndByTime();
     }
 
     private void OnDestroy()
@@ -54,18 +55,12 @@ public class WaveSpawner : MonoBehaviour
         if (m_IsStopped)
             return;
 
-        if (m_ActiveEnemies.Count == 0)
-        {
-            m_DelayTimer -= Time.deltaTime;
-            if (m_DelayTimer <= 0f)
-                StartNextWave();
-
+        if (m_ActiveEnemies.Count > 0)
             return;
-        }
 
-        m_WaveTimer -= Time.deltaTime;
-        if (m_WaveTimer <= 0f && !m_IsDespawning)
-            DespawnAll();
+        m_DelayTimer -= Time.deltaTime;
+        if (m_DelayTimer <= 0f)
+            StartNextWave();
     }
 
     public void Stop()
@@ -83,8 +78,6 @@ public class WaveSpawner : MonoBehaviour
 
         WaveData wave = m_CurrentZone.Waves[m_NextWaveIndex];
         m_NextWaveIndex++;
-        m_WaveTimer = wave.TimeLimit;
-        m_IsDespawning = false;
 
         foreach (WaveEntry entry in wave.Enemies)
         {
@@ -117,17 +110,9 @@ public class WaveSpawner : MonoBehaviour
 
         // Subscribed after DestroyOnDeath, so the death explosion still plays before the enemy goes back to the pool
         activeEnemy.Health.OnDestroyed += activeEnemy.OnDeath;
-        enemy.OnDespawn += RemoveEnemy;
         m_ActiveEnemies.Add(enemy, activeEnemy);
 
         enemy.Spawn(cellPosition);
-    }
-
-    private void DespawnAll()
-    {
-        m_IsDespawning = true;
-        foreach (EnemySpawnAnimation enemy in m_ActiveEnemies.Keys)
-            enemy.Despawn();
     }
 
     private void RemoveEnemy(EnemySpawnAnimation enemy)
@@ -136,7 +121,6 @@ public class WaveSpawner : MonoBehaviour
             return;
 
         activeEnemy.Health.OnDestroyed -= activeEnemy.OnDeath;
-        enemy.OnDespawn -= RemoveEnemy;
         m_Grid.ReleaseCell(activeEnemy.Cell);
         activeEnemy.Pool.Release(enemy);
 
@@ -152,17 +136,5 @@ public class WaveSpawner : MonoBehaviour
 
         Stop();
         OnWavesCompleted?.Invoke();
-    }
-
-    private void NotifyWavesEndByTime()
-    {
-        // Debug
-        // A player who waits out every wave should run out of fuel first
-        if (!PlayerRailFollower.InstanceExists)
-            return;
-
-        float lapDuration = 2f * Mathf.PI * ZoneManager.Instance.GetMiddleRadius() / PlayerRailFollower.Instance.ForwardSpeed;
-        if (m_CurrentZone.TotalWaveTime <= lapDuration)
-            Debug.LogWarning($"Waves of {m_CurrentZone.ZoneName} last {m_CurrentZone.TotalWaveTime:0}s, less than a lap ({lapDuration:0}s). Waiting them out beats the zone.", this);
     }
 }
