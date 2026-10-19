@@ -64,12 +64,18 @@ public class NearSideMenuController : MonoBehaviour
 
     public void ExitToMainMenu()
     {
+        CloseCurrentCanvas();
+
         SceneManager.LoadScene("MainMenuScene");
     }
 
     public void StartCombat()
     {
+        // Close any open canvas before starting combat
+        CloseCurrentCanvas();
 
+        // Load the combat scene
+        SceneManager.LoadScene("FarSideScene");
     }
 
 }
