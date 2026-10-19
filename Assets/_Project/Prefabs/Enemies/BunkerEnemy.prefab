@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 2753231124849217892}
   - component: {fileID: 3017807002046496019}
   - component: {fileID: -3496144798012781833}
+  - component: {fileID: 5863351204731407082}
   m_Layer: 7
   m_Name: BunkerEnemy
   m_TagString: Untagged
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799fae55dc7bb1746bb6d9ebcf97fb84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBrain
-  _shootInterval: 3
+  _shootInterval: 6
   _intervalVariance: 0.2
   _telegraph: {fileID: 8788453743218614314}
   _telegraphLifetime: 1
@@ -170,6 +171,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FacePlayer
   _turnSpeed: 5
+--- !u!114 &5863351204731407082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352569408866216113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866e1c80c19d0cb808dc6f5b5f0ee531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnAnimation
+  m_SpawnDepth: -5
+  m_RiseSpeed: 10
+  m_SpawnEase: 6
 --- !u!1 &4127433919199328459
 GameObject:
   m_ObjectHideFlags: 0

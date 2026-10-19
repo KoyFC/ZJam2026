@@ -27,6 +27,7 @@ public class WaveSpawner : Singleton<WaveSpawner>
     public bool IsStopped => m_IsStopped;
     public float NextWaveTimeLeft => Mathf.Max(0f, m_DelayTimer);
 
+    public event Action OnWaveStarted;
     public event Action OnEnemyKilled;
     public event Action OnWavesCompleted;
 
@@ -80,6 +81,7 @@ public class WaveSpawner : Singleton<WaveSpawner>
 
         WaveData wave = m_CurrentZone.Waves[m_NextWaveIndex];
         m_NextWaveIndex++;
+        OnWaveStarted?.Invoke();
 
         foreach (WaveEntry entry in wave.Enemies)
         {

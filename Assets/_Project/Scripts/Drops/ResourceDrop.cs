@@ -54,13 +54,7 @@ public class ResourceDrop : MonoBehaviour
         if (!ZoneManager.InstanceExists || !PlayerRailFollower.InstanceExists)
             return false;
 
-        PlayerRailFollower railFollower = PlayerRailFollower.Instance;
-        ZoneManager zoneManager = ZoneManager.Instance;
-
-        float sign = railFollower.Clockwise ? 1f : -1f;
-        Vector3 playerDirection = zoneManager.GetOffsetFromCenter(railFollower.transform.position);
-        Vector3 direction = zoneManager.GetOffsetFromCenter(transform.position);
-        return Vector3.SignedAngle(playerDirection, direction, Vector3.up) * sign < m_BehindAngle;
+        return PlayerRailFollower.Instance.GetAngleAhead(transform.position) < m_BehindAngle;
     }
 
     private void OnTriggerEnter(Collider other)

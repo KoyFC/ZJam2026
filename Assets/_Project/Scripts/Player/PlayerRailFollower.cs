@@ -39,6 +39,20 @@ public class PlayerRailFollower : Singleton<PlayerRailFollower>
         transform.rotation = Quaternion.LookRotation(zone.GetTangent(transform.position, Clockwise), Vector3.up);
     }
 
+    public Vector3 GetDirectionAhead(float angle)
+    {
+        float sign = Clockwise ? 1f : -1f;
+        Vector3 direction = ZoneManager.Instance.GetOffsetFromCenter(transform.position).normalized;
+        return Quaternion.AngleAxis(angle * sign, Vector3.up) * direction;
+    }
+
+    public float GetAngleAhead(Vector3 position)
+    {
+        ZoneManager zone = ZoneManager.Instance;
+        float sign = Clockwise ? 1f : -1f;
+        return Vector3.SignedAngle(zone.GetOffsetFromCenter(transform.position), zone.GetOffsetFromCenter(position), Vector3.up) * sign;
+    }
+
     private void SpawnOnRail()
     {
         if (!ZoneManager.InstanceExists)

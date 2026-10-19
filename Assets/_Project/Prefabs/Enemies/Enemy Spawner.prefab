@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7011392591441212878}
   - component: {fileID: 4802978890282321484}
   - component: {fileID: 8142217074811611742}
+  - component: {fileID: 5715598975568678475}
   m_Layer: 0
   m_Name: Enemy Spawner
   m_TagString: Untagged
@@ -66,3 +67,26 @@ MonoBehaviour:
   m_HeightMargin: 3
   m_PlayerExplosion: {fileID: 185769348726656504, guid: 8a5a994083aa641e2817476f032880b3, type: 3}
   m_EnemySize: 5
+--- !u!114 &5715598975568678475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8546043891863134322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4082e491ae9ab63de9e7347322798656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundSpawner
+  m_StartAngle: 30
+  m_BarrierMargin: 10
+  m_GroundMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_EnemyMask:
+    serializedVersion: 2
+    m_Bits: 128
+  m_RaycastHeight: 200
+  m_MinSeparation: 15
+  m_MaxAttempts: 5

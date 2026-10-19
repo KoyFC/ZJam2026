@@ -88,14 +88,8 @@ public class FlyingEnemyGrid : MonoBehaviour
 
     public Vector3 GetCellWorldPosition(Vector2Int cell)
     {
-        PlayerRailFollower railFollower = PlayerRailFollower.Instance;
-        ZoneManager zoneManager = ZoneManager.Instance;
-
-        float sign = railFollower.Clockwise ? 1f : -1f;
-        Vector3 playerDirection = zoneManager.GetOffsetFromCenter(railFollower.transform.position).normalized;
-        Vector3 direction = Quaternion.AngleAxis(m_AheadAngle * sign, Vector3.up) * playerDirection;
-
-        Vector3 position = zoneManager.transform.position + direction * GetLaneDistance(cell.x);
+        Vector3 direction = PlayerRailFollower.Instance.GetDirectionAhead(m_AheadAngle);
+        Vector3 position = ZoneManager.Instance.transform.position + direction * GetLaneDistance(cell.x);
         position.y = GetRowHeight(cell.y);
         return position;
     }
