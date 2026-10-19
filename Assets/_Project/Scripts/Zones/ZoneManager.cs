@@ -5,6 +5,7 @@ public class ZoneManager : Singleton<ZoneManager>
 {
     [field: SerializeField] public ZoneDataSO[] Zones { get; private set; }
     public int CurrentZoneIndex { get; private set; } = -1;
+    public ZoneDataSO CurrentZone => CurrentZoneIndex >= 0 ? Zones[CurrentZoneIndex] : null;
 
     private const string CURRENT_ZONE_INDEX_KEY = "CurrentZoneIndex";
 

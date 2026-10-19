@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
   _currentHealth: 0
-  _maxHealth: 100
+  _maxHealth: 50
 --- !u!114 &2161493653353854409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,8 +254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FlyingEnemy
   m_SpawnDepth: -5
   m_RiseSpeed: 15
-  m_RiseEase: 27
-  m_RetreatEase: 26
+  m_SpawnEase: 27
+  m_DespawnEase: 26
 --- !u!1001 &4733589464732040523
 PrefabInstance:
   m_ObjectHideFlags: 0

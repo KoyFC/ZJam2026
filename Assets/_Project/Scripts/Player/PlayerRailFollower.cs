@@ -7,6 +7,8 @@ public class PlayerRailFollower : Singleton<PlayerRailFollower>
     [SerializeField, Range(0f, 360f)] private float m_SpawnAngle = 0f;
     [field: SerializeField] public bool Clockwise { get; private set; } = true;
 
+    public float ForwardSpeed => m_ForwardSpeed;
+
     protected override void Awake()
     {
         base.Awake();

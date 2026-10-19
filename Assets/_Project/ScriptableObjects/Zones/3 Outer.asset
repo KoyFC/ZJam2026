@@ -13,5 +13,18 @@ MonoBehaviour:
   m_Name: 3 Outer
   m_EditorClassIdentifier: Assembly-CSharp::ZoneDataSO
   <ZoneName>k__BackingField: Outer
-  <Radius>k__BackingField: 300
   <MinimapRadius>k__BackingField: 0.75
+  <Waves>k__BackingField:
+  - Enemies:
+    - Prefab: {fileID: 5277291643285319180, guid: e02f594a5b80404d9a37472ababd0f50, type: 3}
+      Count: 5
+    TimeLimit: 30
+  - Enemies:
+    - Prefab: {fileID: 5277291643285319180, guid: e02f594a5b80404d9a37472ababd0f50, type: 3}
+      Count: 9
+    TimeLimit: 30
+  - Enemies:
+    - Prefab: {fileID: 5277291643285319180, guid: e02f594a5b80404d9a37472ababd0f50, type: 3}
+      Count: 9
+    TimeLimit: 30
+  <DelayBetweenWaves>k__BackingField: 2

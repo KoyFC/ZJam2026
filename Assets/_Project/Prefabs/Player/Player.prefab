@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRailFollower
   m_CharacterController: {fileID: 2777162586897575801}
-  m_ForwardSpeed: 30
+  m_ForwardSpeed: 28
   m_SpawnAngle: 0
   <Clockwise>k__BackingField: 0
 --- !u!114 &8196916646995883304
