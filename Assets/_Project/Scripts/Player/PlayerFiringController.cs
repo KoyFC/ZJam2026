@@ -12,10 +12,12 @@ public class PlayerFiringController : MonoBehaviour
     [SerializeField] private Transform m_MissileSpawn;
     [SerializeField] private Projectile m_MissilePrefab;
     [SerializeField] private int m_MissilePoolSize = 10;
+    [SerializeField] private Explosion m_ExplosionPrefab;
 
     public static event Action OnFired;
 
     private Pool<Projectile> m_MissilePool;
+    private Pool<Explosion> m_ExplosionPool;
     private float m_NextShotTime;
 
     private void Awake()
@@ -24,10 +26,10 @@ public class PlayerFiringController : MonoBehaviour
             m_MissileSpawn = transform;
 
         if (m_MissilePrefab != null)
-        {
-            Transform container = new GameObject("Missile Pool").transform;
-            m_MissilePool = new Pool<Projectile>(m_MissilePrefab, container, m_MissilePoolSize);
-        }
+            m_MissilePool = PoolManager.Instance.GetPool(m_MissilePrefab, m_MissilePoolSize);
+
+        if (m_ExplosionPrefab != null)
+            m_ExplosionPool = PoolManager.Instance.GetPool(m_ExplosionPrefab, m_MissilePoolSize);
 
         if (m_Bullets != null)
         {
@@ -75,7 +77,7 @@ public class PlayerFiringController : MonoBehaviour
             return;
 
         Projectile missile = m_MissilePool.Get(m_MissileSpawn.position, GetAimRotation(m_MissileSpawn));
-        missile.Launch(m_MissilePool);
+        missile.Launch(m_MissilePool, m_ExplosionPool);
 
         OnFired?.Invoke();
     }

@@ -1,20 +1,23 @@
 using UnityEngine;
 
-public class PlayerRailFollower : MonoBehaviour
+public class PlayerRailFollower : Singleton<PlayerRailFollower>
 {
     [SerializeField] private CharacterController m_CharacterController;
     [SerializeField] private float m_ForwardSpeed = 15f;
+    [SerializeField, Range(0f, 360f)] private float m_SpawnAngle = 0f;
     [field: SerializeField] public bool Clockwise { get; private set; } = true;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         if (m_CharacterController == null)
             m_CharacterController = GetComponent<CharacterController>();
     }
 
     private void Start()
     {
-        SnapToRailCenter();
+        SpawnOnRail();
     }
 
     private void Update()
@@ -36,14 +39,13 @@ public class PlayerRailFollower : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(zone.GetTangent(transform.position, Clockwise), Vector3.up);
     }
 
-    private void SnapToRailCenter()
+    private void SpawnOnRail()
     {
         if (!ZoneManager.InstanceExists)
             return;
 
         ZoneManager zone = ZoneManager.Instance;
-        Vector3 offset = zone.GetOffsetFromCenter(transform.position);
-        Vector3 direction = offset.sqrMagnitude > Mathf.Epsilon ? offset.normalized : Vector3.forward;
+        Vector3 direction = Quaternion.AngleAxis(m_SpawnAngle, Vector3.up) * Vector3.forward;
 
         Vector3 position = zone.transform.position + direction * zone.GetMiddleRadius();
         position.y = transform.position.y;
