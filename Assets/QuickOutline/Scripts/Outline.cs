@@ -32,7 +32,7 @@ public class Outline : MonoBehaviour
     set
     {
       outlineMode = value;
-      needsUpdate = true;
+      ApplyMaterialProperties();
     }
   }
 
@@ -42,7 +42,7 @@ public class Outline : MonoBehaviour
     set
     {
       outlineColor = value;
-      needsUpdate = true;
+      ApplyMaterialProperties();
     }
   }
 
@@ -52,7 +52,7 @@ public class Outline : MonoBehaviour
     set
     {
       outlineWidth = value;
-      needsUpdate = true;
+      ApplyMaterialProperties();
     }
   }
 
@@ -106,7 +106,7 @@ public class Outline : MonoBehaviour
     LoadSmoothNormals();
 
     // Apply material properties immediately
-    needsUpdate = true;
+    UpdateMaterialProperties();
   }
 
   void OnEnable()
@@ -304,6 +304,18 @@ public class Outline : MonoBehaviour
     // Append combined submesh
     mesh.subMeshCount++;
     mesh.SetTriangles(mesh.triangles, mesh.subMeshCount - 1);
+  }
+
+  void ApplyMaterialProperties()
+  {
+    if (outlineFillMaterial != null)
+    {
+      UpdateMaterialProperties();
+    }
+    else
+    {
+      needsUpdate = true;
+    }
   }
 
   void UpdateMaterialProperties()
