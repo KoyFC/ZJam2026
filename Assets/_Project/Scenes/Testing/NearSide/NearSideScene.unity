@@ -253,9 +253,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gives plus 1 damage to your missiles
+  m_text: Gives +2 damage to your missiles
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -280,10 +280,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.15
-  m_fontSizeBase: 36
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &4321614
@@ -392,8 +392,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Combat
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
-  m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
+  m_sharedMaterial: {fileID: -3857912886581735045, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -417,8 +417,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -1058,7 +1058,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Unlocks a shield
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1083,8 +1083,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1125,7 +1125,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &154817737
@@ -1253,7 +1253,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.008330119, y: 0.022706382}
   m_AnchorMax: {x: 0.008330119, y: 0.022706382}
-  m_AnchoredPosition: {x: 302, y: 0}
+  m_AnchoredPosition: {x: 337.48, y: 0}
   m_SizeDelta: {x: 268.4823, y: 50.3404}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &168938674
@@ -2485,7 +2485,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cost 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2552,7 +2552,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &293403586
@@ -3733,7 +3733,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Defeat the third boss
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3800,7 +3800,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &451958099
@@ -3909,7 +3909,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Gives an additional barrel roll
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3934,10 +3934,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19
-  m_fontSizeBase: 36
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -3976,7 +3976,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &458886062
@@ -4892,7 +4892,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cost 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4959,7 +4959,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &513871785
@@ -5029,7 +5029,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cost 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5096,7 +5096,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &566935099
@@ -5556,9 +5556,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gives plus 1 health to your ship
+  m_text: Gives +2 health to your ship
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5583,10 +5583,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.35
-  m_fontSizeBase: 36
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -5625,7 +5625,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &623866818
@@ -7131,7 +7131,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Increases the speed of your ship
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7156,10 +7156,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.55
-  m_fontSizeBase: 36
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -7198,7 +7198,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &759035768
@@ -7625,7 +7625,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cost 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7692,7 +7692,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &788116248
@@ -7762,8 +7762,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Upgrades
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
-  m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
+  m_sharedMaterial: {fileID: -3857912886581735045, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7787,8 +7787,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -7976,7 +7976,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cost 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -8043,7 +8043,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &815886986
@@ -8884,9 +8884,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gives plus 1 health to your ship
+  m_text: Gives +2 health to your ship
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -8911,10 +8911,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.35
-  m_fontSizeBase: 36
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -8953,7 +8953,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &915804086
@@ -10056,7 +10056,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Unlocks a barrel roll
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -10081,8 +10081,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -10123,7 +10123,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1069977241
@@ -10193,7 +10193,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cost 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -10260,7 +10260,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1088745228
@@ -10405,9 +10405,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gives plus 1 damage to your missiles
+  m_text: Gives +2 damage to your missiles
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -10432,10 +10432,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.15
-  m_fontSizeBase: 36
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -10474,7 +10474,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1093590662
@@ -11164,9 +11164,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gives plus 1 health to your ship
+  m_text: Gives +2 health to your ship
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -11191,10 +11191,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.35
-  m_fontSizeBase: 36
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -11233,7 +11233,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1156456920
@@ -11532,7 +11532,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cost 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -11599,7 +11599,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1183495804
@@ -11669,7 +11669,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cost 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -11736,7 +11736,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1217003779
@@ -11804,9 +11804,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gives plus 1 damage to your missiles
+  m_text: Gives +2 damage to your missiles
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -11831,10 +11831,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.15
-  m_fontSizeBase: 36
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -11873,7 +11873,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1222884088
@@ -12135,7 +12135,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Defeat the second boss
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -12202,7 +12202,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1284713128
@@ -12871,7 +12871,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Unlocks the missiles
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -12896,8 +12896,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -12938,7 +12938,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1414642869
@@ -13394,7 +13394,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Gives an additional barrel roll
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -13419,10 +13419,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19
-  m_fontSizeBase: 36
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -13461,7 +13461,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1459401365
@@ -13529,9 +13529,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gives plus 1 damage to your missiles
+  m_text: Gives +2 damage to your missiles
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -13556,10 +13556,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.15
-  m_fontSizeBase: 36
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -13598,7 +13598,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1493070871
@@ -13717,7 +13717,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cost 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -13784,7 +13784,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1533693607
@@ -13933,7 +13933,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cost 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -14000,7 +14000,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1542746404
@@ -14114,9 +14114,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gives plus 1 health to your ship
+  m_text: Gives +2 health to your ship
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -14141,10 +14141,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.35
-  m_fontSizeBase: 36
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -14183,7 +14183,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1581317003
@@ -15116,7 +15116,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cost 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -15183,7 +15183,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1731909125
@@ -15790,7 +15790,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -15857,7 +15857,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1783977854
@@ -16218,7 +16218,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cost 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -16285,7 +16285,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1888848984
@@ -16355,7 +16355,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Gives an additional barrel roll
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b180f193a24d249914190e5e22a0e1, type: 2}
   m_sharedMaterial: {fileID: -8747729236601751438, guid: 04ebe67fe513c8b45834fd38809b84a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -16380,10 +16380,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19
-  m_fontSizeBase: 36
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -16422,7 +16422,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1929282465
