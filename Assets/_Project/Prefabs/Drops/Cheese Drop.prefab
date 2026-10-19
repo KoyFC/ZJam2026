@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 803699336968414363}
   - component: {fileID: 1246740312026820982}
   - component: {fileID: 6922039324450220658}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cheese Drop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 8943138404751664406}
   - component: {fileID: 6821324536956140857}
   - component: {fileID: 7720654394751967421}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
