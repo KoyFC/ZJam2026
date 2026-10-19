@@ -46,27 +46,29 @@ public class MinimapZoneRingUI : MaskableGraphic
 
     private void AddFilledZone(VertexHelper helper, int zoneIndex)
     {
-        GetZoneEllipses(zoneIndex, out var innerEllipse, out var outerEllipse);
+        var (innerEllipse, outerEllipse) = GetZoneEllipses(zoneIndex);
         AddRing(helper, innerEllipse, outerEllipse, color);
     }
 
     private void AddZoneOuterEdge(VertexHelper helper, int zoneIndex)
     {
-        GetZoneEllipses(zoneIndex, out var innerEllipse, out var outerEllipse);
+        var (innerEllipse, outerEllipse) = GetZoneEllipses(zoneIndex);
         var edgeInnerEllipse = Vector2.Max(innerEllipse, outerEllipse - Vector2.one * m_InactiveEdgeThickness);
         AddRing(helper, edgeInnerEllipse, outerEllipse, m_InactiveColor);
     }
 
-    private void GetZoneEllipses(int zoneIndex, out Vector2 innerEllipse, out Vector2 outerEllipse)
+    private (Vector2, Vector2) GetZoneEllipses(int zoneIndex)
     {
-        var zones = ZoneManager.Instance.Zones;
-        float innerRadius = zoneIndex > 0 ? zones[zoneIndex - 1].Radius : 0f;
-        float outerRadius = zones[zoneIndex].Radius;
+        Vector2 innerEllipse, outerEllipse;
 
         var minimap = MinimapControllerUI.Instance;
+        float innerRadius = minimap.MinimapToWorldRadius(minimap.GetZoneInnerMinimapRadius(zoneIndex));
+        float outerRadius = minimap.MinimapToWorldRadius(ZoneManager.Instance.Zones[zoneIndex].MinimapRadius);
+
         var scale = minimap.GetWorldToMinimapScale();
-        innerEllipse = scale * minimap.RemapZoneRadius(innerRadius);
-        outerEllipse = scale * minimap.RemapZoneRadius(outerRadius);
+        innerEllipse = scale * innerRadius;
+        outerEllipse = scale * outerRadius;
+        return (innerEllipse, outerEllipse);
     }
 
     private void AddRing(VertexHelper helper, Vector2 innerEllipse, Vector2 outerEllipse, Color32 ringColor)

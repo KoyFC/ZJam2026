@@ -8,6 +8,8 @@ public class Explosion : MonoBehaviour
     [SerializeField] private LayerMask m_HitMask;
     [SerializeField] private float m_Lifetime = 2f;
 
+    public float Radius => m_Radius;
+
     private static readonly Collider[] s_Hits = new Collider[32];
     private readonly HashSet<IDamageable> m_Damaged = new HashSet<IDamageable>();
 

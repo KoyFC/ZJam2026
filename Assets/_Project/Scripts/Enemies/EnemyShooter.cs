@@ -1,12 +1,10 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PlayerDetector))]
 public class EnemyShooter : MonoBehaviour
 {
     [SerializeField] private float _shootInterval = 1f;
     [SerializeField, Range(0f, 1f)] private float _intervalVariance = 0.2f;
-
     [Header("Telegraph")]
     [SerializeField] private ParticleSystem _telegraph;
     [SerializeField, Min(0f)] private float _telegraphLifetime = 1f;
@@ -22,13 +20,23 @@ public class EnemyShooter : MonoBehaviour
     {
         _detector = GetComponent<PlayerDetector>();
         _weapon = GetComponent<EnemyWeapon>();
-        RollInterval();
 
         if (_telegraph != null)
         {
             var main = _telegraph.main;
             main.startLifetime = _telegraphLifetime;
         }
+    }
+
+    private void OnEnable()
+    {
+        _lastShootTime = Time.time;
+        CalculateNextShootTime();
+    }
+
+    private void OnDisable()
+    {
+        _isWindingUp = false;
     }
 
     private void Update()
@@ -55,12 +63,12 @@ public class EnemyShooter : MonoBehaviour
             if (Fire(_detector.Target))
             {
                 _lastShootTime = Time.time;
-                RollInterval();
+                CalculateNextShootTime();
             }
         }
     }
 
-    private void RollInterval()
+    private void CalculateNextShootTime()
     {
         _currentInterval = _shootInterval * Random.Range(1f - _intervalVariance, 1f + _intervalVariance);
     }

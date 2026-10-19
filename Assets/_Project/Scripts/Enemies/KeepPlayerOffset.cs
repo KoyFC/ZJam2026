@@ -8,6 +8,12 @@ public class KeepPlayerOffset : MonoBehaviour
     private float _angleOffset;
     private float _angleVelocity;
 
+    private void OnEnable()
+    {
+        _hasOffset = false;
+        _angleVelocity = 0f;
+    }
+
     private void Update()
     {
         if (!PlayerRailFollower.InstanceExists || !ZoneManager.InstanceExists)

@@ -1,9 +1,16 @@
 using UnityEngine;
 
+public enum DeathAction
+{
+    Destroy,
+    Disable
+}
+
 [RequireComponent(typeof(HealthController))]
 public class DestroyOnDeath : MonoBehaviour
 {
     [SerializeField] private Explosion m_DeathExplosion;
+    [SerializeField] private DeathAction m_DeathAction = DeathAction.Destroy;
 
     private HealthController m_HealthController;
 
@@ -26,6 +33,9 @@ public class DestroyOnDeath : MonoBehaviour
             pool.Get(transform.position, Quaternion.identity).Launch(pool, false);
         }
 
-        Destroy(gameObject);
+        if (m_DeathAction == DeathAction.Destroy)
+            Destroy(gameObject);
+        else
+            gameObject.SetActive(false);
     }
 }

@@ -6,6 +6,8 @@ public class PlayerZoneLimiter : MonoBehaviour
     [SerializeField] private float m_MinYPosition = 10f;
     [SerializeField] private float m_MaxYPosition = 50f;
     private Vector3 m_CenterPosition = Vector3.zero;
+    public float MinYPosition => m_MinYPosition;
+    public float MaxYPosition => m_MaxYPosition;
     private Rigidbody m_Rigidbody;
 
     private void Awake()
@@ -54,8 +56,8 @@ public class PlayerZoneLimiter : MonoBehaviour
         clampedPosition = position;
         barrierNormal = Vector3.zero;
 
-        float maxAllowedDistance = Mathf.Max(0f, ZoneManager.Instance.GetOuterRadius() - m_PlayerRadius);
-        float innerRadius = ZoneManager.Instance.GetInnerRadius();
+        float maxAllowedDistance = Mathf.Max(0f, ZoneManager.Instance.OuterRadius - m_PlayerRadius);
+        float innerRadius = ZoneManager.Instance.InnerRadius;
         float minAllowedDistance = innerRadius > 0f ? Mathf.Min(innerRadius + m_PlayerRadius, maxAllowedDistance) : 0f;
 
         Vector3 horizontalOffset = position - m_CenterPosition;
