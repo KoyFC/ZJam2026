@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 6460251391170976519}
   - component: {fileID: 2223091634149795263}
   - component: {fileID: 5277291643285319180}
+  - component: {fileID: 2596984589113945911}
   m_Layer: 7
   m_Name: Flying Enemy
   m_TagString: Untagged
@@ -255,7 +256,24 @@ MonoBehaviour:
   m_SpawnDepth: -5
   m_RiseSpeed: 15
   m_SpawnEase: 27
-  m_DespawnEase: 26
+--- !u!114 &2596984589113945911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5946601281159372525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03de56d6297ce2a88b2200d0668b7564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceDropper
+  m_Drop: {fileID: 6922039324450220658, guid: c54287bb78bf76260a6e20d37d426227, type: 3}
+  m_DropChance: 1
+  m_Amount: 1
+  m_RiseOnDrop: 0
+  m_MinRiseHeight: 15
+  m_MaxRiseHeight: 20
 --- !u!1001 &4733589464732040523
 PrefabInstance:
   m_ObjectHideFlags: 0
