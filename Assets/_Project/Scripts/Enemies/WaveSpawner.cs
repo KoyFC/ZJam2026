@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveSpawner : MonoBehaviour
+public class WaveSpawner : Singleton<WaveSpawner>
 {
     private class ActiveEnemy
     {
@@ -27,6 +27,7 @@ public class WaveSpawner : MonoBehaviour
     public bool IsStopped => m_IsStopped;
     public float NextWaveTimeLeft => Mathf.Max(0f, m_DelayTimer);
 
+    public event Action OnEnemyKilled;
     public event Action OnWavesCompleted;
 
     private void Start()
@@ -44,8 +45,9 @@ public class WaveSpawner : MonoBehaviour
             RailFuel.Instance.OnFuelEmpty += Stop;
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         if (RailFuel.InstanceExists)
             RailFuel.Instance.OnFuelEmpty -= Stop;
     }
@@ -123,6 +125,7 @@ public class WaveSpawner : MonoBehaviour
         activeEnemy.Health.OnDestroyed -= activeEnemy.OnDeath;
         m_Grid.ReleaseCell(activeEnemy.Cell);
         activeEnemy.Pool.Release(enemy);
+        OnEnemyKilled?.Invoke();
 
         if (m_ActiveEnemies.Count > 0)
             return;
