@@ -14,6 +14,12 @@ public class ZoneDataSO : ScriptableObject
     [field: SerializeField] public GroundEnemyEntry[] GroundEnemies { get; private set; }
     [field: SerializeField, Min(0)] public int GroundEnemyCount { get; private set; } = 10;
 
+    [field: Header("Boss")]
+    [field: SerializeField] public EnemySpawnAnimation BossPrefab { get; private set; }
+    [field: SerializeField, Min(0f)] public float BossDelay { get; private set; } = 3f;
+    [field: SerializeField] public PlayerMechanic UnlockedMechanic { get; private set; }
+    [field: SerializeField, ColorUsage(true, true)] public Color BossBarrierColor { get; private set; } = Color.red;
+
     private void OnValidate()
     {
         if (string.IsNullOrEmpty(ZoneName))

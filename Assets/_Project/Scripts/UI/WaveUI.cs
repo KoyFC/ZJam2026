@@ -14,10 +14,14 @@ public class WaveUI : MonoBehaviour
     [SerializeField] private float m_CountdownScale = 1.5f;
     [SerializeField] private float m_CountdownMoveDuration = 0.5f;
     [SerializeField] private Ease m_CountdownEase = Ease.OutCubic;
+    [SerializeField, Min(0f)] private float m_CountdownDelay = 1f;
 
     private Vector3 m_WaveTextRestPosition;
     private bool m_IsWaveTextCentered;
     private bool m_IsEnemiesTextVisible;
+    private float m_CountdownStartTime;
+
+    private bool m_WasCountdownActive = true;
 
     private void Awake()
     {
@@ -47,17 +51,28 @@ public class WaveUI : MonoBehaviour
 
         WaveSpawner waveSpawner = WaveSpawner.Instance;
 
-        bool isCountdownActive = !waveSpawner.IsWaveActive && !waveSpawner.IsStopped;
+        bool isBossCountdownActive = BossSpawner.InstanceExists && BossSpawner.Instance.IsCountdownActive;
+        bool isCountdownActive = (!waveSpawner.IsWaveActive && !waveSpawner.IsStopped) || isBossCountdownActive;
+
+        if (isCountdownActive && !m_WasCountdownActive)
+            m_CountdownStartTime = Time.time;
+        m_WasCountdownActive = isCountdownActive;
+
+        SetEnemiesTextVisible(waveSpawner.IsWaveActive);
+
+        if (isCountdownActive && Time.time < m_CountdownStartTime + m_CountdownDelay)
+            return;
 
         if (waveSpawner.IsWaveActive)
             ShowActiveWave(waveSpawner);
+        else if (isBossCountdownActive)
+            ShowBossCountdown(BossSpawner.Instance);
         else if (waveSpawner.IsStopped)
             ShowStopped(waveSpawner);
         else
             ShowNextWaveCountdown(waveSpawner);
 
         SetWaveTextCentered(isCountdownActive);
-        SetEnemiesTextVisible(waveSpawner.IsWaveActive);
     }
 
     private void ShowActiveWave(WaveSpawner waveSpawner)
@@ -69,6 +84,18 @@ public class WaveUI : MonoBehaviour
 
     private void ShowStopped(WaveSpawner waveSpawner)
     {
+        if (BossSpawner.InstanceExists && BossSpawner.Instance.IsFightActive)
+        {
+            m_WaveText.text = "Boss";
+            return;
+        }
+
+        if (BossSpawner.InstanceExists && BossSpawner.Instance.IsDefeated)
+        {
+            m_WaveText.text = "Boss defeated";
+            return;
+        }
+
         // Stopped either because every wave was cleared or because the player ran out of fuel
         m_WaveText.text = waveSpawner.CompletedWaves >= waveSpawner.TotalWaves ? "Waves cleared" : string.Empty;
     }
@@ -76,6 +103,11 @@ public class WaveUI : MonoBehaviour
     private void ShowNextWaveCountdown(WaveSpawner waveSpawner)
     {
         m_WaveText.text = $"Wave {waveSpawner.CurrentWave + 1}/{waveSpawner.TotalWaves} in {Mathf.Ceil(waveSpawner.NextWaveTimeLeft):0}";
+    }
+
+    private void ShowBossCountdown(BossSpawner bossSpawner)
+    {
+        m_WaveText.text = $"Boss in {Mathf.Ceil(bossSpawner.SpawnTimeLeft):0}";
     }
 
     private void SetWaveTextCentered(bool centered)

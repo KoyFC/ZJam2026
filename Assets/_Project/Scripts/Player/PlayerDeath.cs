@@ -3,6 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(HealthController))]
+[RequireComponent(typeof(PlayerRunEnd))]
 public class PlayerDeath : MonoBehaviour
 {
     public static event Action OnDeathStarted;
@@ -11,8 +12,6 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] private Transform m_Ship;
     [SerializeField] private Explosion m_DeathExplosion;
     [SerializeField] private GameObject[] m_HideOnDeath;
-    [SerializeField] private ParticleSystem[] m_StopOnDeath;
-    [SerializeField] private Behaviour[] m_DisableOnDeath;
 
     [Header("Fall")]
     [SerializeField] private LayerMask m_GroundMask = 1;
@@ -21,17 +20,12 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField, Min(0f)] private float m_FallbackDistance = 30f;
 
     private HealthController m_HealthController;
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    private static void ResetEvents()
-    {
-        OnDeathStarted = null;
-        OnDied = null;
-    }
+    private PlayerRunEnd m_RunEnd;
 
     private void Awake()
     {
         m_HealthController = GetComponent<HealthController>();
+        m_RunEnd = GetComponent<PlayerRunEnd>();
         m_HealthController.OnDestroyed += HandleDeath;
     }
 
@@ -45,21 +39,7 @@ public class PlayerDeath : MonoBehaviour
         foreach (GameObject target in m_HideOnDeath)
             target.SetActive(false);
 
-        foreach (Behaviour behaviour in m_DisableOnDeath)
-            behaviour.enabled = false;
-
-        foreach (ParticleSystem particles in m_StopOnDeath)
-            particles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-
-        if (PlayerInputController.InstanceExists)
-            PlayerInputController.Instance.SetInputActive(false);
-
-        if (RailFuel.InstanceExists)
-            RailFuel.Instance.Stop();
-
-        if (WaveSpawner.InstanceExists)
-            WaveSpawner.Instance.Stop();
-
+        m_RunEnd.End();
         OnDeathStarted?.Invoke();
         Fall();
     }

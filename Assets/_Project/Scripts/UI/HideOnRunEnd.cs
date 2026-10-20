@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class HideOnPlayerDeath : MonoBehaviour
+public class HideOnRunEnd : MonoBehaviour
 {
     private void Awake()
     {
-        PlayerDeath.OnDeathStarted += Hide;
+        PlayerRunEnd.OnRunEnded += Hide;
     }
 
     private void OnDestroy()
     {
-        PlayerDeath.OnDeathStarted -= Hide;
+        PlayerRunEnd.OnRunEnded -= Hide;
     }
 
     private void Hide()

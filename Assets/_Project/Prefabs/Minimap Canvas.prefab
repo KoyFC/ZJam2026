@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d944d861b11407c8adbbf5c5210a76a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HideOnPlayerDeath
+  m_EditorClassIdentifier: Assembly-CSharp::HideOnRunEnd
 --- !u!1 &5549059988321358542
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,9 @@ public class HealthController : MonoBehaviour, IDamageable
     public event Action OnDestroyed;
     public event Action<float> OnHealed;
 
+    public static event Action<HealthController, float> OnAnyDamaged;
+    public static event Action<HealthController> OnAnyDestroyed;
+
     public void Heal(float amount)
     {
         if (!IsAlive) return;
@@ -29,12 +32,15 @@ public class HealthController : MonoBehaviour, IDamageable
     {
         if (!IsAlive) return;
 
+        float appliedDamage = Mathf.Min(damage, _currentHealth);
         _currentHealth -= damage;
         OnDamaged?.Invoke(damage);
+        OnAnyDamaged?.Invoke(this, appliedDamage);
         if (_currentHealth <= 0)
         {
             _currentHealth = 0;
             OnDestroyed?.Invoke();
+            OnAnyDestroyed?.Invoke(this);
         }
     }
 

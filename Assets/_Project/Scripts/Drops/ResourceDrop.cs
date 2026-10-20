@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class ResourceDrop : MonoBehaviour
     [SerializeField] private Ease m_RiseEase = Ease.OutQuad;
     [SerializeField, Min(0f)] private float m_BobAmplitude = 0.5f;
     [SerializeField, Min(0.01f)] private float m_BobDuration = 1f;
+
+    public static event Action<float> OnCollected;
 
     private Pool<ResourceDrop> m_Pool;
     private float m_Amount;
@@ -67,6 +70,8 @@ public class ResourceDrop : MonoBehaviour
             Player_Stats stats = Player_Stats.Instance;
             stats.SetStat(UpgradeType.resources, stats.CurrentResources + m_Amount);
         }
+
+        OnCollected?.Invoke(m_Amount);
 
         Release();
     }
