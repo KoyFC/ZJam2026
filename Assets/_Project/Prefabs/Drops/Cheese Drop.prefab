@@ -71,7 +71,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   m_Lifetime: 30
-  m_BehindAngle: -90
+  m_BehindAngle: -5
   m_RiseDuration: 1
   m_RiseEase: 6
   m_BobAmplitude: 0.5

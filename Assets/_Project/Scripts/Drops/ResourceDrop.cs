@@ -7,7 +7,7 @@ public class ResourceDrop : MonoBehaviour
 {
     [SerializeField] private LayerMask m_PlayerMask;
     [SerializeField, Min(0f)] private float m_Lifetime = 30f;
-    [SerializeField, Range(-180f, 0f)] private float m_BehindAngle = -90f;
+    [SerializeField, Range(-180f, 0f)] private float m_BehindAngle = -10f;
 
     [Header("Rise")]
     [SerializeField, Min(0f)] private float m_RiseDuration = 1f;
