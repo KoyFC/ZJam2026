@@ -2,6 +2,7 @@ using System.Text;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum RunOutcome
 {
@@ -16,6 +17,7 @@ public class RunSummaryUI : MonoBehaviour
     [SerializeField] private TMP_Text m_StatsText;
     [SerializeField, Min(0f)] private float m_FadeDuration = 0.5f;
     [SerializeField] private string m_ReturnScene = "NearSideScene";
+    [SerializeField] private string m_FinalVictoryScene = "CreditsScene";
 
     private readonly StringBuilder m_Builder = new();
 
@@ -78,6 +80,12 @@ public class RunSummaryUI : MonoBehaviour
 
     public void ReturnToBase()
     {
-        SceneLoader.Load(m_ReturnScene);
+        bool beatFinalLevel = m_Outcome == RunOutcome.Victory && ZoneManager.Instance.IsFinalLevel;
+        SceneLoader.Load(beatFinalLevel ? m_FinalVictoryScene : m_ReturnScene);
+    }
+
+    public void Retry()
+    {
+        SceneLoader.Load(SceneManager.GetActiveScene().name);
     }
 }
