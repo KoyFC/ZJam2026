@@ -77,7 +77,7 @@ public class PlayerFiringController : Singleton<PlayerFiringController>
         muzzle.rotation = GetAimRotation(muzzle);
         m_Bullets.Emit(1);
 
-        if(m_LaserSFX != null)
+        if (m_LaserSFX != null)
         {
             SoundManager.Instance.PlaySoundEffect(m_LaserSFX);
         }

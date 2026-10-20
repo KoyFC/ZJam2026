@@ -36,10 +36,9 @@ public class Explosion : MonoBehaviour
 
         if (dealDamage)
             DealDamage();
+
         if (m_ExplosionSFX != null)
             SoundManager.Instance.PlaySoundEffect(m_ExplosionSFX);
-
-
     }
 
     private void DealDamage()

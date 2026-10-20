@@ -92,7 +92,10 @@ public class PauseMenu : MonoBehaviour
     public void OpenOptions()
     {
         if (m_Options == null)
+        {
             m_Options = Instantiate(m_OptionsPrefab);
+            SoundManager.AddClickSounds(m_Options.gameObject);
+        }
 
         m_Options.Open();
     }

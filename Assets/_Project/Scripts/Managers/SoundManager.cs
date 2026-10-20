@@ -1,21 +1,28 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SoundManager : PersistentLazySingleton<SoundManager>
 {
     private const float MUSIC_VOLUME = 1f;
     private const float FADE_DURATION = 0.5f;
+    private const string CLICK_SOUND_PATH = "SFX/Click";
 
-    [SerializeField] private AudioClip clickSFX;
-
-
-#region References
-private AudioSource m_musicSource;
+    #region References
+    private AudioSource m_musicSource;
     private AudioSource m_soundEffectSource;
+    private AudioClip m_clickSound;
     #endregion
 
     private float m_musicFade;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void HookSceneButtons()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
     #region Unity Methods
     protected override void Awake()
@@ -33,6 +40,8 @@ private AudioSource m_musicSource;
 
         m_soundEffectSource = gameObject.AddComponent<AudioSource>();
         m_soundEffectSource.playOnAwake = false;
+
+        m_clickSound = Resources.Load<AudioClip>(CLICK_SOUND_PATH);
 
         ApplyVolumes();
         GameSettings.OnChanged += ApplyVolumes;
@@ -68,7 +77,28 @@ private AudioSource m_musicSource;
     {
         m_soundEffectSource.PlayOneShot(clip);
     }
+
+    public static void AddClickSounds(GameObject root)
+    {
+        foreach (Button button in root.GetComponentsInChildren<Button>(true))
+        {
+            button.onClick.AddListener(PlayClick);
+        }
+    }
+
+    private static void PlayClick()
+    {
+        Instance.PlaySoundEffect(Instance.m_clickSound);
+    }
     #endregion
+
+    private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        foreach (GameObject root in scene.GetRootGameObjects())
+        {
+            AddClickSounds(root);
+        }
+    }
 
     private void SwapMusic(AudioClip clip)
     {
@@ -102,13 +132,4 @@ private AudioSource m_musicSource;
         m_musicSource.volume = MUSIC_VOLUME * GameSettings.MusicVolume * m_musicFade;
         m_soundEffectSource.volume = GameSettings.SfxVolume;
     }
-
-    public void PlayClickSound()
-    {
-        if (clickSFX != null)
-            SoundManager.Instance.PlaySoundEffect(clickSFX);
-    }
-    
-
-
 }
