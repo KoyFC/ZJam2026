@@ -121,7 +121,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7294320441350869894}
@@ -142,8 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9d26b571062b4f47b70877812594c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
-  _currentHealth: 0
-  _maxHealth: 25
+  _currentHealth: 250
+  _maxHealth: 250
 --- !u!114 &2161493653353854409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,11 +411,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
---- !u!198 &3596871404593514915 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8096260423510979816, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
-  m_PrefabInstance: {fileID: 4733589464732040523}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6294022333714855218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1651076683694901369, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}

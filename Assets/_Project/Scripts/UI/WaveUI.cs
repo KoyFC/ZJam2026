@@ -1,6 +1,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveUI : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class WaveUI : MonoBehaviour
     private bool m_IsWaveTextCentered;
     private bool m_IsEnemiesTextVisible;
     private float m_CountdownStartTime;
+    private Slider m_BossHealthSlider;
 
     private bool m_WasCountdownActive = true;
 
@@ -27,6 +29,7 @@ public class WaveUI : MonoBehaviour
     {
         m_WaveTextRestPosition = m_WaveText.transform.localPosition;
         m_EnemiesText.transform.localScale = Vector3.zero;
+        CreateBossHealthBar();
     }
 
     private void Start()
@@ -46,6 +49,8 @@ public class WaveUI : MonoBehaviour
 
     private void Update()
     {
+        UpdateBossHealthBar();
+
         if (!WaveSpawner.InstanceExists)
             return;
 
@@ -151,5 +156,58 @@ public class WaveUI : MonoBehaviour
     {
         m_EnemiesText.transform.DOKill(true);
         m_EnemiesText.transform.DOPunchScale(Vector3.one * m_KillPunchStrength, m_KillPunchDuration);
+    }
+
+    private void CreateBossHealthBar()
+    {
+        GameObject barObject = new GameObject("Boss Health Bar", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Slider));
+        RectTransform barRect = barObject.GetComponent<RectTransform>();
+        barRect.SetParent(transform, false);
+        barRect.anchorMin = new Vector2(0.5f, 1f);
+        barRect.anchorMax = new Vector2(0.5f, 1f);
+        barRect.pivot = new Vector2(0.5f, 1f);
+        barRect.anchoredPosition = new Vector2(0f, -36f);
+        barRect.sizeDelta = new Vector2(400f, 24f);
+
+        Image background = barObject.GetComponent<Image>();
+        background.color = new Color(0.1f, 0.1f, 0.1f, 0.9f);
+
+        GameObject fillObject = new GameObject("Fill", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+        RectTransform fillRect = fillObject.GetComponent<RectTransform>();
+        fillRect.SetParent(barRect, false);
+        fillRect.anchorMin = Vector2.zero;
+        fillRect.anchorMax = Vector2.one;
+        fillRect.offsetMin = Vector2.zero;
+        fillRect.offsetMax = Vector2.zero;
+
+        Image fill = fillObject.GetComponent<Image>();
+        fill.color = new Color(0.85f, 0.12f, 0.08f, 1f);
+        fill.type = Image.Type.Filled;
+        fill.fillMethod = Image.FillMethod.Horizontal;
+        fill.fillOrigin = (int)Image.OriginHorizontal.Left;
+
+        m_BossHealthSlider = barObject.GetComponent<Slider>();
+        m_BossHealthSlider.minValue = 0f;
+        m_BossHealthSlider.maxValue = 1f;
+        m_BossHealthSlider.value = 1f;
+        m_BossHealthSlider.fillRect = fillRect;
+        m_BossHealthSlider.targetGraphic = background;
+        m_BossHealthSlider.interactable = false;
+        barObject.SetActive(false);
+    }
+
+    private void UpdateBossHealthBar()
+    {
+        bool bossIsActive = BossSpawner.InstanceExists && BossSpawner.Instance.IsFightActive;
+        m_BossHealthSlider.gameObject.SetActive(bossIsActive);
+
+        if (!bossIsActive)
+            return;
+
+        HealthController health = BossSpawner.Instance.BossHealth;
+        if (health == null || health.MaxHealth <= 0f)
+            return;
+
+        m_BossHealthSlider.value = health.CurrentHealth / health.MaxHealth;
     }
 }

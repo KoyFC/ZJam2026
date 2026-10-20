@@ -15,16 +15,31 @@ public class Projectile : MonoBehaviour
     private ParticleSystem m_ParticleSystem;
     private Pool<Projectile> m_Pool;
     private Pool<Explosion> m_ExplosionPool;
+    private LayerMask m_DefaultHitMask;
+    private float m_DefaultDamage;
     private float m_Age;
+
+    public bool IsPlayerProjectile
+    {
+        get
+        {
+            int enemyLayer = LayerMask.NameToLayer("Enemy");
+            return enemyLayer >= 0 && (m_HitMask.value & (1 << enemyLayer)) != 0;
+        }
+    }
 
     private void Awake()
     {
         m_ParticleSystem = GetComponentInChildren<ParticleSystem>();
+        m_DefaultHitMask = m_HitMask;
+        m_DefaultDamage = m_Damage;
     }
 
     private void OnEnable()
     {
         m_Age = 0f;
+        m_HitMask = m_DefaultHitMask;
+        m_Damage = m_DefaultDamage;
 
         if (m_ParticleSystem != null)
         {
@@ -43,6 +58,20 @@ public class Projectile : MonoBehaviour
     {
         m_Pool = pool;
         m_ExplosionPool = explosionPool;
+    }
+
+    public bool Deflect(Transform target, LayerMask hitMask)
+    {
+        Vector3 direction = target.position - transform.position;
+        if (direction.sqrMagnitude <= Mathf.Epsilon)
+        {
+            return false;
+        }
+
+        transform.rotation = Quaternion.LookRotation(direction.normalized);
+        m_HitMask = hitMask;
+        m_Age = 0f;
+        return true;
     }
 
     public void Release()
@@ -73,6 +102,12 @@ public class Projectile : MonoBehaviour
 
     private void Hit(Collider target)
     {
+        ShieldBoss shield = target.GetComponentInParent<ShieldBoss>();
+        if (shield != null && shield.TryDeflect(this))
+        {
+            return;
+        }
+
         IDamageable damageable = target.GetComponentInParent<IDamageable>();
         if (damageable != null)
             damageable.ReceiveDamage(m_Damage);

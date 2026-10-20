@@ -9,6 +9,7 @@ public class BossSpawner : Singleton<BossSpawner>
     private HealthController m_BossHealth;
     private float m_DelayTimer;
 
+    public HealthController BossHealth => m_BossHealth;
     public bool IsCountdownActive { get; private set; }
     public float SpawnTimeLeft => Mathf.Max(0f, m_DelayTimer);
     public bool IsFightActive => m_BossHealth != null;

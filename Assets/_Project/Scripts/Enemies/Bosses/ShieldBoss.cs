@@ -4,56 +4,57 @@ using UnityEngine;
 public class ShieldBoss : MonoBehaviour
 {
     [SerializeField] private GameObject m_Shield;
-    private bool m_IsShieldActive = true;
+    [SerializeField, Min(0f)] private float m_ShieldCooldown = 5f;
+    [SerializeField, Min(0f)] private float m_ShieldDuration = 3f;
+    [SerializeField] private LayerMask m_ReflectedHitMask = 64;
 
-    void Start()
+    private bool m_IsShieldActive;
+
+    private void Start()
     {
-        m_Shield.SetActive(true);
-        StartCoroutine(changeShieldState());
+        if (m_Shield == null)
+        {
+            Debug.LogError("ShieldBoss requires a shield GameObject.", this);
+            enabled = false;
+            return;
+        }
 
+        SetShieldActive(false);
+        StartCoroutine(ShieldCycle());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
-        
+        if (m_Shield != null)
+        {
+            SetShieldActive(false);
+        }
     }
 
-    IEnumerator changeShieldState()
+    public bool TryDeflect(Projectile projectile)
+    {
+        if (!m_IsShieldActive || projectile == null || !projectile.IsPlayerProjectile || !PlayerRailFollower.InstanceExists)
+        {
+            return false;
+        }
+
+        return projectile.Deflect(PlayerRailFollower.Instance.transform, m_ReflectedHitMask);
+    }
+
+    private IEnumerator ShieldCycle()
     {
         while (true)
         {
-            if (m_IsShieldActive)
-            {
-                m_Shield.SetActive(false);
-                m_IsShieldActive = false;
-                yield return new WaitForSeconds(5f);
-            }
-            else
-            {
-                m_Shield.SetActive(true);
-                m_IsShieldActive = true;
-                yield return new WaitForSeconds(5f);
-            }
-            
-
+            yield return new WaitForSeconds(m_ShieldCooldown);
+            SetShieldActive(true);
+            yield return new WaitForSeconds(m_ShieldDuration);
+            SetShieldActive(false);
         }
-
-       
-
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void SetShieldActive(bool isActive)
     {
-        if(m_IsShieldActive)
-        {
-            if(collision.gameObject.CompareTag("PlayerMissile"))
-            {
-                collision.gameObject.transform.position += collision.gameObject.GetComponent<Projectile>().Speed * Time.deltaTime * -transform.forward;
-            }
-        }
+        m_IsShieldActive = isActive;
+        m_Shield.SetActive(isActive);
     }
-
-
 }
