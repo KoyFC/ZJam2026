@@ -269,11 +269,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e02f594a5b80404d9a37472ababd0f50, type: 3}
---- !u!198 &202604095 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 667427342623510442, guid: e02f594a5b80404d9a37472ababd0f50, type: 3}
-  m_PrefabInstance: {fileID: 202604094}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &296887944
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,11 +991,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1110828084 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5858233798149137601, guid: c6a6ad8c021439943913c4e8da9eded9, type: 3}
-  m_PrefabInstance: {fileID: 2290889130756582183}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1441411009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,45 +1679,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1268786198810874559, guid: c6a6ad8c021439943913c4e8da9eded9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 14.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 1268786198810874559, guid: c6a6ad8c021439943913c4e8da9eded9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 14.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 1268786198810874559, guid: c6a6ad8c021439943913c4e8da9eded9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 14.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 1268786198810874559, guid: c6a6ad8c021439943913c4e8da9eded9, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2757009829353221128, guid: c6a6ad8c021439943913c4e8da9eded9, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 8a7ccb87946094ab5a9a713ae7d674bf, type: 2}
-    - target: {fileID: 4068961688354780375, guid: c6a6ad8c021439943913c4e8da9eded9, type: 3}
-      propertyPath: m_Shield
-      value: 
-      objectReference: {fileID: 1110828084}
-    - target: {fileID: 4766312241737534630, guid: c6a6ad8c021439943913c4e8da9eded9, type: 3}
-      propertyPath: _telegraph
-      value: 
-      objectReference: {fileID: 202604095}
-    - target: {fileID: 4792393755551986985, guid: c6a6ad8c021439943913c4e8da9eded9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.27
-      objectReference: {fileID: 0}
     - target: {fileID: 6188238290627858133, guid: c6a6ad8c021439943913c4e8da9eded9, type: 3}
       propertyPath: m_Name
       value: ShieldBoss
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 726042308206950884, guid: c6a6ad8c021439943913c4e8da9eded9, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6a6ad8c021439943913c4e8da9eded9, type: 3}
