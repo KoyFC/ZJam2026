@@ -31,6 +31,8 @@ public static class LevelProgress
             return;
 
         SaveSystem.Set(SaveSystem.PLAYER_DATA_FILE, UNLOCKED_LEVEL_KEY, level);
+        // Saved silently so the current zone doesn't change mid-run; it applies on the next scene load
+        SaveSystem.Set(SaveSystem.PLAYER_DATA_FILE, SELECTED_LEVEL_KEY, level);
         SaveSystem.MarkAsDirty();
     }
 }

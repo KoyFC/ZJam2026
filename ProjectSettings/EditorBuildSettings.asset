@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Release/FarSideScene.unity
     guid: 281b19b3d9400dd419dfeb847927d09d
+  - enabled: 1
+    path: Assets/_Project/Scenes/Release/CreditsScene.unity
+    guid: 2c7e0ddd651be1082b3db966eac7a2de
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
