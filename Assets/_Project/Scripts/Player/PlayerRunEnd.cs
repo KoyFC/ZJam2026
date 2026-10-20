@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerRunEnd : MonoBehaviour
@@ -10,8 +11,9 @@ public class PlayerRunEnd : MonoBehaviour
 
     public bool HasEnded { get; private set; }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitWhile(() => SceneLoader.IsBusy);
         RunStats.Begin();
     }
 

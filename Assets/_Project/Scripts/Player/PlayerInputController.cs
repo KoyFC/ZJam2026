@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,6 +25,18 @@ public class PlayerInputController : Singleton<PlayerInputController>
     private void OnDisable()
     {
         TryDisableInput();
+    }
+
+    private IEnumerator Start()
+    {
+        if (!SceneLoader.IsBusy)
+            yield break;
+
+        TryDisableInput();
+        yield return new WaitWhile(() => SceneLoader.IsBusy);
+
+        if (enabled)
+            TryEnableInput();
     }
 
     private void TryEnableInput()

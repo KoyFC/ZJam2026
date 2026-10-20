@@ -55,7 +55,7 @@ public class WaveSpawner : Singleton<WaveSpawner>
 
     private void Update()
     {
-        if (m_IsStopped)
+        if (m_IsStopped || SceneLoader.IsBusy)
             return;
 
         if (m_ActiveEnemies.Count > 0)

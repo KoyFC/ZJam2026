@@ -22,7 +22,7 @@ public class PlayerRailFollower : Singleton<PlayerRailFollower>
 
     private void Update()
     {
-        if (!ZoneManager.InstanceExists)
+        if (!ZoneManager.InstanceExists || SceneLoader.IsBusy)
             return;
 
         ZoneManager zone = ZoneManager.Instance;

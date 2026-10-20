@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class NearSideMenuController : MonoBehaviour
 {
@@ -66,7 +65,7 @@ public class NearSideMenuController : MonoBehaviour
     {
         CloseCurrentCanvas();
 
-        SceneManager.LoadScene("MainMenuScene");
+        SceneLoader.Load("MainMenuScene");
     }
 
     public void StartCombat()
@@ -75,7 +74,7 @@ public class NearSideMenuController : MonoBehaviour
         CloseCurrentCanvas();
 
         // Load the combat scene
-        SceneManager.LoadScene("FarSideScene");
+        SceneLoader.Load("FarSideScene");
     }
 
 }

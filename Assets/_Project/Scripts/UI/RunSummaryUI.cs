@@ -2,7 +2,6 @@ using System.Text;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public enum RunOutcome
 {
@@ -79,6 +78,6 @@ public class RunSummaryUI : MonoBehaviour
 
     public void ReturnToBase()
     {
-        SceneManager.LoadScene(m_ReturnScene);
+        SceneLoader.Load(m_ReturnScene);
     }
 }

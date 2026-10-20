@@ -3,7 +3,6 @@ using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TutorialController : MonoBehaviour
 {
@@ -58,6 +57,7 @@ public class TutorialController : MonoBehaviour
 
     private IEnumerator RunTutorial()
     {
+        yield return new WaitWhile(() => SceneLoader.IsBusy);
         PlayerInputController input = PlayerInputController.Instance;
 
         ShowInstruction("Use <b>WASD</b> to move your ship");
@@ -83,7 +83,7 @@ public class TutorialController : MonoBehaviour
         ShowInstruction("Tutorial complete!\nGood luck on the Far Side");
         yield return new WaitForSeconds(m_EndDelay);
 
-        SceneManager.LoadScene(m_NextScene);
+        SceneLoader.Load(m_NextScene);
     }
 
     private IEnumerator WaitWhileHeld(Func<bool> condition, float duration)

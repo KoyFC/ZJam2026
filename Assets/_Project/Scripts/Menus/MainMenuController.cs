@@ -1,16 +1,15 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("NearSideScene");
+        SceneLoader.Load("NearSideScene");
     }
 
     public void StartTutorial()
     {
-        SceneManager.LoadScene("TutorialScene");
+        SceneLoader.Load("TutorialScene");
     }
 
     public void ExitGame()
