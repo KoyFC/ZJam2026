@@ -15,7 +15,8 @@ public class Projectile : MonoBehaviour
     private ParticleSystem m_ParticleSystem;
     private Pool<Projectile> m_Pool;
     private Pool<Explosion> m_ExplosionPool;
-    private LayerMask m_DefaultHitMask;
+    private Transform m_HomingTarget;
+    private float m_HomingTurnSpeed;
     private float m_DefaultDamage;
     private float m_Age;
 
@@ -31,15 +32,14 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         m_ParticleSystem = GetComponentInChildren<ParticleSystem>();
-        m_DefaultHitMask = m_HitMask;
         m_DefaultDamage = m_Damage;
     }
 
     private void OnEnable()
     {
         m_Age = 0f;
-        m_HitMask = m_DefaultHitMask;
         m_Damage = m_DefaultDamage;
+        m_HomingTarget = null;
 
         if (m_ParticleSystem != null)
         {
@@ -60,18 +60,10 @@ public class Projectile : MonoBehaviour
         m_ExplosionPool = explosionPool;
     }
 
-    public bool Deflect(Transform target, LayerMask hitMask)
+    public void HomeIn(Transform target, float turnSpeed)
     {
-        Vector3 direction = target.position - transform.position;
-        if (direction.sqrMagnitude <= Mathf.Epsilon)
-        {
-            return false;
-        }
-
-        transform.rotation = Quaternion.LookRotation(direction.normalized);
-        m_HitMask = hitMask;
-        m_Age = 0f;
-        return true;
+        m_HomingTarget = target;
+        m_HomingTurnSpeed = turnSpeed;
     }
 
     public void Release()
@@ -84,6 +76,12 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
+        if (m_HomingTarget != null)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(m_HomingTarget.position - transform.position);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, m_HomingTurnSpeed * Time.deltaTime);
+        }
+
         float distance = m_Speed * Time.deltaTime;
 
         if (Physics.SphereCast(transform.position, m_HitRadius, transform.forward, out RaycastHit hit, distance, m_HitMask))
@@ -103,8 +101,9 @@ public class Projectile : MonoBehaviour
     private void Hit(Collider target)
     {
         BossShield shield = target.GetComponentInParent<BossShield>();
-        if (shield != null && shield.TryDeflect(this))
+        if (shield != null && shield.TryReflect(this))
         {
+            Release();
             return;
         }
 

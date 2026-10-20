@@ -16,15 +16,19 @@ public class ParticleDamage : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
+        int hits = m_ParticleSystem.GetCollisionEvents(other, m_CollisionEvents);
+
         BossShield shield = other.GetComponentInParent<BossShield>();
         if (shield != null && shield.Blocks(other))
+        {
+            shield.Reflect(m_CollisionEvents, hits);
             return;
+        }
 
         IDamageable damageable = other.GetComponentInParent<IDamageable>();
         if (damageable == null)
             return;
 
-        int hits = m_ParticleSystem.GetCollisionEvents(other, m_CollisionEvents);
         damageable.ReceiveDamage(m_Damage * hits);
     }
 }
