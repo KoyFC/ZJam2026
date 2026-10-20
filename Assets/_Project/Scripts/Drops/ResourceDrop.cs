@@ -30,6 +30,8 @@ public class ResourceDrop : MonoBehaviour
     [SerializeField, Min(0.01f)] private float m_BobDuration = 1f;
 
     public static event Action<float> OnCollected;
+    // True when the drop was collected, false when it expired or was left behind
+    public event Action<bool> OnReleased;
 
     private Pool<ResourceDrop> m_Pool;
     private float m_Amount;
@@ -212,6 +214,8 @@ public class ResourceDrop : MonoBehaviour
 
     private void Release()
     {
+        OnReleased?.Invoke(m_Collected);
+
         if (m_Pool != null)
             m_Pool.Release(this);
         else

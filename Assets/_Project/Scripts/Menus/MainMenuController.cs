@@ -8,6 +8,11 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene("NearSideScene");
     }
 
+    public void StartTutorial()
+    {
+        SceneManager.LoadScene("TutorialScene");
+    }
+
     public void ExitGame()
     {
         Application.Quit();
