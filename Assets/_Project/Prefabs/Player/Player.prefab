@@ -1178,6 +1178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHitFeedback
   m_FlashDuration: 0.3
+  m_BlinkInterval: 0.05
+  m_HitOutlineColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!114 &7731946205518839264
 MonoBehaviour:
   m_ObjectHideFlags: 0
