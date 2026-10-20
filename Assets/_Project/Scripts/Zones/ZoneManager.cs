@@ -6,8 +6,10 @@ public class ZoneManager : Singleton<ZoneManager>
     [field: SerializeField] public ZoneDataSO[] Zones { get; private set; }
     public int CurrentZoneIndex { get; private set; } = -1;
     public ZoneDataSO CurrentZone => CurrentZoneIndex >= 0 ? Zones[CurrentZoneIndex] : null;
+    // Level 1 is the outermost zone
+    public int CurrentLevel => Zones.Length - CurrentZoneIndex;
 
-    public const string CURRENT_ZONE_INDEX_KEY = "CurrentZoneIndex";
+    public event Action OnZoneChanged;
 
     [field: SerializeField, Min(0f)] public float InnerRadius { get; private set; } = 350f;
     [field: SerializeField, Min(0f)] public float OuterRadius { get; private set; } = 500f;
@@ -24,10 +26,22 @@ public class ZoneManager : Singleton<ZoneManager>
         }
 
         SortZones();
+        SelectLevel(LevelProgress.Selected);
+    }
 
-        int outermostZoneIndex = Zones.Length - 1;
-        int savedZoneIndex = SaveSystem.Get(SaveSystem.PLAYER_DATA_FILE, CURRENT_ZONE_INDEX_KEY, outermostZoneIndex);
-        SetCurrentZone(Mathf.Clamp(savedZoneIndex, 0, outermostZoneIndex));
+    private void OnEnable()
+    {
+        LevelProgress.OnSelected += SelectLevel;
+    }
+
+    private void OnDisable()
+    {
+        LevelProgress.OnSelected -= SelectLevel;
+    }
+
+    private void SelectLevel(int level)
+    {
+        SetCurrentZone(Mathf.Clamp(Zones.Length - level, 0, Zones.Length - 1));
     }
 
     public bool SetCurrentZone(int zoneIndex)
@@ -36,14 +50,8 @@ public class ZoneManager : Singleton<ZoneManager>
             return false;
 
         CurrentZoneIndex = zoneIndex;
-        SaveCurrentZone();
+        OnZoneChanged?.Invoke();
         return true;
-    }
-
-    private void SaveCurrentZone()
-    {
-        SaveSystem.Set(SaveSystem.PLAYER_DATA_FILE, CURRENT_ZONE_INDEX_KEY, CurrentZoneIndex);
-        SaveSystem.MarkAsDirty();
     }
 
     private void SortZones()

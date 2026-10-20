@@ -85,6 +85,7 @@ public class BossSpawner : Singleton<BossSpawner>
 
         IsDefeated = true;
         UnlockedMechanics.Unlock(ZoneManager.Instance.CurrentZone.UnlockedMechanic);
+        LevelProgress.Unlock(ZoneManager.Instance.CurrentLevel + 1);
         RailFuel.Instance.SetPaused(false);
         OnBossDefeated?.Invoke();
     }
