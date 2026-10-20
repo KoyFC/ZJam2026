@@ -11,6 +11,8 @@ public class SoundManager : PersistentLazySingleton<SoundManager>
     private AudioSource m_soundEffectSource;
     #endregion
 
+    private float m_musicFade;
+
     #region Unity Methods
     protected override void Awake()
     {
@@ -27,11 +29,19 @@ public class SoundManager : PersistentLazySingleton<SoundManager>
 
         m_soundEffectSource = gameObject.AddComponent<AudioSource>();
         m_soundEffectSource.playOnAwake = false;
+
+        ApplyVolumes();
+        GameSettings.OnChanged += ApplyVolumes;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        GameSettings.OnChanged -= ApplyVolumes;
     }
     #endregion
 
     #region Playback Methods
-    // A null clip fades the current music out and leaves silence
     public void PlayMusic(AudioClip clip)
     {
         if (m_musicSource.clip == clip)
@@ -47,7 +57,7 @@ public class SoundManager : PersistentLazySingleton<SoundManager>
             return;
         }
 
-        m_musicSource.DOFade(0f, FADE_DURATION).SetUpdate(true).OnComplete(() => SwapMusic(clip));
+        FadeMusic(0f).OnComplete(() => SwapMusic(clip));
     }
 
     public void PlaySoundEffect(AudioClip clip)
@@ -66,8 +76,26 @@ public class SoundManager : PersistentLazySingleton<SoundManager>
             return;
         }
 
-        m_musicSource.volume = 0f;
+        m_musicFade = 0f;
+        ApplyVolumes();
         m_musicSource.Play();
-        m_musicSource.DOFade(MUSIC_VOLUME, FADE_DURATION).SetUpdate(true);
+        FadeMusic(1f);
+    }
+
+    private Tween FadeMusic(float target)
+    {
+        return DOTween.To(() => m_musicFade, SetMusicFade, target, FADE_DURATION).SetUpdate(true).SetTarget(m_musicSource);
+    }
+
+    private void SetMusicFade(float fade)
+    {
+        m_musicFade = fade;
+        ApplyVolumes();
+    }
+
+    private void ApplyVolumes()
+    {
+        m_musicSource.volume = MUSIC_VOLUME * GameSettings.MusicVolume * m_musicFade;
+        m_soundEffectSource.volume = GameSettings.SfxVolume;
     }
 }
