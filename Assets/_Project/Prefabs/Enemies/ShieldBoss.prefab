@@ -25,11 +25,10 @@ Transform:
   m_GameObject: {fileID: 411732893650832496}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9, y: 0.77, z: 5.37}
+  m_LocalPosition: {x: 0, y: 1.2, z: 5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5869333425125269406}
+  m_Children: []
   m_Father: {fileID: 227395461802989607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5858233798149137601
@@ -157,7 +156,7 @@ GameObject:
   - component: {fileID: 6266626259450306872}
   - component: {fileID: 1317119453623947605}
   - component: {fileID: 4766312241737534630}
-  - component: {fileID: 3565171600611552877}
+  - component: {fileID: 6702249811536042178}
   - component: {fileID: 7616476893893075277}
   - component: {fileID: 8442547349342985371}
   - component: {fileID: 2092423935522860894}
@@ -244,26 +243,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799fae55dc7bb1746bb6d9ebcf97fb84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyShooter
-  _shootInterval: 3
+  _shootInterval: 4
   _intervalVariance: 0.2
   _telegraph: {fileID: 8820464511739255069}
   _telegraphLifetime: 1
---- !u!114 &3565171600611552877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6188238290627858133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0354dc7cbcd204b99e319c3a4c3e064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ParticleWeapon
-  _bullets: {fileID: 4019026351701320463}
-  _particleSpeed: 100
-  _shotsPerBurst: 4
-  _burstInterval: 0.05
 --- !u!114 &7616476893893075277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,77 +395,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 29fa9014577989a44a9973a95d97b19e, type: 3}
   m_PrefabInstance: {fileID: 3457516236862908633}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &5160494988730800103
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 7489875445439400253}
-    m_Modifications:
-    - target: {fileID: 1651076683694901369, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651076683694901369, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651076683694901369, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651076683694901369, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651076683694901369, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651076683694901369, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651076683694901369, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651076683694901369, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651076683694901369, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651076683694901369, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3131942778158122640, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 2cabffec13e01de1f94901c118381e64, type: 2}
-    - target: {fileID: 4905668022492839161, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
-      propertyPath: m_Name
-      value: Enemy Primary Fire Particles Variant
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
---- !u!198 &4019026351701320463 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8096260423510979816, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
-  m_PrefabInstance: {fileID: 5160494988730800103}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &5869333425125269406 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1651076683694901369, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
-  m_PrefabInstance: {fileID: 5160494988730800103}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5534107625391884213 stripped
 GameObject:
@@ -722,3 +634,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1651076683694901369, guid: 8b801681743c60831be2e4fb46ac280e, type: 3}
   m_PrefabInstance: {fileID: 6413870255109347921}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6702249811536042178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188238290627858133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d74c658bed0684d9ca99dc1f35e2c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RocketWeapon
+  _shootPoint: {fileID: 7489875445439400253}
+  _rocketPrefab: {fileID: 4993849313636776019, guid: c1fdaad09d817df768df8fbf992cae63, type: 3}
+  _poolSize: 16
+  _rocketsPerBurst: 8
+  _rocketInterval: 0.15
+  _spreadAngle: 10
