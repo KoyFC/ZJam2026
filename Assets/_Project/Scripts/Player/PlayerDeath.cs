@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(HealthController))]
 public class PlayerDeath : MonoBehaviour
 {
-    public event Action OnDied;
+    public static event Action OnDeathStarted;
+    public static event Action OnDied;
 
     [SerializeField] private Transform m_Ship;
     [SerializeField] private Explosion m_DeathExplosion;
@@ -20,6 +21,13 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField, Min(0f)] private float m_FallbackDistance = 30f;
 
     private HealthController m_HealthController;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetEvents()
+    {
+        OnDeathStarted = null;
+        OnDied = null;
+    }
 
     private void Awake()
     {
@@ -52,6 +60,7 @@ public class PlayerDeath : MonoBehaviour
         if (WaveSpawner.InstanceExists)
             WaveSpawner.Instance.Stop();
 
+        OnDeathStarted?.Invoke();
         Fall();
     }
 

@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 1185268643396078858}
   - component: {fileID: 3528166066319356274}
   - component: {fileID: 2640472833026924942}
+  - component: {fileID: 6150374829163025917}
   m_Layer: 5
   m_Name: Aim Canvas
   m_TagString: Untagged
@@ -433,3 +434,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6150374829163025917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7387342468747153186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d944d861b11407c8adbbf5c5210a76a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HideOnPlayerDeath

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7257608828502093276}
   - component: {fileID: 3829432781327847297}
   - component: {fileID: 7742633933760784885}
+  - component: {fileID: 7015886662198471202}
   m_Layer: 5
   m_Name: Minimap Canvas
   m_TagString: Untagged
@@ -120,6 +121,18 @@ MonoBehaviour:
   m_WorldCenter: {x: 0, y: 0}
   m_Parent: {fileID: 7334315748408228306}
   m_IconPrefab: {fileID: 4274069022646602398, guid: fdfd4fd208d3af7b0ab7a402bf77c726, type: 3}
+--- !u!114 &7015886662198471202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592057368580750524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d944d861b11407c8adbbf5c5210a76a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HideOnPlayerDeath
 --- !u!1 &5549059988321358542
 GameObject:
   m_ObjectHideFlags: 0

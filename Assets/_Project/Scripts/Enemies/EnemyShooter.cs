@@ -32,11 +32,18 @@ public class EnemyShooter : MonoBehaviour
     {
         _lastShootTime = Time.time;
         CalculateNextShootTime();
+        PlayerDeath.OnDeathStarted += HandlePlayerDeath;
     }
 
     private void OnDisable()
     {
         _isWindingUp = false;
+        PlayerDeath.OnDeathStarted -= HandlePlayerDeath;
+    }
+
+    private void HandlePlayerDeath()
+    {
+        enabled = false;
     }
 
     private void Update()

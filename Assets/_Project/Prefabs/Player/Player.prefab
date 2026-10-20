@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3013389708590815229}
   - component: {fileID: 6113902011575738676}
   - component: {fileID: 5438571800557793027}
+  - component: {fileID: 4827361950284716583}
   m_Layer: 5
   m_Name: Health & Fuel Canvas
   m_TagString: Untagged
@@ -11290,3 +11291,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5711880035885415148, guid: 57b44768156619befb196b6d980da32c, type: 3}
   m_PrefabInstance: {fileID: 8359509636898755744}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4827361950284716583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353026491979420821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d944d861b11407c8adbbf5c5210a76a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HideOnPlayerDeath
