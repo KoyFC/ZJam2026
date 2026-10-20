@@ -1581,6 +1581,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneMusic
   m_music: {fileID: 0}
+--- !u!1001 &7800000100
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8131355981902249180, guid: c3c50b193a6c4871963371b8b5bdd47e, type: 3}
+      propertyPath: m_Name
+      value: Pause Menu
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c3c50b193a6c4871963371b8b5bdd47e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1597,3 +1614,4 @@ SceneRoots:
   - {fileID: 6869945110085778594}
   - {fileID: 2116702600670467812}
   - {fileID: 1735010002}
+  - {fileID: 7800000100}

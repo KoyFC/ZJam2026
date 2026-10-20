@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputController : Singleton<PlayerInputController>
 {
     private bool m_InputActive = false;
+    public bool IsInputActive => m_InputActive;
 
     [SerializeField] private InputActionReference m_MoveActionReference;
     public Vector2 MoveInput { get; private set; }
