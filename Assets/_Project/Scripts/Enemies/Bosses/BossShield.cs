@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyShooter))]
 public class BossShield : MonoBehaviour
 {
     [SerializeField] private GameObject m_Shield;
@@ -8,17 +9,23 @@ public class BossShield : MonoBehaviour
     [SerializeField, Min(0f)] private float m_ShieldDuration = 3f;
     [SerializeField] private LayerMask m_ReflectedHitMask = 64;
 
-    private bool m_IsShieldActive;
+    private EnemyShooter m_Shooter;
 
-    private void Start()
+    public bool IsActive { get; private set; }
+
+    private void Awake()
     {
+        m_Shooter = GetComponent<EnemyShooter>();
+
         if (m_Shield == null)
         {
             Debug.LogError("BossShield requires a shield GameObject.", this);
             enabled = false;
-            return;
         }
+    }
 
+    private void OnEnable()
+    {
         SetShieldActive(false);
         StartCoroutine(ShieldCycle());
     }
@@ -26,14 +33,17 @@ public class BossShield : MonoBehaviour
     private void OnDisable()
     {
         if (m_Shield != null)
-        {
             SetShieldActive(false);
-        }
+    }
+
+    public bool Blocks(GameObject other)
+    {
+        return IsActive && other == m_Shield;
     }
 
     public bool TryDeflect(Projectile projectile)
     {
-        if (!m_IsShieldActive || projectile == null || !projectile.IsPlayerProjectile || !PlayerRailFollower.InstanceExists)
+        if (!IsActive || projectile == null || !projectile.IsPlayerProjectile || !PlayerRailFollower.InstanceExists)
         {
             return false;
         }
@@ -46,15 +56,23 @@ public class BossShield : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(m_ShieldCooldown);
+            yield return new WaitUntil(CanActivate);
             SetShieldActive(true);
             yield return new WaitForSeconds(m_ShieldDuration);
             SetShieldActive(false);
         }
     }
 
+    // Never raise the shield mid-attack or while still rising from the ground
+    private bool CanActivate()
+    {
+        return m_Shooter.enabled && !m_Shooter.IsBusy;
+    }
+
     private void SetShieldActive(bool isActive)
     {
-        m_IsShieldActive = isActive;
+        IsActive = isActive;
         m_Shield.SetActive(isActive);
+        m_Shooter.IsSuspended = isActive;
     }
 }

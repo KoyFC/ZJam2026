@@ -16,6 +16,10 @@ public class EnemyShooter : MonoBehaviour
     private float _fireTime;
     private bool _isWindingUp;
 
+    public bool IsBusy => _isWindingUp || (_weapon != null && _weapon.IsFiring);
+    // Held back by other actions (e.g. the boss shield), restarts the shot interval once released
+    public bool IsSuspended { get; set; }
+
     private void Awake()
     {
         _detector = GetComponent<PlayerDetector>();
@@ -50,6 +54,13 @@ public class EnemyShooter : MonoBehaviour
     {
         if (_weapon == null)
         {
+            return;
+        }
+
+        if (IsSuspended)
+        {
+            _isWindingUp = false;
+            _lastShootTime = Time.time;
             return;
         }
 

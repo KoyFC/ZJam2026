@@ -16,6 +16,10 @@ public class ParticleDamage : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
+        BossShield shield = other.GetComponentInParent<BossShield>();
+        if (shield != null && shield.Blocks(other))
+            return;
+
         IDamageable damageable = other.GetComponentInParent<IDamageable>();
         if (damageable == null)
             return;
