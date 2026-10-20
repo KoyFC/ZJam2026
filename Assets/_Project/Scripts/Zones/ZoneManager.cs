@@ -28,6 +28,12 @@ public class ZoneManager : Singleton<ZoneManager>
         int outermostZoneIndex = Zones.Length - 1;
         int savedZoneIndex = SaveSystem.Get(SaveSystem.PLAYER_DATA_FILE, CURRENT_ZONE_INDEX_KEY, outermostZoneIndex);
         CurrentZoneIndex = Mathf.Clamp(savedZoneIndex, 0, outermostZoneIndex);
+
+        if (GameManager.Instance != null)
+        {
+            SetCurrentZone(GameManager.Instance.CurrentLevel - 1);
+        }
+
         SaveCurrentZone();
     }
 
