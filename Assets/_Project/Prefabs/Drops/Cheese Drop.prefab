@@ -101,6 +101,8 @@ MonoBehaviour:
   m_Renderer: {fileID: 8943138404751664406}
   m_HealthMaterial: {fileID: 2100000, guid: 34ea630cd00afec458671e3c88f3ab77, type: 2}
   m_FuelMaterial: {fileID: 2100000, guid: f1cdda6b448376e49974fa842679eecf, type: 2}
+  m_HealthOutlineColor: {r: 0.0875932, g: 1, b: 0, a: 1}
+  m_FuelOutlineColor: {r: 1, g: 0.49839944, b: 0, a: 1}
   m_CollectionPadding: 1
   m_MagnetRadius: 12
   m_FlySpeed: 18

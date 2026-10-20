@@ -15,6 +15,8 @@ public class ResourceDrop : MonoBehaviour
     [SerializeField] private Renderer m_Renderer;
     [SerializeField] private Material m_HealthMaterial;
     [SerializeField] private Material m_FuelMaterial;
+    [SerializeField] private Color m_HealthOutlineColor = Color.green;
+    [SerializeField] private Color m_FuelOutlineColor = new Color(1f, 0.5f, 0f);
     [SerializeField, Min(0f)] private float m_CollectionPadding = 1f;
     [SerializeField, Min(0f)] private float m_MagnetRadius = 12f;
     [SerializeField, Min(0.01f)] private float m_FlySpeed = 18f;
@@ -34,6 +36,7 @@ public class ResourceDrop : MonoBehaviour
     private float m_Age;
     private ResourceDropType m_CurrentType;
     private Collider m_DropCollider;
+    private Outline m_Outline;
     private bool m_Collected;
     private bool m_IsAttracted;
     private CharacterController m_TargetController;
@@ -48,6 +51,8 @@ public class ResourceDrop : MonoBehaviour
 
         if (m_Renderer == null)
             m_Renderer = GetComponentInChildren<Renderer>();
+
+        m_Outline = GetComponentInChildren<Outline>();
 
         if (m_Renderer == null)
             Debug.LogError($"{name}: ResourceDrop requires a Renderer to display its type.", this);
@@ -191,6 +196,9 @@ public class ResourceDrop : MonoBehaviour
     private void ApplyType(ResourceDropType type)
     {
         m_CurrentType = type;
+        if (m_Outline != null)
+            m_Outline.OutlineColor = type == ResourceDropType.Health ? m_HealthOutlineColor : m_FuelOutlineColor;
+
         Material material = type == ResourceDropType.Health ? m_HealthMaterial : m_FuelMaterial;
         if (material == null)
         {
