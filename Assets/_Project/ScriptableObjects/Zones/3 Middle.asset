@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 534c4d5151332aff4a301573eee6d595, type: 3}
-  m_Name: 3 Outer
+  m_Name: 3 Middle
   m_EditorClassIdentifier: Assembly-CSharp::ZoneDataSO
   <ZoneName>k__BackingField: Outer
   <MinimapRadius>k__BackingField: 0.75
+  <Title>k__BackingField: Middle Ring
+  <Description>k__BackingField: Heavier enemy waves patrol this ring. Careful of
+    the shielded chief.
   <Waves>k__BackingField:
   - Enemies:
     - Prefab: {fileID: 5277291643285319180, guid: e02f594a5b80404d9a37472ababd0f50, type: 3}

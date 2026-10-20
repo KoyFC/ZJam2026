@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 534c4d5151332aff4a301573eee6d595, type: 3}
-  m_Name: 1 Center
+  m_Name: 1 Core
   m_EditorClassIdentifier: Assembly-CSharp::ZoneDataSO
   <ZoneName>k__BackingField: Center
   <MinimapRadius>k__BackingField: 0.25
+  <Title>k__BackingField: Core
+  <Description>k__BackingField: If you can see this, something has gone wrong.
   <Waves>k__BackingField: []
   <DelayBetweenWaves>k__BackingField: 6
   <GroundEnemies>k__BackingField: []
