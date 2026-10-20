@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public enum PlayerMechanic
 {
@@ -13,12 +12,6 @@ public static class UnlockedMechanics
     private const string KEY_PREFIX = "Mechanic_";
 
     public static event Action<PlayerMechanic> OnUnlocked;
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    private static void ResetEvents()
-    {
-        OnUnlocked = null;
-    }
 
     public static bool IsUnlocked(PlayerMechanic mechanic)
     {
