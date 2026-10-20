@@ -29,3 +29,7 @@ MonoBehaviour:
   - Prefab: {fileID: 5863351204731407082, guid: 1db43671e73f720409b1b7a132d00ae0, type: 3}
     Weight: 1
   <GroundEnemyCount>k__BackingField: 12
+  <BossPrefab>k__BackingField: {fileID: 5277291643285319180, guid: e02f594a5b80404d9a37472ababd0f50, type: 3}
+  <BossDelay>k__BackingField: 6
+  <UnlockedMechanic>k__BackingField: 1
+  <BossBarrierColor>k__BackingField: {r: 1.9358639, g: 0, b: 0, a: 1}

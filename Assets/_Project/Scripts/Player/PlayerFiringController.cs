@@ -73,7 +73,7 @@ public class PlayerFiringController : MonoBehaviour
 
     private void FireMissile()
     {
-        if (m_MissilePool == null)
+        if (m_MissilePool == null || !UnlockedMechanics.IsUnlocked(PlayerMechanic.Missiles))
             return;
 
         Projectile missile = m_MissilePool.Get(m_MissileSpawn.position, GetAimRotation(m_MissileSpawn));
