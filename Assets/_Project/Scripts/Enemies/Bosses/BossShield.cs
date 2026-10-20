@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ShieldBoss : MonoBehaviour
+public class BossShield : MonoBehaviour
 {
     [SerializeField] private GameObject m_Shield;
     [SerializeField, Min(0f)] private float m_ShieldCooldown = 5f;
@@ -14,7 +14,7 @@ public class ShieldBoss : MonoBehaviour
     {
         if (m_Shield == null)
         {
-            Debug.LogError("ShieldBoss requires a shield GameObject.", this);
+            Debug.LogError("BossShield requires a shield GameObject.", this);
             enabled = false;
             return;
         }

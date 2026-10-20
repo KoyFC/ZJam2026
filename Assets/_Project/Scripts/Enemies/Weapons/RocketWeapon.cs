@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public class RocketBoss : EnemyWeapon
+public class RocketWeapon : EnemyWeapon
 {
     [Header("Rockets")]
     [SerializeField] private Transform _shootPoint;
@@ -33,7 +33,7 @@ public class RocketBoss : EnemyWeapon
 
         if (_rocketPrefab == null)
         {
-            Debug.LogError("RocketBoss requires a rocket projectile prefab.", this);
+            Debug.LogError("RocketWeapon requires a rocket projectile prefab.", this);
             return;
         }
 

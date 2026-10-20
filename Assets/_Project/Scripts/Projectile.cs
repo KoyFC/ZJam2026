@@ -102,7 +102,7 @@ public class Projectile : MonoBehaviour
 
     private void Hit(Collider target)
     {
-        ShieldBoss shield = target.GetComponentInParent<ShieldBoss>();
+        BossShield shield = target.GetComponentInParent<BossShield>();
         if (shield != null && shield.TryDeflect(this))
         {
             return;
