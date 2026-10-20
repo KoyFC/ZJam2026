@@ -8,7 +8,8 @@ public class ZoneManager : Singleton<ZoneManager>
     public ZoneDataSO CurrentZone => CurrentZoneIndex >= 0 ? Zones[CurrentZoneIndex] : null;
     // Level 1 is the outermost zone
     public int CurrentLevel => Zones.Length - CurrentZoneIndex;
-    public bool IsFinalLevel => CurrentLevel == Zones.Length;
+    public int LevelCount => Zones.Length - 1;
+    public bool IsFinalLevel => CurrentLevel == LevelCount;
 
     public event Action OnZoneChanged;
 
