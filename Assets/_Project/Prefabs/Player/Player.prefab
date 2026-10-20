@@ -997,6 +997,7 @@ GameObject:
   - component: {fileID: 8196916646995883304}
   - component: {fileID: 4122179853410633850}
   - component: {fileID: 6419283746102938471}
+  - component: {fileID: 9001000000000000001}
   - component: {fileID: 7731946205518839264}
   - component: {fileID: 4719283746102938101}
   - component: {fileID: 742318569567069679}
@@ -1137,6 +1138,7 @@ MonoBehaviour:
   m_MissilePrefab: {fileID: 5110832050719996064, guid: da28f53cf8ad7d7eabdaa8564aeb5bab, type: 3}
   m_MissilePoolSize: 10
   m_ExplosionPrefab: {fileID: 185769348726656504, guid: 8a5a994083aa641e2817476f032880b3, type: 3}
+  m_MissileCooldown: 1.5
 --- !u!114 &4122179853410633850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,6 +1165,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
   _currentHealth: 100
   _maxHealth: 100
+--- !u!114 &9001000000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2158141657593661978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a827c43a4d154376986a0db6ff73bd26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHitFeedback
+  m_FlashDuration: 0.3
 --- !u!114 &7731946205518839264
 MonoBehaviour:
   m_ObjectHideFlags: 0
