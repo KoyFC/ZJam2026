@@ -31,6 +31,7 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
 
     public Ray FireRay { get; private set; }
     public Vector3 AimPoint { get; private set; }
+    public Vector2 CursorScreenPosition { get; private set; }
 
     protected override void Awake()
     {
@@ -115,6 +116,7 @@ public class PlayerCrosshair : Singleton<PlayerCrosshair>
         float lerp = 1f - Mathf.Exp(-m_FollowSpeed * Time.deltaTime);
         m_FireScreenPosition = ClampInside(Vector2.Lerp(m_FireScreenPosition, cursor, lerp), fireArea);
 
+        CursorScreenPosition = cursor;
         m_CursorMarker.position = cursor;
         m_FireMarker.position = m_FireScreenPosition;
 

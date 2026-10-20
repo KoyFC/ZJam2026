@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerFiringController : MonoBehaviour
+public class PlayerFiringController : Singleton<PlayerFiringController>
 {
     [Header("Primary Fire")]
     [SerializeField] private ParticleSystem m_Bullets;
@@ -13,15 +13,22 @@ public class PlayerFiringController : MonoBehaviour
     [SerializeField] private Projectile m_MissilePrefab;
     [SerializeField] private int m_MissilePoolSize = 10;
     [SerializeField] private Explosion m_ExplosionPrefab;
+    [SerializeField, Min(0f)] private float m_MissileCooldown = 1.5f;
 
     public static event Action OnFired;
 
     private Pool<Projectile> m_MissilePool;
     private Pool<Explosion> m_ExplosionPool;
     private float m_NextShotTime;
+    private float m_NextMissileTime;
 
-    private void Awake()
+    public bool IsMissileReady => Time.time >= m_NextMissileTime;
+    public float MissileCooldownProgress => m_MissileCooldown > 0f ? Mathf.Clamp01(1f - (m_NextMissileTime - Time.time) / m_MissileCooldown) : 1f;
+
+    protected override void Awake()
     {
+        base.Awake();
+
         if (m_MissileSpawn == null)
             m_MissileSpawn = transform;
 
@@ -73,8 +80,10 @@ public class PlayerFiringController : MonoBehaviour
 
     private void FireMissile()
     {
-        if (m_MissilePool == null || !UnlockedMechanics.IsUnlocked(PlayerMechanic.Missiles))
+        if (m_MissilePool == null || !IsMissileReady || !UnlockedMechanics.IsUnlocked(PlayerMechanic.Missiles))
             return;
+
+        m_NextMissileTime = Time.time + m_MissileCooldown;
 
         Projectile missile = m_MissilePool.Get(m_MissileSpawn.position, GetAimRotation(m_MissileSpawn));
         missile.Launch(m_MissilePool, m_ExplosionPool);
