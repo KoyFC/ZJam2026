@@ -9,6 +9,9 @@ public class HealthController : MonoBehaviour, IDamageable
 
     public bool IsAlive => _currentHealth > 0;
 
+    // Health never drops below this, used to keep the player alive during the tutorial
+    public float MinHealth { get; set; }
+
     public event Action<float> OnDamaged;
     public event Action OnDestroyed;
     public event Action<float> OnHealed;
@@ -32,8 +35,8 @@ public class HealthController : MonoBehaviour, IDamageable
     {
         if (!IsAlive) return;
 
-        float appliedDamage = Mathf.Min(damage, _currentHealth);
-        _currentHealth -= damage;
+        float appliedDamage = Mathf.Min(damage, _currentHealth - MinHealth);
+        _currentHealth = Mathf.Max(_currentHealth - damage, MinHealth);
         OnDamaged?.Invoke(damage);
         OnAnyDamaged?.Invoke(this, appliedDamage);
         if (_currentHealth <= 0)
