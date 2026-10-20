@@ -1,12 +1,12 @@
+using DG.Tweening;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SoundManager : PersistentLazySingleton<SoundManager>
 {
-    #region References
-    [SerializeField] private AudioClip m_menuMusic;
-    [SerializeField] private AudioClip m_soundEffect;
+    private const float MUSIC_VOLUME = 1f;
+    private const float FADE_DURATION = 0.5f;
 
+    #region References
     private AudioSource m_musicSource;
     private AudioSource m_soundEffectSource;
     #endregion
@@ -21,8 +21,6 @@ public class SoundManager : PersistentLazySingleton<SoundManager>
             return;
         }
 
-        DontDestroyOnLoad(gameObject);
-
         m_musicSource = gameObject.AddComponent<AudioSource>();
         m_musicSource.playOnAwake = false;
         m_musicSource.loop = true;
@@ -30,72 +28,46 @@ public class SoundManager : PersistentLazySingleton<SoundManager>
         m_soundEffectSource = gameObject.AddComponent<AudioSource>();
         m_soundEffectSource.playOnAwake = false;
     }
-
-    private void OnEnable()
-    {
-        if (Instance == this)
-        {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void Start()
-    {
-        OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
-    }
     #endregion
 
     #region Playback Methods
-    public void PlayMusic()
+    // A null clip fades the current music out and leaves silence
+    public void PlayMusic(AudioClip clip)
     {
-        if (m_menuMusic == null)
+        if (m_musicSource.clip == clip)
         {
-            Debug.LogError("Menu music is not assigned in the SoundManager.", this);
             return;
         }
 
-        if (m_musicSource.clip != m_menuMusic)
-        {
-            m_musicSource.clip = m_menuMusic;
-            m_musicSource.Play();
-        }
-        else if (!m_musicSource.isPlaying)
-        {
-            m_musicSource.UnPause();
-        }
-    }
+        m_musicSource.DOKill();
 
-    public void PauseMusic()
-    {
-        m_musicSource.Pause();
-    }
-
-    public void PlaySoundEffect()
-    {
-        if (m_soundEffect == null)
+        if (!m_musicSource.isPlaying)
         {
-            Debug.LogError("The sound effect is not assigned in the SoundManager.", this);
+            SwapMusic(clip);
             return;
         }
 
-        m_soundEffectSource.PlayOneShot(m_soundEffect);
+        m_musicSource.DOFade(0f, FADE_DURATION).SetUpdate(true).OnComplete(() => SwapMusic(clip));
+    }
+
+    public void PlaySoundEffect(AudioClip clip)
+    {
+        m_soundEffectSource.PlayOneShot(clip);
     }
     #endregion
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void SwapMusic(AudioClip clip)
     {
-        if (scene.name == "MainMenuScene" || scene.name == "NearSideScene")
+        m_musicSource.clip = clip;
+
+        if (clip == null)
         {
-            PlayMusic();
+            m_musicSource.Stop();
+            return;
         }
-        else if (scene.name == "FarSideScene")
-        {
-            PauseMusic();
-        }
+
+        m_musicSource.volume = 0f;
+        m_musicSource.Play();
+        m_musicSource.DOFade(MUSIC_VOLUME, FADE_DURATION).SetUpdate(true);
     }
 }
