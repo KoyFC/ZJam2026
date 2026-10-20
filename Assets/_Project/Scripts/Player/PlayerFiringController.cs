@@ -7,6 +7,7 @@ public class PlayerFiringController : Singleton<PlayerFiringController>
     [SerializeField] private ParticleSystem m_Bullets;
     [SerializeField] private float m_FireRate = 10f;
     [SerializeField] private float m_ParticleSpeed = 50f;
+    [SerializeField] private AudioClip m_LaserSFX;
 
     [Header("Missile")]
     [SerializeField] private Transform m_MissileSpawn;
@@ -14,6 +15,7 @@ public class PlayerFiringController : Singleton<PlayerFiringController>
     [SerializeField] private int m_MissilePoolSize = 10;
     [SerializeField] private Explosion m_ExplosionPrefab;
     [SerializeField, Min(0f)] private float m_MissileCooldown = 1.5f;
+    [SerializeField] private AudioClip m_MissileSFX;
 
     public static event Action OnFired;
 
@@ -75,6 +77,11 @@ public class PlayerFiringController : Singleton<PlayerFiringController>
         muzzle.rotation = GetAimRotation(muzzle);
         m_Bullets.Emit(1);
 
+        if(m_LaserSFX != null)
+        {
+            SoundManager.Instance.PlaySoundEffect(m_LaserSFX);
+        }
+
         OnFired?.Invoke();
     }
 
@@ -87,6 +94,11 @@ public class PlayerFiringController : Singleton<PlayerFiringController>
 
         Projectile missile = m_MissilePool.Get(m_MissileSpawn.position, GetAimRotation(m_MissileSpawn));
         missile.Launch(m_MissilePool, m_ExplosionPool);
+
+        if (m_MissileSFX != null)
+        {
+            SoundManager.Instance.PlaySoundEffect(m_MissileSFX);
+        }
 
         OnFired?.Invoke();
     }

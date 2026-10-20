@@ -7,6 +7,7 @@ public class Explosion : MonoBehaviour
     [SerializeField] private float m_Radius = 5f;
     [SerializeField] private LayerMask m_HitMask;
     [SerializeField] private float m_Lifetime = 2f;
+    [SerializeField] private AudioClip m_ExplosionSFX;
 
     public float Radius => m_Radius;
 
@@ -35,6 +36,10 @@ public class Explosion : MonoBehaviour
 
         if (dealDamage)
             DealDamage();
+        if (m_ExplosionSFX != null)
+            SoundManager.Instance.PlaySoundEffect(m_ExplosionSFX);
+
+
     }
 
     private void DealDamage()

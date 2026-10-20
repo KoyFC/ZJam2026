@@ -1134,11 +1134,13 @@ MonoBehaviour:
   m_Bullets: {fileID: 1380471100718676733}
   m_FireRate: 10
   m_ParticleSpeed: 250
+  m_LaserSFX: {fileID: 8300000, guid: ecd8277d791ce3443b9a5ee42bfe46f8, type: 3}
   m_MissileSpawn: {fileID: 3362399915946960597}
   m_MissilePrefab: {fileID: 5110832050719996064, guid: da28f53cf8ad7d7eabdaa8564aeb5bab, type: 3}
   m_MissilePoolSize: 10
   m_ExplosionPrefab: {fileID: 185769348726656504, guid: 8a5a994083aa641e2817476f032880b3, type: 3}
   m_MissileCooldown: 1.5
+  m_MissileSFX: {fileID: 8300000, guid: f8bfa9b8257bb53419cf071960d38cdb, type: 3}
 --- !u!114 &4122179853410633850
 MonoBehaviour:
   m_ObjectHideFlags: 0
