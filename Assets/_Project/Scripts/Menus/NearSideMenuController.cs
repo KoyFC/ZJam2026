@@ -83,10 +83,7 @@ public class NearSideMenuController : MonoBehaviour
         // Close any open canvas before starting the combat level
         CloseCurrentCanvas();
 
-        if  (GameManager.Instance != null)
-        {
-            GameManager.Instance.CurrentLevel = level;
-        }
+        SaveSystem.Set(SaveSystem.PLAYER_DATA_FILE, ZoneManager.CURRENT_ZONE_INDEX_KEY, level - 1);
 
         SceneManager.LoadScene($"FarSideScene");
     }

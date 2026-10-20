@@ -7,7 +7,7 @@ public class ZoneManager : Singleton<ZoneManager>
     public int CurrentZoneIndex { get; private set; } = -1;
     public ZoneDataSO CurrentZone => CurrentZoneIndex >= 0 ? Zones[CurrentZoneIndex] : null;
 
-    private const string CURRENT_ZONE_INDEX_KEY = "CurrentZoneIndex";
+    public const string CURRENT_ZONE_INDEX_KEY = "CurrentZoneIndex";
 
     [field: SerializeField, Min(0f)] public float InnerRadius { get; private set; } = 350f;
     [field: SerializeField, Min(0f)] public float OuterRadius { get; private set; } = 500f;
@@ -27,14 +27,7 @@ public class ZoneManager : Singleton<ZoneManager>
 
         int outermostZoneIndex = Zones.Length - 1;
         int savedZoneIndex = SaveSystem.Get(SaveSystem.PLAYER_DATA_FILE, CURRENT_ZONE_INDEX_KEY, outermostZoneIndex);
-        CurrentZoneIndex = Mathf.Clamp(savedZoneIndex, 0, outermostZoneIndex);
-
-        if (GameManager.Instance != null)
-        {
-            SetCurrentZone(GameManager.Instance.CurrentLevel - 1);
-        }
-
-        SaveCurrentZone();
+        SetCurrentZone(Mathf.Clamp(savedZoneIndex, 0, outermostZoneIndex));
     }
 
     public bool SetCurrentZone(int zoneIndex)
