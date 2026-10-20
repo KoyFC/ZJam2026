@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 0.41
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 583f0d117f7056948943f87366c0f77b, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 247c7cc9c7223bf42a1b1bf60660715b, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0.069
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
   m_UseRadianceAmbientProbe: 0
@@ -294,7 +294,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 75
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -854,6 +854,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 19cebf4bd12afb366a06c4f97f5b4a96, type: 2}
   - {fileID: 11400000, guid: 79cbd591352dd2e5db31c19f54c5da01, type: 2}
   - {fileID: 11400000, guid: a5d389a44e3f7242c9c40acfe79a275a, type: 2}
+  <InnerRadius>k__BackingField: 350
+  <OuterRadius>k__BackingField: 500
   m_GizmoHeight: 100
 --- !u!4 &1749922175
 Transform:
@@ -1085,9 +1087,57 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2044334468939355927, guid: f1c6ef900258777ea9b7f7a147dc2fc3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044334468939355927, guid: f1c6ef900258777ea9b7f7a147dc2fc3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044334468939355927, guid: f1c6ef900258777ea9b7f7a147dc2fc3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044334468939355927, guid: f1c6ef900258777ea9b7f7a147dc2fc3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2158141657593661978, guid: f1c6ef900258777ea9b7f7a147dc2fc3, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015930760520026318, guid: f1c6ef900258777ea9b7f7a147dc2fc3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015930760520026318, guid: f1c6ef900258777ea9b7f7a147dc2fc3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627465821053264663, guid: f1c6ef900258777ea9b7f7a147dc2fc3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627465821053264663, guid: f1c6ef900258777ea9b7f7a147dc2fc3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627465821053264663, guid: f1c6ef900258777ea9b7f7a147dc2fc3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627465821053264663, guid: f1c6ef900258777ea9b7f7a147dc2fc3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6319002437093320858, guid: f1c6ef900258777ea9b7f7a147dc2fc3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6319002437093320858, guid: f1c6ef900258777ea9b7f7a147dc2fc3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7380264741633910936, guid: f1c6ef900258777ea9b7f7a147dc2fc3, type: 3}
       propertyPath: m_LocalPosition.x
