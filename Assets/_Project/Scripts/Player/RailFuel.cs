@@ -43,6 +43,11 @@ public class RailFuel : Singleton<RailFuel>
         IsPaused = paused;
     }
 
+    public void Refuel(float amount)
+    {
+        TraveledAngle = Mathf.Max(0f, TraveledAngle - Mathf.Max(0f, amount));
+    }
+
     private void HandleFuelDepleted()
     {
         TraveledAngle = 360f;
