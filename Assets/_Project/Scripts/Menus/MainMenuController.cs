@@ -14,6 +14,6 @@ public class MainMenuController : MonoBehaviour
 
     public void ExitGame()
     {
-        Application.Quit();
+        SceneLoader.Quit();
     }
 }

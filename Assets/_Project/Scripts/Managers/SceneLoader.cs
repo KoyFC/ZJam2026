@@ -54,6 +54,28 @@ public class SceneLoader : PersistentLazySingleton<SceneLoader>
         Instance.StartCoroutine(Instance.Transition(sceneName));
     }
 
+    public static void Quit()
+    {
+        if (IsBusy)
+            return;
+
+        Instance.StartCoroutine(Instance.QuitTransition());
+    }
+
+    private IEnumerator QuitTransition()
+    {
+        m_IsBusy = true;
+        m_Blocker.enabled = true;
+
+        yield return Wipe(SetCover);
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
     private IEnumerator Transition(string sceneName)
     {
         m_IsBusy = true;
