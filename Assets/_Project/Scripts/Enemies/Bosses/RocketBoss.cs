@@ -15,6 +15,7 @@ public class RocketBoss : EnemyWeapon
     [SerializeField, Min(0f)] private float _spreadAngle = 30f;
 
     private Pool<Projectile> _rocketPool;
+    private EnemyShooter _shooter;
     private bool _isFiring;
 
     public override Vector3 Origin => _shootPoint != null ? _shootPoint.position : transform.position;
@@ -23,6 +24,8 @@ public class RocketBoss : EnemyWeapon
 
     private void Awake()
     {
+        _shooter = GetComponent<EnemyShooter>();
+
         if (_shootPoint == null)
         {
             _shootPoint = transform;
@@ -65,13 +68,29 @@ public class RocketBoss : EnemyWeapon
                 yield return new WaitForSeconds(_rocketInterval);
             }
 
-            float spreadProgress = rocketCount == 1 ? 0.5f : (float)i / (rocketCount - 1);
-            float spread = Mathf.Lerp(-_spreadAngle * 0.5f, _spreadAngle * 0.5f, spreadProgress);
-            Quaternion rocketRotation = Quaternion.AngleAxis(spread, Vector3.up) * rotation;
-            Projectile rocket = _rocketPool.Get(Origin, rocketRotation);
+            if (_shooter != null && _shooter.TryGetAim(out Quaternion aim))
+            {
+                rotation = aim;
+            }
+
+            Projectile rocket = _rocketPool.Get(Origin, rotation * GetSpread(i, rocketCount));
             rocket.Launch(_rocketPool);
         }
 
         _isFiring = false;
+    }
+
+    // Even rockets go straight at the player, odd ones circle around them to cut off dodges
+    private Quaternion GetSpread(int index, int rocketCount)
+    {
+        if (index % 2 == 0)
+        {
+            return Quaternion.identity;
+        }
+
+        int ringCount = rocketCount / 2;
+        float angle = (index / 2) * 360f / ringCount * Mathf.Deg2Rad;
+        Vector2 offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * (_spreadAngle * 0.5f);
+        return Quaternion.Euler(-offset.y, offset.x, 0f);
     }
 }

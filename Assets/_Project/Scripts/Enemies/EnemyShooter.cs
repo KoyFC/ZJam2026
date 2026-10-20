@@ -93,6 +93,18 @@ public class EnemyShooter : MonoBehaviour
 
     private bool Fire(Transform target)
     {
+        return TryGetAim(target, out Quaternion rotation) && _weapon.Fire(rotation);
+    }
+
+    public bool TryGetAim(out Quaternion rotation)
+    {
+        rotation = Quaternion.identity;
+        return _detector.HasTarget && TryGetAim(_detector.Target, out rotation);
+    }
+
+    private bool TryGetAim(Transform target, out Quaternion rotation)
+    {
+        rotation = Quaternion.identity;
         Vector3 targetDirection = target.position - _weapon.Origin;
         Rigidbody targetRigidbody = target.GetComponent<Rigidbody>();
         if (targetRigidbody != null && _weapon.Speed > 0f)
@@ -107,6 +119,7 @@ public class EnemyShooter : MonoBehaviour
             return false;
         }
 
-        return _weapon.Fire(Quaternion.LookRotation(targetDirection.normalized));
+        rotation = Quaternion.LookRotation(targetDirection.normalized);
+        return true;
     }
 }

@@ -282,7 +282,7 @@ MonoBehaviour:
   _poolSize: 16
   _rocketsPerBurst: 8
   _rocketInterval: 0.15
-  _spreadAngle: 30
+  _spreadAngle: 10
 --- !u!1001 &87960235011584073
 PrefabInstance:
   m_ObjectHideFlags: 0
