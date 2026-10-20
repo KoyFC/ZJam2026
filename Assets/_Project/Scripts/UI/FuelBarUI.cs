@@ -1,9 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FuelBarUI : MonoBehaviour
 {
     [SerializeField] private Slider m_Slider;
+    [SerializeField] private TMP_Text m_PercentText;
 
     private void Awake()
     {
@@ -17,6 +19,8 @@ public class FuelBarUI : MonoBehaviour
         if (!RailFuel.InstanceExists)
             return;
 
-        m_Slider.value = 1f - RailFuel.Instance.Normalized;
+        float fuelLeft = 1f - RailFuel.Instance.Normalized;
+        m_Slider.value = fuelLeft;
+        m_PercentText.text = $"{fuelLeft * 100f:0}%";
     }
 }
