@@ -9858,3 +9858,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   m_Lifetime: 2
+  m_ExplosionSFX: {fileID: 8300000, guid: 81fa281072a4ebb488899dc68e0d57e5, type: 3}

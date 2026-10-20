@@ -1,13 +1,17 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : PersistentLazySingleton<SoundManager>
 {
     private const float MUSIC_VOLUME = 1f;
     private const float FADE_DURATION = 0.5f;
 
-    #region References
-    private AudioSource m_musicSource;
+    [SerializeField] private AudioClip clickSFX;
+
+
+#region References
+private AudioSource m_musicSource;
     private AudioSource m_soundEffectSource;
     #endregion
 
@@ -98,4 +102,13 @@ public class SoundManager : PersistentLazySingleton<SoundManager>
         m_musicSource.volume = MUSIC_VOLUME * GameSettings.MusicVolume * m_musicFade;
         m_soundEffectSource.volume = GameSettings.SfxVolume;
     }
+
+    public void PlayClickSound()
+    {
+        if (clickSFX != null)
+            SoundManager.Instance.PlaySoundEffect(clickSFX);
+    }
+    
+
+
 }
