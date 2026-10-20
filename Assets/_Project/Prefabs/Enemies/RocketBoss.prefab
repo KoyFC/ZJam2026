@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 5277291643285319180}
   - component: {fileID: 2596984589113945911}
   - component: {fileID: 3067223742767727982}
+  - component: {fileID: 8546019732164907113}
   m_Layer: 7
   m_Name: RocketBoss
   m_TagString: Untagged
@@ -168,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799fae55dc7bb1746bb6d9ebcf97fb84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyShooter
-  _shootInterval: 3
+  _shootInterval: 4
   _intervalVariance: 0.2
   _telegraph: {fileID: 667427342623510442}
   _telegraphLifetime: 1
@@ -442,3 +443,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &8546019732164907113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5946601281159372525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a142f03d1f2544d0ae15972ccd9efea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossMovement
+  m_MoveSpeed: {x: 8, y: 4}
+  m_RingMargin: 20
+  m_HeightRange: {x: 12, y: 40}
+  m_ShootPause: 0.4
