@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -8,10 +9,16 @@ public class ZoneBarrierSpawner : MonoBehaviour
     [SerializeField] private float m_Height = 30f;
     [SerializeField] private float m_YOffset = -2f;
     [SerializeField] private int m_Segments = 64;
+    [SerializeField, Min(0f)] private float m_ColorFadeDuration = 0.5f;
+
+    private static readonly int s_ColorId = Shader.PropertyToID("_Color");
 
     private readonly List<GameObject> m_Barriers = new();
     private Mesh m_CylinderMesh;
     private Mesh m_ColliderMesh;
+
+    private Material m_Material;
+    private Color m_OriginalColor;
 
     private readonly List<Vector3> m_Vertices = new();
     private readonly List<Vector3> m_Normals = new();
@@ -25,19 +32,54 @@ public class ZoneBarrierSpawner : MonoBehaviour
 
         m_CylinderMesh = CreateCylinder(m_Segments, false);
         m_ColliderMesh = CreateCylinder(m_Segments, true);
+        m_Material = new Material(m_BarrierMaterial);
+        m_OriginalColor = m_Material.GetColor(s_ColorId);
 
         float innerRadius = ZoneManager.Instance.InnerRadius;
         if (innerRadius > 0f)
             m_Barriers.Add(CreateZoneBarrier("Inner", innerRadius));
         m_Barriers.Add(CreateZoneBarrier("Outer", ZoneManager.Instance.OuterRadius));
+
+        if (BossSpawner.InstanceExists)
+        {
+            BossSpawner.Instance.OnBossSpawned += ShowBossColor;
+            BossSpawner.Instance.OnBossDefeated += RestoreColor;
+        }
     }
 
     private void OnDestroy()
     {
+        if (BossSpawner.InstanceExists)
+        {
+            BossSpawner.Instance.OnBossSpawned -= ShowBossColor;
+            BossSpawner.Instance.OnBossDefeated -= RestoreColor;
+        }
+
         if (m_CylinderMesh != null)
             Destroy(m_CylinderMesh);
         if (m_ColliderMesh != null)
             Destroy(m_ColliderMesh);
+        if (m_Material != null)
+        {
+            m_Material.DOKill();
+            Destroy(m_Material);
+        }
+    }
+
+    private void ShowBossColor()
+    {
+        FadeColor(ZoneManager.Instance.CurrentZone.BossBarrierColor);
+    }
+
+    private void RestoreColor()
+    {
+        FadeColor(m_OriginalColor);
+    }
+
+    private void FadeColor(Color color)
+    {
+        m_Material.DOKill();
+        m_Material.DOColor(color, s_ColorId, m_ColorFadeDuration);
     }
 
     private GameObject CreateZoneBarrier(string barrierType, float radius)
@@ -50,7 +92,7 @@ public class ZoneBarrierSpawner : MonoBehaviour
         barrier.AddComponent<MeshFilter>().sharedMesh = m_CylinderMesh;
 
         var meshRenderer = barrier.AddComponent<MeshRenderer>();
-        meshRenderer.sharedMaterial = m_BarrierMaterial;
+        meshRenderer.sharedMaterial = m_Material;
         meshRenderer.shadowCastingMode = ShadowCastingMode.Off;
         meshRenderer.receiveShadows = false;
 

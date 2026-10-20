@@ -6,6 +6,7 @@ public class RailFuel : Singleton<RailFuel>
     public float TraveledAngle { get; private set; }
     public float Normalized => TraveledAngle / 360f;
     public bool IsStopped { get; private set; }
+    public bool IsPaused { get; private set; }
 
     public event Action OnFuelEmpty;
 
@@ -24,7 +25,8 @@ public class RailFuel : Singleton<RailFuel>
             return;
 
         Vector3 offset = ZoneManager.Instance.GetOffsetFromCenter(transform.position);
-        TraveledAngle += Vector3.Angle(m_PreviousOffset, offset);
+        if (!IsPaused)
+            TraveledAngle += Vector3.Angle(m_PreviousOffset, offset);
         m_PreviousOffset = offset;
 
         if (TraveledAngle >= 360f)
@@ -34,6 +36,11 @@ public class RailFuel : Singleton<RailFuel>
     public void Stop()
     {
         IsStopped = true;
+    }
+
+    public void SetPaused(bool paused)
+    {
+        IsPaused = paused;
     }
 
     private void HandleFuelDepleted()

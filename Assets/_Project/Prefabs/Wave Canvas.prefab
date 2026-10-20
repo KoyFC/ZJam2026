@@ -176,9 +176,11 @@ MonoBehaviour:
   m_EnemiesText: {fileID: 1822990435880581435}
   m_KillPunchStrength: 0.3
   m_KillPunchDuration: 0.25
+  m_EnemiesTextScaleDuration: 0.25
   m_CountdownScale: 1.5
   m_CountdownMoveDuration: 0.4
   m_CountdownEase: 9
+  m_CountdownDelay: 1
 --- !u!1 &6583495886956313321
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,7 +383,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wave X/Y
+  m_text: Starting phase...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
