@@ -14,9 +14,7 @@ public class RunSummaryUI : MonoBehaviour
 {
     [SerializeField] private RunOutcome m_Outcome;
     [SerializeField] private CanvasGroup m_Panel;
-    [SerializeField] private TMP_Text m_TitleText;
     [SerializeField] private TMP_Text m_StatsText;
-    [SerializeField] private string m_Title = "Zone cleared";
     [SerializeField, Min(0f)] private float m_FadeDuration = 0.5f;
     [SerializeField] private string m_ReturnScene = "NearSideScene";
 
@@ -41,7 +39,6 @@ public class RunSummaryUI : MonoBehaviour
 
     private void Show()
     {
-        m_TitleText.text = m_Title;
         m_StatsText.text = BuildStats();
 
         SetPanelVisible(true);
