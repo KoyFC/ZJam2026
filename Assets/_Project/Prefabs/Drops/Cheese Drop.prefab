@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 803699336968414363}
   - component: {fileID: 1246740312026820982}
+  - component: {fileID: 2476518934706213124}
   - component: {fileID: 6922039324450220658}
   m_Layer: 8
   m_Name: Cheese Drop
@@ -49,12 +50,39 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2476518934706213124
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697728732141559055}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &6922039324450220658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,6 +98,12 @@ MonoBehaviour:
   m_PlayerMask:
     serializedVersion: 2
     m_Bits: 64
+  m_Renderer: {fileID: 8943138404751664406}
+  m_HealthMaterial: {fileID: 2100000, guid: 34ea630cd00afec458671e3c88f3ab77, type: 2}
+  m_FuelMaterial: {fileID: 2100000, guid: f1cdda6b448376e49974fa842679eecf, type: 2}
+  m_CollectionPadding: 1
+  m_MagnetRadius: 12
+  m_FlySpeed: 18
   m_Lifetime: 30
   m_BehindAngle: -5
   m_RiseDuration: 1
@@ -144,7 +178,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 34ea630cd00afec458671e3c88f3ab77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -185,7 +219,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

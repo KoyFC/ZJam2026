@@ -276,7 +276,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResourceDropper
   m_Drop: {fileID: 6922039324450220658, guid: c54287bb78bf76260a6e20d37d426227, type: 3}
   m_DropChance: 1
-  m_Amount: 1
+  m_HealthDropPercentage: 70
+  m_HealthAmount: 25
+  m_FuelAmount: 25
   m_RiseOnDrop: 0
   m_MinRiseHeight: 15
   m_MaxRiseHeight: 20

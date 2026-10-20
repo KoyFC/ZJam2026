@@ -5,7 +5,9 @@ public class ResourceDropper : MonoBehaviour
 {
     [SerializeField] private ResourceDrop m_Drop;
     [SerializeField, Range(0f, 1f)] private float m_DropChance = 1f;
-    [SerializeField, Min(0f)] private float m_Amount = 1f;
+    [SerializeField, Range(0f, 100f)] private float m_HealthDropPercentage = 50f;
+    [SerializeField, Min(0f)] private float m_HealthAmount = 25f;
+    [SerializeField, Min(0f)] private float m_FuelAmount = 45f;
 
     [Header("Rise")]
     [SerializeField] private bool m_RiseOnDrop;
@@ -32,9 +34,21 @@ public class ResourceDropper : MonoBehaviour
 
         Vector3 position = transform.position;
         float height = m_RiseOnDrop ? Random.Range(m_MinRiseHeight, m_MaxRiseHeight) : position.y;
+        ResourceDropType type = IsHealthDrop() ? ResourceDropType.Health : ResourceDropType.Fuel;
+        float amount = type == ResourceDropType.Health ? m_HealthAmount : m_FuelAmount;
 
         Pool<ResourceDrop> pool = PoolManager.Instance.GetPool(m_Drop);
-        pool.Get(position, Quaternion.identity).Launch(pool, m_Amount, ClampToPlayerHeight(height));
+        pool.Get(position, Quaternion.identity).Launch(pool, type, amount, ClampToPlayerHeight(height));
+    }
+
+    private bool IsHealthDrop()
+    {
+        if (m_HealthDropPercentage <= 0f)
+            return false;
+        if (m_HealthDropPercentage >= 100f)
+            return true;
+
+        return Random.value * 100f < m_HealthDropPercentage;
     }
 
     private static float ClampToPlayerHeight(float height)
