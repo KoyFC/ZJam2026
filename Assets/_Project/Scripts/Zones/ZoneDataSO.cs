@@ -6,6 +6,10 @@ public class ZoneDataSO : ScriptableObject
     [field: SerializeField] public string ZoneName { get; private set; } = "New Zone";
     [field: SerializeField, Range(0.0f, 1.0f)] public float MinimapRadius { get; private set; } = 1f;
 
+    [field: Header("Info")]
+    [field: SerializeField] public string Title { get; private set; }
+    [field: SerializeField, TextArea] public string Description { get; private set; }
+
     [field: Header("Waves")]
     [field: SerializeField] public WaveData[] Waves { get; private set; }
     [field: SerializeField, Min(0f)] public float DelayBetweenWaves { get; private set; } = 2f;

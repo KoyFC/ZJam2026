@@ -22,7 +22,15 @@ public class MinimapZoneRingUI : MaskableGraphic
             return;
 
         rectTransform.localPosition = MinimapControllerUI.Instance.WorldToMinimapPosition(ZoneManager.Instance.transform.position);
+        ZoneManager.Instance.OnZoneChanged += SetVerticesDirty;
         SetVerticesDirty();
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        if (ZoneManager.InstanceExists)
+            ZoneManager.Instance.OnZoneChanged -= SetVerticesDirty;
     }
 
     protected override void OnPopulateMesh(VertexHelper helper)
