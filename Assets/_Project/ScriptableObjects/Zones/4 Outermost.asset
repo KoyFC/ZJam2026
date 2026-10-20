@@ -24,7 +24,7 @@ MonoBehaviour:
   - Enemies:
     - Prefab: {fileID: 5277291643285319180, guid: e02f594a5b80404d9a37472ababd0f50, type: 3}
       Count: 7
-  <DelayBetweenWaves>k__BackingField: 5
+  <DelayBetweenWaves>k__BackingField: 6
   <GroundEnemies>k__BackingField:
   - Prefab: {fileID: 5863351204731407082, guid: 1db43671e73f720409b1b7a132d00ae0, type: 3}
     Weight: 1

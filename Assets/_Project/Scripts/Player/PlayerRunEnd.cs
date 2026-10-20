@@ -10,12 +10,18 @@ public class PlayerRunEnd : MonoBehaviour
 
     public bool HasEnded { get; private set; }
 
+    private void Start()
+    {
+        RunStats.Begin();
+    }
+
     public void End()
     {
         if (HasEnded)
             return;
 
         HasEnded = true;
+        RunStats.End();
 
         foreach (Behaviour behaviour in m_DisableBehaviours)
             behaviour.enabled = false;
