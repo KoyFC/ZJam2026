@@ -57,9 +57,9 @@ Material:
     - _DissolveEdge: 0.05
     - _FadeHeight: 1
     - _FresnelPower: 5
-    - _HexagonScale: 0.77
-    - _HexagonSize: 1
-    - _HexagonWidth: 0.4
+    - _HexagonScale: 1
+    - _HexagonSize: 2
+    - _HexagonWidth: 0.25
     - _IntersectWidth: 2
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -67,7 +67,7 @@ Material:
     - _Color: {r: 23.96863, g: 1.3465523, b: 0, a: 0.40392157}
     - _HexagonColor: {r: 5.70566, g: 4.2146916, b: 2.013129, a: 1}
     - _HexagonSpeed: {r: 0, g: -0.2, b: 0, a: 0}
-    - _HexagonTiling: {r: 5, g: 3, b: 0, a: 0}
+    - _HexagonTiling: {r: 5, g: 4, b: 0, a: 0}
     - _Tiling: {r: 5, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

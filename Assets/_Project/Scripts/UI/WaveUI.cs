@@ -182,16 +182,13 @@ public class WaveUI : MonoBehaviour
 
         Image fill = fillObject.GetComponent<Image>();
         fill.color = new Color(0.85f, 0.12f, 0.08f, 1f);
-        fill.type = Image.Type.Filled;
-        fill.fillMethod = Image.FillMethod.Horizontal;
-        fill.fillOrigin = (int)Image.OriginHorizontal.Left;
 
         m_BossHealthSlider = barObject.GetComponent<Slider>();
         m_BossHealthSlider.minValue = 0f;
         m_BossHealthSlider.maxValue = 1f;
         m_BossHealthSlider.value = 1f;
         m_BossHealthSlider.fillRect = fillRect;
-        m_BossHealthSlider.targetGraphic = background;
+        m_BossHealthSlider.transition = Selectable.Transition.None;
         m_BossHealthSlider.interactable = false;
         barObject.SetActive(false);
     }
